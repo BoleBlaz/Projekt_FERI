@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:projekt/settings/profile.dart';
 import '../models/user.dart';
 
-
-
 class MenuScreen extends StatefulWidget {
   @override
   _MenuScreenState createState() => _MenuScreenState();
