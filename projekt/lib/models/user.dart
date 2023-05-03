@@ -108,7 +108,7 @@ class User {
       "password": password,
     });
     var url =
-        Uri.parse("http://beoflere.com/confmilijonar.php?data=" + dataStr);
+        Uri.parse("http://beoflere.com/confprojekt.php?data=" + dataStr);
     try {
       var result = await http.get(url);
       if (result.body == "ERROR") {
@@ -130,7 +130,7 @@ class User {
       "username": username,
     });
     var url =
-        Uri.parse("http://beoflere.com/confmilijonar.php?data=" + dataStr);
+        Uri.parse("http://beoflere.com/confprojekt.php?data=" + dataStr);
     try {
       var result = await http.get(url);
       if (result.body == "ERROR") {
