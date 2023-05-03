@@ -6,17 +6,11 @@ class User {
   int id;
   String username;
   String password;
-  int trophies;
-  int streak;
-  int totalGames;
 
   User({
     this.id = 0,
     this.username = "",
     this.password = "",
-    this.trophies = 0,
-    this.streak = 0,
-    this.totalGames = 0,
   });
 
   int getId() {
@@ -37,30 +31,6 @@ class User {
 
   void setPassword(String password) {
     this.password = password;
-  }
-
-  int getTrophies() {
-    return this.trophies;
-  }
-
-  void setTrophies(int trophies) {
-    this.trophies = trophies;
-  }
-
-  int getStreak() {
-    return this.streak;
-  }
-
-  void setStreak(int streak) {
-    this.streak = streak;
-  }
-
-  int getTotalGames() {
-    return this.totalGames;
-  }
-
-  void setTotalGames(int totalGames) {
-    this.totalGames = totalGames;
   }
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -143,9 +113,6 @@ class User {
           id: int.parse(data['id']),
           username: data['username'],
           password: data['password'],
-          trophies: int.parse(data['trophies']),
-          streak: int.parse(data['streak']),
-          totalGames: int.parse(data['totalGames']),
         );
       }
     } catch (e) {

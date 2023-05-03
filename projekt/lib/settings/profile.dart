@@ -29,10 +29,8 @@ class _ProfileState extends State<Profile> {
 
   logoutAndShowMain() async {
     String? username = await User.getUsernameFromPreferences();
-    print("Pred: $username");
     await User.clearUsernameFromPreferences();
     username = await User.getUsernameFromPreferences();
-    print("Po: $username");
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
       return const MyHomePage();
     }));
@@ -41,35 +39,23 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(30.0),
-        child: _user == null
+        body: _user == null
             ? Center(child: CircularProgressIndicator())
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            : Container( 
+              child: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     _user!.username,
                     style:
                         TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 30.0),
                   Text(
                     "ID: ${_user!.id}",
                     style: TextStyle(fontSize: 24.0),
                   ),
-                  Text(
-                    "Trophies: ${_user!.trophies}",
-                    style: TextStyle(fontSize: 24.0),
-                  ),
-                  Text(
-                    "Streak: ${_user!.streak}",
-                    style: TextStyle(fontSize: 24.0),
-                  ),
-                  Text(
-                    "Total Games: ${_user!.totalGames}",
-                    style: TextStyle(fontSize: 24.0),
-                  ),
+                  SizedBox(height: 30.0),
                   ElevatedButton(
                     onPressed: logoutAndShowMain,
                     child: Text('Odjava'),
@@ -83,7 +69,8 @@ class _ProfileState extends State<Profile> {
                   ),
                 ],
               ),
-      ),
+              ),
+            ),
     );
   }
 }
