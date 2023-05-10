@@ -4,7 +4,6 @@ import '../models/user.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 
-
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
 
@@ -14,6 +13,7 @@ class MenuScreen extends StatefulWidget {
 
 class _MenuScreenState extends State<MenuScreen> {
   String response = "NULL";
+  String err = "NULL";
   String? _currentAddress;
   Position? _currentPosition;
 
@@ -29,20 +29,18 @@ class _MenuScreenState extends State<MenuScreen> {
     return username ?? "";
   }
 
-
   Future<void> _getAddressFromLatLng(Position position) async {
-  await placemarkFromCoordinates(
-          _currentPosition!.latitude, _currentPosition!.longitude)
-      .then((List<Placemark> placemarks) {
-    Placemark place = placemarks[0];
-    setState(() {
-      _currentAddress = '${place.street}, ${place.postalCode}';
+    await placemarkFromCoordinates(
+            _currentPosition!.latitude, _currentPosition!.longitude)
+        .then((List<Placemark> placemarks) {
+      Placemark place = placemarks[0];
+      setState(() {
+        _currentAddress = '${place.street}, ${place.postalCode}';
+      });
+    }).catchError((e) {
+      debugPrint(e);
     });
-  }).catchError((e) {
-    debugPrint(e);
-  });
- }
-
+  }
 
   Future<void> _getCurrentPosition() async {
     final hasPermission = await _handleLocationPermission();
@@ -62,7 +60,10 @@ class _MenuScreenState extends State<MenuScreen> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-          print('Location services are disabled. Please enable the services');
+      setState(() {
+        err = "Vklopi lokacijo!";
+      });
+      print('Location services are disabled. Please enable the services');
       return false;
     }
     permission = await Geolocator.checkPermission();
@@ -74,9 +75,13 @@ class _MenuScreenState extends State<MenuScreen> {
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      print('Location permissions are permanently denied, we cannot request permissions.');
+      print(
+          'Location permissions are permanently denied, we cannot request permissions.');
       return false;
     }
+    setState(() {
+        err = "";
+      });
     return true;
   }
 
@@ -122,7 +127,12 @@ class _MenuScreenState extends State<MenuScreen> {
                       ElevatedButton(
                         onPressed: _getCurrentPosition,
                         child: const Text("Get Current Location"),
-                      )
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        err,
+                        style: TextStyle(color: Colors.red, fontSize: 30),
+                      ),
                     ],
                   ),
                 ),

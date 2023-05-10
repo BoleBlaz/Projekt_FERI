@@ -50,8 +50,8 @@ class User {
   Future<bool> saveUser() async {
     var dataStr = jsonEncode({
       "command": "add_user",
-      "username": this.username,
-      "password": this.password,
+      "username": username,
+      "password": password,
     });
     var encodedData = Uri.encodeComponent(dataStr);
     var url = Uri.parse("http://beoflere.com/confprojekt.php?data=$encodedData");
