@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projekt/screens/login.dart';
 import 'package:projekt/screens/menu.dart';
+import 'package:projekt/screens/face.dart';
 import 'package:projekt/screens/register.dart';
 import 'models/user.dart';
 
@@ -33,7 +34,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   void initState() {
     super.initState();
@@ -62,6 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
   showLoginPage() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return LoginScreen();
+    }));
+  }
+
+  showFacePage() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      return Face();
     }));
   }
 
