@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:projekt/models/user.dart';
 import 'login.dart';
@@ -100,7 +102,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 32),
+                    SizedBox(height: 20),
+                    Text(
+                      response,
+                      style: TextStyle(color: Colors.red),
+                    ),
+                    SizedBox(height: 20),
                     Container(
                       width: 300,
                       height: 50,
@@ -115,9 +122,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                     ),
-                    Text(
-                      response,
-                      style: TextStyle(color: Colors.white),
+                    SizedBox(height: 32),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Že imate račun? ",
+                          style: TextStyle(color: Colors.white, fontSize: 17),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            showLoginPage();
+                          },
+                          child: Text(
+                            "Prijavite se",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -128,7 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
     );
   }
-  
+
   void addUser() async {
     String username = usernameController.text;
     String password = passwordController.text;

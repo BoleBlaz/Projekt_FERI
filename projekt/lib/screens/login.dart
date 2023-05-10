@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:projekt/screens/menu.dart';
+import 'package:projekt/screens/register.dart';
 import '../models/user.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -17,6 +20,13 @@ class _LoginScreenState extends State<LoginScreen> {
   showMenuPage() {
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => MenuScreen()),
+      (route) => false, // Always return false to remove all routes
+    );
+  }
+
+  showRegisterPage() {
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => RegisterScreen()),
       (route) => false, // Always return false to remove all routes
     );
   }
@@ -57,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: TextField(
-                          controller: this.usernameController,
+                          controller: usernameController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             prefixIcon: Icon(Icons.person),
@@ -74,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: TextField(
-                          controller: this.passwordController,
+                          controller: passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -84,7 +94,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 32),
+                      SizedBox(height: 20),
+                      Text(
+                        response,
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      SizedBox(height: 20),
                       Container(
                         width: 300,
                         height: 50,
@@ -99,9 +114,27 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-                      Text(
-                        response,
-                        style: TextStyle(color: Colors.white),
+                      SizedBox(height: 32),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Še niste registrirani? ",
+                            style: TextStyle(color: Colors.white, fontSize: 17),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showRegisterPage();
+                            },
+                            child: Text(
+                              "Ustvarite nov račun",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  decoration: TextDecoration.underline),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
