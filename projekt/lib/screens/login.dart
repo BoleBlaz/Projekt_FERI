@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:projekt/screens/menu.dart';
+import 'package:projekt/screens/face.dart';
 import 'package:projekt/screens/register.dart';
 import '../models/user.dart';
 
@@ -29,6 +30,12 @@ class _LoginScreenState extends State<LoginScreen> {
       MaterialPageRoute(builder: (context) => RegisterScreen()),
       (route) => false, // Always return false to remove all routes
     );
+  }
+
+  showFacePage() {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      return Face();
+    }));
   }
 
   @override
@@ -114,6 +121,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
+                      Container(
+                          child: ElevatedButton(
+                        onPressed: showFacePage,
+                        child: Text('Obraz'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          fixedSize: Size(250, 45),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      )),
                       SizedBox(height: 32),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
