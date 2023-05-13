@@ -25,22 +25,23 @@ switch ($in_data['command']) {
   case "get_login_info":
     get_login_info($in_data, $connection);
     break;
-  case "get_users":
-    get_users($connection);
-    break;
-  case "update_user":
-    update_user($in_data, $connection);
-    break;
   case "delete_user":
     delete_user($in_data, $connection);
     break;
   case "find_user_by_username":
     find_user_by_username($in_data, $connection);
     break;
+    //-----LOCATION-----
+    case "add_location":
+      add_location($in_data, $connection);
+      break;
   default:
     http_response_code(400);
     exit;
 }
+
+// -------------------------START OF USER SCOPE--------------------------
+
 function add_user($data, $connection)
 {
   $username = mysqli_real_escape_string($connection, $data['username']);
@@ -65,6 +66,7 @@ function add_user($data, $connection)
     echo "ERROR";
   }
 }
+
 function get_login_info($data, $connection)
 {
   $username = mysqli_real_escape_string($connection, $data['username']);
@@ -86,33 +88,6 @@ function get_login_info($data, $connection)
     }
   } else {
     // Username does not exist in the database
-    echo "ERROR";
-  }
-}
-
-// Get all users
-function get_users($connection)
-{
-  $result = mysqli_query($connection, "SELECT * FROM users;");
-  if ($result) {
-    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    echo json_encode($data);
-  }
-}
-
-// Update user's profile
-function update_user($data, $connection)
-{
-  $user_id = mysqli_real_escape_string($connection, $data['user_id']);
-  $trophies = mysqli_real_escape_string($connection, $data['trophies']);
-  $streak = mysqli_real_escape_string($connection, $data['streak']);
-
-  // Update user's profile
-  $result = mysqli_query($connection, "UPDATE users SET trophies=$trophies, streak=$streak WHERE id=$user_id;");
-  if ($result) {
-    echo "OK";
-  } else {
-
     echo "ERROR";
   }
 }
@@ -147,6 +122,28 @@ function find_user_by_username($in_data, $connection)
     echo json_encode($data); // send back a JSON response
   } else {
     http_response_code(404); // set the response code to 404
+    echo "ERROR";
+  }
+}
+
+// -------------------------END OF USER SCOPE--------------------------
+
+// -------------------------START OF LOCATION SCOPE--------------------------
+
+function add_location($data, $connection)
+{
+  $latitude =  mysqli_real_escape_string($connection, $data['latitude']);
+  $longitude =  mysqli_real_escape_string($connection, $data['longitude']);
+  $address =  mysqli_real_escape_string($connection, $data['address']);
+  $date =  mysqli_real_escape_string($connection, $data['date']);
+  $user_id =  mysqli_real_escape_string($connection, $data['user_id']);
+  
+  // Insert new location
+  $result = mysqli_query($connection, "INSERT INTO locations (latitude, longitude,address, date, user_id) VALUES ('$latitude', '$longitude','$address', '$date', '$user_id');");
+  if ($result) {
+    http_response_code(201);
+    echo "OK";
+  } else {
     echo "ERROR";
   }
 }
