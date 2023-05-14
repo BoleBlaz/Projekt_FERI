@@ -4,6 +4,7 @@ import '../models/user.dart';
 import 'package:projekt/models/location.dart' as LocationModel;
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:sensors_plus/sensors_plus.dart';
 
 class MenuScreen extends StatefulWidget {
   @override
@@ -15,11 +16,25 @@ class _MenuScreenState extends State<MenuScreen> {
   String? _currentAddress;
   Position? _currentPosition;
   User? _user;
+  // Define a class variable to hold the Timer
+  bool isRunning = false;
+  List<double>? _gyroscopeValues;
+  List<double>? _accelerometerValues;
 
   @override
   void initState() {
     super.initState();
     _getUserData();
+    gyroscopeEvents.listen((GyroscopeEvent event) {
+      setState(() {
+        _gyroscopeValues = <double>[event.x, event.y, event.z];
+      });
+    });
+    accelerometerEvents.listen((AccelerometerEvent event) {
+      setState(() {
+        _accelerometerValues = <double>[event.x, event.y, event.z];
+      });
+    });
   }
 
   Future<void> _getUserData() async {
@@ -144,15 +159,54 @@ class _MenuScreenState extends State<MenuScreen> {
                             const SizedBox(height: 32),
                             ElevatedButton(
                               onPressed: () {
-                                _getCurrentPosition();
-                                addLocation();
+                                LocationModel.Location.getRouteNumByUserId(1)
+                                    .then((var route_num) {
+                                  start((route_num! + 1));
+                                });
                               },
-                              child: const Text("Get Current Location"),
+                              child: const Text("START"),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                stop();
+                              },
+                              child: const Text("STOP"),
                             ),
                             SizedBox(height: 20),
                             Text(
                               err,
                               style: TextStyle(color: Colors.red, fontSize: 30),
+                            ),
+                            Text(
+                              "x: " + _gyroscopeValues![0].toString(),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            Text(
+                              "y: " + _gyroscopeValues![1].toString(),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            Text(
+                              "z: " + _gyroscopeValues![2].toString(),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              "x: " + _accelerometerValues![0].toString(),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            Text(
+                              "y: " + _accelerometerValues![1].toString(),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            Text(
+                              "z: " + _accelerometerValues![2].toString(),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
                             ),
                           ],
                         ),
@@ -163,25 +217,53 @@ class _MenuScreenState extends State<MenuScreen> {
         });
   }
 
-  void addLocation() async {
+  void addLocation(int route_num) async {
     var user_id = _user!.id;
     var date = DateTime.now();
-
+    print(route_num);
     var location = LocationModel.Location(
         latitude: _currentPosition?.latitude ?? -1,
         longitude: _currentPosition?.longitude ?? -1,
         address: _currentAddress ?? "",
         date: date,
+        route_num: route_num,
         user_id: user_id);
+
+    if (location.latitude == -1 || location.longitude == -1) {
+      setState(() {
+        err = "Vklopi lokacijo!";
+      });
+      return;
+    }
     var success = await location.saveLocation();
     if (success) {
       setState(() {
-        err = "ok";
+        err = "ok!";
       });
     } else {
       setState(() {
         err = "klasicni error";
       });
     }
+  }
+
+  void start(int route_num) async {
+    print("adadadadddasdasdasdasd" + route_num.toString());
+    isRunning = true;
+    while (isRunning) {
+      await _getCurrentPosition();
+      await Future.delayed(Duration(seconds: 5));
+      addLocation(route_num);
+    }
+    setState(() {
+      err = "ok!";
+    });
+  }
+
+  void stop() {
+    isRunning = false;
+    setState(() {
+      err = "Stopped";
+    });
   }
 }

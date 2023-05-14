@@ -2,6 +2,7 @@
     package="com.example.projekt">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCELEROMETER"/>
    <application
         android:label="projekt"
         android:name="${applicationName}"

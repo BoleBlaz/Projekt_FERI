@@ -32,9 +32,12 @@ switch ($in_data['command']) {
     find_user_by_username($in_data, $connection);
     break;
     //-----LOCATION-----
-    case "add_location":
-      add_location($in_data, $connection);
-      break;
+  case "add_location":
+    add_location($in_data, $connection);
+    break;
+  case "get_routeNum_fromUser":
+    get_routeNum_fromUser($in_data, $connection);
+    break;
   default:
     http_response_code(400);
     exit;
@@ -136,14 +139,32 @@ function add_location($data, $connection)
   $longitude =  mysqli_real_escape_string($connection, $data['longitude']);
   $address =  mysqli_real_escape_string($connection, $data['address']);
   $date =  mysqli_real_escape_string($connection, $data['date']);
+  $route_num =  mysqli_real_escape_string($connection, $data['route_num']);
   $user_id =  mysqli_real_escape_string($connection, $data['user_id']);
-  
+
   // Insert new location
-  $result = mysqli_query($connection, "INSERT INTO locations (latitude, longitude,address, date, user_id) VALUES ('$latitude', '$longitude','$address', '$date', '$user_id');");
+  $result = mysqli_query($connection, "INSERT INTO locations (latitude, longitude, address, date, route_num, user_id) VALUES ('$latitude', '$longitude','$address', '$date', '$route_num', '$user_id');");
   if ($result) {
     http_response_code(201);
     echo "OK";
   } else {
+    echo "ERROR";
+  }
+}
+
+function get_routeNum_fromUser($in_data, $connection)
+{
+  $user_id =  mysqli_real_escape_string($connection, $in_data['user_id']);
+
+  $query = "SELECT MAX(route_num) AS max_route_number FROM locations WHERE user_id = $user_id";
+  $result = mysqli_query($connection, $query);
+  if (mysqli_num_rows($result) > 0) {
+    $row = mysqli_fetch_assoc($result);
+    $data = array($row); // wrap the result in an array
+    http_response_code(200); // set the response code to 200
+    echo json_encode($data); // send back a JSON response
+  } else {
+    http_response_code(404); // set the response code to 404
     echo "ERROR";
   }
 }

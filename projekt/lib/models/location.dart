@@ -7,6 +7,7 @@ class Location {
   double longitude;
   String address;
   DateTime date;
+  int route_num;
   int user_id;
 
   Location({
@@ -15,6 +16,7 @@ class Location {
     this.longitude = 0.0,
     this.address = "",
     required this.date,
+    required this.route_num,
     required this.user_id,
   });
 
@@ -54,6 +56,14 @@ class Location {
     this.date = date;
   }
 
+  int getRouteNum() {
+    return this.route_num;
+  }
+
+  void setRouteNum(int route_num) {
+    this.route_num = route_num;
+  }
+
   int getUserId() {
     return this.user_id;
   }
@@ -69,6 +79,7 @@ class Location {
       longitude: json['longitude'],
       address: json['address'],
       date: DateTime.parse(json['date']),
+      route_num: json['route_num'],
       user_id: json['user_id'],
     );
   }
@@ -79,6 +90,7 @@ class Location {
         'longitude': longitude,
         "address": address,
         'date': date.toIso8601String(),
+        'route_num': route_num,
         'user_id': user_id,
       };
 
@@ -89,6 +101,7 @@ class Location {
       "longitude": longitude,
       "address": address,
       "date": date.toIso8601String(),
+      "route_num": route_num,
       "user_id": user_id,
     });
     var encodedData = Uri.encodeComponent(dataStr);
@@ -108,5 +121,30 @@ class Location {
       print('Error: $e');
     }
     return false;
+  }
+
+  static Future<int?> getRouteNumByUserId(int user_id) async {
+    var dataStr = jsonEncode({
+      "command": "get_routeNum_fromUser",
+      "user_id": user_id,
+    });
+    var url = Uri.parse("http://beoflere.com/confprojekt.php?data=$dataStr");
+
+    var result = await http.get(url);
+    var jsonResponse = jsonDecode(result.body);
+    try {
+      if (result.statusCode != 200) {
+        throw Exception('No rows found');
+      }
+      
+      var data = jsonResponse[0];
+      var maxRouteNumber = data['max_route_number'];
+      if(maxRouteNumber == null){
+        return 0;
+      }
+      return int.parse(maxRouteNumber);
+    } catch (e) {
+      throw Exception('Failed to parse JSON response: $e');
+    }
   }
 }
