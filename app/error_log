@@ -1,0 +1,524 @@
+[10-May-2023 19:34:20 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:34:38 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:35:49 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:36:33 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:36:37 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:33 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:35 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:35 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:36 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:36 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:36 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:36 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:37 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:37 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:37 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:37 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 19:37:47 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 20:04:06 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 20:04:21 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 20:16:53 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 20:31:23 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[10-May-2023 20:31:35 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 37
+[11-May-2023 17:55:12 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 46
+[11-May-2023 17:55:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 46
+[11-May-2023 17:55:39 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 46
+[11-May-2023 17:55:49 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 46
+[11-May-2023 17:58:24 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 46
+[11-May-2023 17:58:32 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 46
+[11-May-2023 17:58:33 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 46
+[11-May-2023 17:58:33 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 46
+[11-May-2023 17:58:35 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 46
+[11-May-2023 18:05:00 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:05:03 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:05:07 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:08:54 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:08:57 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:09:05 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:10:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:10:32 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:13:21 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:13:21 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 64
+[11-May-2023 18:13:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:13:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 64
+[11-May-2023 18:13:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:13:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 64
+[11-May-2023 18:13:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:13:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 64
+[11-May-2023 18:13:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:13:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 64
+[11-May-2023 18:13:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:13:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 64
+[11-May-2023 18:13:46 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:13:46 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 64
+[11-May-2023 18:14:19 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:14:19 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 64
+[11-May-2023 18:14:47 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:14:47 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 64
+[11-May-2023 18:14:51 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:14:51 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 64
+[11-May-2023 18:15:07 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:15:07 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 64
+[11-May-2023 18:17:51 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 44
+[11-May-2023 18:17:51 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:17:53 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 44
+[11-May-2023 18:17:53 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:17:57 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 44
+[11-May-2023 18:17:57 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:18:00 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 44
+[11-May-2023 18:18:00 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:18:04 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 44
+[11-May-2023 18:18:04 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:22:44 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:22:48 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 25
+[11-May-2023 18:22:53 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 25
+[11-May-2023 18:22:53 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 35
+[11-May-2023 18:23:02 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 25
+[11-May-2023 18:23:37 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:23:40 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 25
+[11-May-2023 18:23:44 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 25
+[11-May-2023 18:23:44 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 35
+[11-May-2023 18:24:45 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:24:47 Europe/Ljubljana] PHP Warning:  include_once(header.php): failed to open stream: No such file or directory in /home/beofle38/public_html/FERI_projekt/app/login.php on line 10
+[11-May-2023 18:24:47 Europe/Ljubljana] PHP Warning:  include_once(): Failed opening 'header.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/beofle38/public_html/FERI_projekt/app/login.php on line 10
+[11-May-2023 18:24:47 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 12
+[11-May-2023 18:24:51 Europe/Ljubljana] PHP Warning:  include_once(header.php): failed to open stream: No such file or directory in /home/beofle38/public_html/FERI_projekt/app/login.php on line 10
+[11-May-2023 18:24:51 Europe/Ljubljana] PHP Warning:  include_once(): Failed opening 'header.php' for inclusion (include_path='.:/opt/alt/php74/usr/share/pear') in /home/beofle38/public_html/FERI_projekt/app/login.php on line 10
+[11-May-2023 18:24:51 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 12
+[11-May-2023 18:24:51 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to a member function query() on null in /home/beofle38/public_html/FERI_projekt/app/login.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/login.php on line 18
+[11-May-2023 18:25:31 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:25:34 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:25:34 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 12
+[11-May-2023 18:25:39 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:25:39 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 12
+[11-May-2023 18:25:39 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 22
+[11-May-2023 18:26:58 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:26:58 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 12
+[11-May-2023 18:26:58 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 22
+[11-May-2023 18:32:42 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:32:45 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:32:45 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:33:01 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:33:01 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:33:01 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:34:17 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:34:17 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:34:17 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:34:20 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:34:20 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:34:20 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:34:53 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:34:53 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:34:53 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:35:01 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:35:01 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:35:08 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:35:08 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:35:13 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:35:13 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:35:19 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:35:19 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:35:23 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:35:23 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:35:23 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:36:16 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:36:16 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:36:16 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:36:34 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:36:34 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:36:34 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:38:05 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:38:13 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:38:18 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 44
+[11-May-2023 18:38:18 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:39:08 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 44
+[11-May-2023 18:39:08 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:39:10 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:39:35 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:39:39 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:39:39 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:39:47 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:39:47 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:39:47 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:40:15 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:40:15 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:40:15 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:40:31 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:40:31 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:40:31 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:42:22 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:42:22 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:42:22 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:42:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:42:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:42:36 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:42:36 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:42:36 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:43:18 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:43:18 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:43:18 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:43:22 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:43:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:43:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:43:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:43:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:43:30 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:43:30 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:43:30 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:45:30 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:45:38 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:45:38 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:45:43 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:45:43 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:45:43 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:47:41 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:47:41 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:47:44 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:47:44 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:47:50 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:47:50 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:47:50 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:48:23 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:48:23 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:48:23 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:48:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:48:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:48:26 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:48:43 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:48:43 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:48:43 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:48:55 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:48:55 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:48:55 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:48:58 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:48:58 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:48:58 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:49:34 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:49:34 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:49:34 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:49:38 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:49:38 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:49:38 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:50:13 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:50:13 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:50:13 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:50:16 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:50:16 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:50:16 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:50:21 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:50:24 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:50:24 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:50:30 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:50:30 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:50:30 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:51:13 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:51:17 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:51:17 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:51:22 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:51:22 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:51:22 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:51:24 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:51:24 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:52:39 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:52:42 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:52:42 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:52:46 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:52:46 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:52:46 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:53:16 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:53:19 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:53:19 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:53:22 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:53:22 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:53:22 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:53:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:53:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:54:18 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:54:25 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:54:25 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:54:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:54:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:54:30 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:54:30 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:54:30 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:54:47 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:54:52 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:54:52 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:54:56 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:54:56 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:54:56 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:55:08 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:55:13 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:55:13 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:55:16 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:55:16 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:55:16 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:55:45 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:55:48 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:55:48 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:55:52 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:55:52 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:55:52 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:56:03 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:11 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:11 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:56:14 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:14 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:56:14 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:56:17 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:17 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:56:24 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:24 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:56:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:56:27 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:56:37 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:37 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:56:38 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:38 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:56:41 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:41 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:56:41 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:56:51 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:51 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:56:52 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:52 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:56:56 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:56:56 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:56:56 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 58
+[11-May-2023 18:58:07 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:58:09 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:58:09 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:58:09 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 85
+[11-May-2023 18:58:17 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:58:17 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:58:44 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:58:44 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:58:44 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 84
+[11-May-2023 18:58:44 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:58:44 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:58:44 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 84
+[11-May-2023 18:58:49 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 18:58:49 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 18:58:49 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 84
+[11-May-2023 19:00:51 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 19:00:54 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 19:00:54 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 19:00:59 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 19:00:59 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 48
+[11-May-2023 19:00:59 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 62
+[11-May-2023 19:02:53 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 19:02:56 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 2
+[11-May-2023 19:02:56 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 49
+[11-May-2023 19:04:05 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 49
+[11-May-2023 19:04:40 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 49
+[11-May-2023 19:04:50 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 49
+[11-May-2023 19:04:50 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 63
+[11-May-2023 19:06:59 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 12
+[11-May-2023 19:07:03 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 12
+[11-May-2023 19:07:03 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 22
+[11-May-2023 19:07:17 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 12
+[11-May-2023 19:07:17 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 22
+[11-May-2023 19:07:20 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 12
+[11-May-2023 19:07:20 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 22
+[11-May-2023 19:07:45 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/login.php on line 14
+[11-May-2023 19:08:07 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 23
+[11-May-2023 19:08:54 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/login.php:1) in /home/beofle38/public_html/FERI_projekt/app/login.php on line 23
+[11-May-2023 19:15:09 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:15:22 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:18:14 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:18:14 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/index.php:1) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 47
+[11-May-2023 19:18:33 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:18:37 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:18:43 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:19:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:19:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:19:28 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:19:28 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:19:37 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:20:11 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:20:12 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:20:23 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:20:23 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:20:42 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:20:43 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:20:59 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:21:25 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:21:25 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:21:25 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:22:30 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 12
+[11-May-2023 19:23:05 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 12
+[11-May-2023 19:24:02 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to undefined function include_onde() in /home/beofle38/public_html/FERI_projekt/app/index.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/index.php on line 2
+[11-May-2023 19:24:09 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to undefined function include_onde() in /home/beofle38/public_html/FERI_projekt/app/index.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/index.php on line 2
+[11-May-2023 19:24:09 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to undefined function include_onde() in /home/beofle38/public_html/FERI_projekt/app/index.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/index.php on line 2
+[11-May-2023 19:24:10 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to undefined function include_onde() in /home/beofle38/public_html/FERI_projekt/app/index.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/index.php on line 2
+[11-May-2023 19:24:10 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to undefined function include_onde() in /home/beofle38/public_html/FERI_projekt/app/index.php:2
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/index.php on line 2
+[11-May-2023 19:50:21 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:51:02 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 19:51:28 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:15:59 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:26:55 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:26:59 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:27:00 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:27:00 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:27:00 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:27:01 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:28:26 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:30:29 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:30:29 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:30:46 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:33:28 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:33:31 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:34:52 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:34:57 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:35:21 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:36:01 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:37:31 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:49:41 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:51:11 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 20:51:45 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 21:00:44 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 23:30:40 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 23:31:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 23:35:02 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 23:35:16 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 23:35:18 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[11-May-2023 23:35:19 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 08:33:35 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 08:35:08 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 08:37:11 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 08:50:08 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 08:50:43 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 18:08:33 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 18:30:14 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 18:30:27 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 18:30:34 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 18:51:25 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 18:51:32 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 18:51:37 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 18:51:40 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 18:52:22 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 18:52:34 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 19:04:02 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 19:06:19 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[12-May-2023 19:09:17 Europe/Ljubljana] PHP Parse error:  syntax error, unexpected '!', expecting ';' or ',' in /home/beofle38/public_html/FERI_projekt/app/index.php on line 108
+[13-May-2023 09:52:19 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 09:52:23 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 12:26:44 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 12:31:31 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 12:32:05 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 12:32:12 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 13:28:51 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 15:44:48 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 15:45:56 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 15:46:02 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 15:46:05 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 15:59:36 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 15:59:50 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:00:25 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:00:26 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:00:27 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:00:28 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:01:11 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:03:25 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:03:29 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:04:06 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 149
+[13-May-2023 16:04:08 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 149
+[13-May-2023 16:04:11 Europe/Ljubljana] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, bool given in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 149
+[13-May-2023 16:10:11 Europe/Ljubljana] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'lea'@'cpanel-10.controlpanel.si' (using password: YES) in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 149
+[13-May-2023 16:10:11 Europe/Ljubljana] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:10:11 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/beofle38/public_html/FERI_projekt/app/map-google.php:154
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 154
+[13-May-2023 16:11:08 Europe/Ljubljana] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'lea'@'cpanel-10.controlpanel.si' (using password: YES) in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 148
+[13-May-2023 16:11:08 Europe/Ljubljana] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 151
+[13-May-2023 16:11:08 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/beofle38/public_html/FERI_projekt/app/map-google.php:153
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 153
+[13-May-2023 16:13:45 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:13:46 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:13:46 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 13
+[13-May-2023 16:13:47 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/beofle38/public_html/FERI_projekt/app/map-google.php:152
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:13:48 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:13:48 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 13
+[13-May-2023 16:13:54 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:13:54 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 13
+[13-May-2023 16:13:54 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/get_data.php:9) in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 19
+[13-May-2023 16:14:01 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:14:01 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 13
+[13-May-2023 16:14:02 Europe/Ljubljana] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'blaz'@'cpanel-10.controlpanel.si' (using password: YES) in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 147
+[13-May-2023 16:14:02 Europe/Ljubljana] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 150
+[13-May-2023 16:14:02 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/beofle38/public_html/FERI_projekt/app/map-google.php:152
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:14:09 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:14:13 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:14:13 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 13
+[13-May-2023 16:14:13 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/get_data.php:9) in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 19
+[13-May-2023 16:14:46 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:14:46 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 13
+[13-May-2023 16:14:51 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:14:51 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 13
+[13-May-2023 16:14:58 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:14:58 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 13
+[13-May-2023 16:14:59 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/get_data.php:9) in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 19
+[13-May-2023 16:16:06 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:16:06 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 13
+[13-May-2023 16:16:10 Europe/Ljubljana] PHP Notice:  Undefined index: user_id in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 9
+[13-May-2023 16:16:10 Europe/Ljubljana] PHP Warning:  session_regenerate_id(): Cannot regenerate session id - headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 13
+[13-May-2023 16:16:10 Europe/Ljubljana] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/beofle38/public_html/FERI_projekt/app/get_data.php:9) in /home/beofle38/public_html/FERI_projekt/app/page-signin.php on line 19
+[13-May-2023 16:16:53 Europe/Ljubljana] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'blaz'@'cpanel-10.controlpanel.si' (using password: YES) in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 147
+[13-May-2023 16:16:53 Europe/Ljubljana] PHP Warning:  mysqli::query(): Couldn't fetch mysqli in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 150
+[13-May-2023 16:16:53 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/beofle38/public_html/FERI_projekt/app/map-google.php:152
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 152
+[13-May-2023 16:18:22 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 126
+[13-May-2023 16:18:22 Europe/Ljubljana] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on bool in /home/beofle38/public_html/FERI_projekt/app/map-google.php:149
+Stack trace:
+#0 {main}
+  thrown in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 149
+[13-May-2023 16:41:52 Europe/Ljubljana] PHP Warning:  Use of undefined constant id - assumed 'id' (this will throw an Error in a future version of PHP) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 112
+[13-May-2023 16:42:00 Europe/Ljubljana] PHP Warning:  Use of undefined constant id - assumed 'id' (this will throw an Error in a future version of PHP) in /home/beofle38/public_html/FERI_projekt/app/index.php on line 112
+[13-May-2023 16:42:31 Europe/Ljubljana] PHP Parse error:  syntax error, unexpected 'dropdown' (T_STRING), expecting ';' or ',' in /home/beofle38/public_html/FERI_projekt/app/index.php on line 118
+[13-May-2023 17:01:17 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 17:01:32 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 17:01:39 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 20:59:04 Europe/Ljubljana] PHP Parse error:  syntax error, unexpected '{', expecting ')' in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 157
+[13-May-2023 21:02:52 Europe/Ljubljana] PHP Parse error:  syntax error, unexpected '{', expecting ')' in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 165
+[13-May-2023 21:20:50 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[13-May-2023 21:20:54 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[14-May-2023 12:35:56 Europe/Ljubljana] PHP Warning:  Use of undefined constant console - assumed 'console' (this will throw an Error in a future version of PHP) in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 142
+[14-May-2023 12:36:15 Europe/Ljubljana] PHP Warning:  Use of undefined constant console - assumed 'console' (this will throw an Error in a future version of PHP) in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 142
+[14-May-2023 12:37:18 Europe/Ljubljana] PHP Warning:  Use of undefined constant console - assumed 'console' (this will throw an Error in a future version of PHP) in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 142
+[14-May-2023 12:37:48 Europe/Ljubljana] PHP Warning:  Use of undefined constant console - assumed 'console' (this will throw an Error in a future version of PHP) in /home/beofle38/public_html/FERI_projekt/app/map-google.php on line 142
+[14-May-2023 14:15:32 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[14-May-2023 16:09:58 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[14-May-2023 16:38:59 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[14-May-2023 18:51:00 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[15-May-2023 11:32:50 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
+[15-May-2023 21:24:53 Europe/Ljubljana] PHP Warning:  session_start(): Cannot start session when headers already sent in /home/beofle38/public_html/FERI_projekt/app/get_data.php on line 8
