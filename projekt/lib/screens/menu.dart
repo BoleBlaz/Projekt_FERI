@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:projekt/settings/profile.dart';
 import '../models/user.dart';
@@ -5,6 +7,7 @@ import 'package:projekt/models/location.dart' as LocationModel;
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:sensors_plus/sensors_plus.dart';
+import 'package:wakelock/wakelock.dart';
 
 class MenuScreen extends StatefulWidget {
   @override
@@ -24,6 +27,7 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   void initState() {
     super.initState();
+    Wakelock.enable();
     _getUserData();
     gyroscopeEvents.listen((GyroscopeEvent event) {
       setState(() {
@@ -35,6 +39,11 @@ class _MenuScreenState extends State<MenuScreen> {
         _accelerometerValues = <double>[event.x, event.y, event.z];
       });
     });
+  }
+
+  Future<bool> checkAwake() async {
+    bool ison = await Wakelock.enabled;
+    return ison;
   }
 
   Future<void> _getUserData() async {
@@ -91,25 +100,19 @@ class _MenuScreenState extends State<MenuScreen> {
       setState(() {
         err = "Vklopi lokacijo!";
       });
-      print('Location services are disabled. Please enable the services');
       return false;
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        print('Location permissions are denied');
         return false;
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      print(
-          'Location permissions are permanently denied, we cannot request permissions.');
       return false;
     }
-    setState(() {
-      err = "";
-    });
+    setState(() {});
     return true;
   }
 
@@ -208,6 +211,23 @@ class _MenuScreenState extends State<MenuScreen> {
                               style:
                                   TextStyle(color: Colors.white, fontSize: 15),
                             ),
+                            FutureBuilder<bool>(
+                                future: checkAwake(),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<bool> snapshot) {
+                                  if (snapshot.hasData) {
+                                    if (snapshot.data == true) {
+                                      return Text(
+                                          "Screen is on stay awake mode.");
+                                    } else {
+                                      return Text(
+                                          "Screen is not on stay awake mode.");
+                                    }
+                                  } else {
+                                    return Text(
+                                        "Error while reading awake state.");
+                                  }
+                                }),
                           ],
                         ),
                       ),
@@ -220,7 +240,6 @@ class _MenuScreenState extends State<MenuScreen> {
   void addLocation(int route_num) async {
     var user_id = _user!.id;
     var date = DateTime.now();
-    print(route_num);
     var location = LocationModel.Location(
         latitude: _currentPosition?.latitude ?? -1,
         longitude: _currentPosition?.longitude ?? -1,
@@ -238,30 +257,27 @@ class _MenuScreenState extends State<MenuScreen> {
     var success = await location.saveLocation();
     if (success) {
       setState(() {
-        err = "ok!";
+        err = "ok";
       });
     } else {
       setState(() {
-        err = "klasicni error";
+        err = "error. Ni mogoče dodati lokacije";
       });
     }
   }
 
   void start(int route_num) async {
-    print("adadadadddasdasdasdasd" + route_num.toString());
     isRunning = true;
     while (isRunning) {
       await _getCurrentPosition();
-      await Future.delayed(Duration(seconds: 5));
+      await Future.delayed(Duration(seconds: 1));
       addLocation(route_num);
     }
-    setState(() {
-      err = "ok!";
-    });
   }
 
-  void stop() {
+  void stop() async {
     isRunning = false;
+    await Future.delayed(Duration(seconds: 2));
     setState(() {
       err = "Stopped";
     });

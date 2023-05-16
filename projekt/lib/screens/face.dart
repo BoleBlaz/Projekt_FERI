@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:process/process.dart';
+import 'dart:io';
 
 class Face extends StatefulWidget {
   const Face({Key? key}) : super(key: key);
@@ -10,91 +11,55 @@ class Face extends StatefulWidget {
 }
 
 class _FaceState extends State<Face> {
-  final TextEditingController numberController = TextEditingController();
 
-  Future<String> calculateSquare(int number) async {
-    var url = Uri.parse('http://beoflere.com/FERI_projekt/faceApp');
-    var headers = {'Content-Type': 'application/json'};
-    var body = jsonEncode({'number': number});
+  final ProcessManager _processManager = const LocalProcessManager();
+  String _output = "";
 
-    var response = await http.post(url, headers: headers, body: body);
-    print('Response Body: ${response.body}');
-    print('Response Status Code: ${response.statusCode}');
 
-    if (response.statusCode == 200) {
-      var result = jsonDecode(response.body);
-      var square = result['square'];
-      return square.toString();
-    } else {
-      throw Exception('Failed to calculate square');
-    }
+  final currentDirectory = Directory.current.path;
+  late final pythonScriptPath = '$currentDirectory/scripts/test.py';
+  Future<void> _runScript() async {
+    // replace with your own Python script path
+    final process = await _processManager.start(['python', pythonScriptPath]);
+
+    // listen for stdout from the Python script
+    process.stdout.transform(utf8.decoder).listen((data) {
+      setState(() {
+        _output += data;
+      });
+    });
+
+    // listen for stderr from the Python script
+    process.stderr.transform(utf8.decoder).listen((data) {
+      setState(() {
+        _output += data;
+      });
+    });
+
+    // wait for the Python script to complete
+    await process.exitCode;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Python Integration'),
+        title: Text("Test Screen"),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
+      body: Center(
         child: Column(
-          children: [
-            TextField(
-              controller: numberController,
-              decoration: InputDecoration(labelText: 'Enter a number'),
-              keyboardType: TextInputType.number,
-            ),
-            SizedBox(height: 16.0),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
             ElevatedButton(
-              onPressed: () async {
-                final number = int.tryParse(numberController.text);
-                if (number != null) {
-                  try {
-                    final squareResult = await calculateSquare(number);
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('Square Result'),
-                          content: Text('The square is: $squareResult'),
-                          actions: [
-                            TextButton(
-                              child: Text('Close'),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  } catch (e) {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('Error'),
-                          content: Text('Failed to calculate square'),
-                          actions: [
-                            TextButton(
-                              child: Text('Close'),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-                }
-              },
-              child: Text('Calculate Square'),
+              onPressed: _runScript,
+              child: Text("Run Script"),
             ),
+            SizedBox(height: 20),
+            Text(_output),
           ],
         ),
       ),
     );
   }
 }
+    
