@@ -69,6 +69,10 @@ For any inquiries or feedback regarding this project, please contact the authors
 - Aljaž Eferl: [aljaz.eferl1@student.um.si](mailto:aljaz.eferl1@student.um.si)
 - Blaž Bole: [blaz.bole@student.um.si](mailto:blaz.bole@student.um.si)
 - Nino Franci: [nino.franci@student.um.si](mailto:nino.franci@student.um.si)
+<img src="logo.png" alt="Logo" width="300">
+
+
+
 
 
 
