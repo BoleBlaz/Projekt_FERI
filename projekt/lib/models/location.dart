@@ -21,11 +21,11 @@ class Location {
   });
 
   int getId() {
-    return this.id;
+    return id;
   }
 
   double getLatitude() {
-    return this.latitude;
+    return latitude;
   }
 
   void setLatitude(double latitude) {
@@ -37,11 +37,11 @@ class Location {
   }
 
   String getAddress() {
-    return this.address;
+    return address;
   }
 
   double getLongitude() {
-    return this.longitude;
+    return longitude;
   }
 
   void setLongitude(double longitude) {
@@ -49,7 +49,7 @@ class Location {
   }
 
   DateTime getDate() {
-    return this.date;
+    return date;
   }
 
   void setDate(DateTime date) {
@@ -57,7 +57,7 @@ class Location {
   }
 
   int getRouteNum() {
-    return this.route_num;
+    return route_num;
   }
 
   void setRouteNum(int route_num) {
@@ -65,7 +65,7 @@ class Location {
   }
 
   int getUserId() {
-    return this.user_id;
+    return user_id;
   }
 
   void setUserId(int user_id) {

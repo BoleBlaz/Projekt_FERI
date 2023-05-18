@@ -5,7 +5,7 @@ import 'package:projekt/models/user.dart';
 class Profile extends StatefulWidget {
   final String username;
 
-  Profile({required this.username});
+  const Profile({required this.username});
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -28,9 +28,7 @@ class _ProfileState extends State<Profile> {
   }
 
   logoutAndShowMain() async {
-    String? username = await User.getUsernameFromPreferences();
     await User.clearUsernameFromPreferences();
-    username = await User.getUsernameFromPreferences();
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
       return const MyHomePage();
     }));
@@ -40,7 +38,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: _user == null
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : Container( 
               child: Center(
             child: Column(
@@ -49,19 +47,19 @@ class _ProfileState extends State<Profile> {
                   Text(
                     _user!.username,
                     style:
-                        TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+                        const TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     "ID: ${_user!.id}",
-                    style: TextStyle(fontSize: 24.0),
+                    style: const TextStyle(fontSize: 24.0),
                   ),
-                  SizedBox(height: 30.0),
+                  const SizedBox(height: 30.0),
                   ElevatedButton(
                     onPressed: logoutAndShowMain,
-                    child: Text('Odjava'),
+                    child: const Text('Odjava'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
-                      padding: EdgeInsets.symmetric(horizontal: 80),
+                      padding: const EdgeInsets.symmetric(horizontal: 80),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

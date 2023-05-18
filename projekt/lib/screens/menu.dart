@@ -10,6 +10,8 @@ import 'package:sensors_plus/sensors_plus.dart';
 import 'package:wakelock/wakelock.dart';
 
 class MenuScreen extends StatefulWidget {
+  const MenuScreen({super.key});
+
   @override
   _MenuScreenState createState() => _MenuScreenState();
 }
@@ -19,7 +21,6 @@ class _MenuScreenState extends State<MenuScreen> {
   String? _currentAddress;
   Position? _currentPosition;
   User? _user;
-  // Define a class variable to hold the Timer
   bool isRunning = false;
   List<double>? _gyroscopeValues;
   List<double>? _accelerometerValues;
@@ -39,6 +40,128 @@ class _MenuScreenState extends State<MenuScreen> {
         _accelerometerValues = <double>[event.x, event.y, event.z];
       });
     });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<String>(
+        future: showUser(),
+        builder: (context, snapshot) {
+          return MaterialApp(
+            title: "Meni",
+            home: Scaffold(
+              appBar: AppBar(
+                backgroundColor: Color.fromARGB(255, 126, 42, 228),
+                title: Text("Menu"),
+                actions: [
+                  IconButton(
+                      icon: Icon(Icons.settings), onPressed: showSettingsPage),
+                  IconButton(
+                    icon: Icon(Icons.logout),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
+              body: _user == null
+                  ? Center(child: CircularProgressIndicator())
+                  : Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: const [
+                            Colors.purple,
+                            Color.fromARGB(255, 121, 33, 243)
+                          ],
+                        ),
+                      ),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Id: ${_user!.id}"),
+                            Text("Username: ${_user!.username}"),
+                            SizedBox(height: 40),
+                            Text('LAT: ${_currentPosition?.latitude ?? ""}'),
+                            Text('LNG: ${_currentPosition?.longitude ?? ""}'),
+                            Text('ADDRESS: ${_currentAddress ?? ""}'),
+                            const SizedBox(height: 32),
+                            ElevatedButton(
+                              onPressed: () {
+                                LocationModel.Location.getRouteNumByUserId(
+                                        _user!.id)
+                                    .then((var routeNum) {
+                                  start((routeNum! + 1));
+                                });
+                              },
+                              child: const Text("START"),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                stop();
+                              },
+                              child: const Text("STOP"),
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              err,
+                              style: TextStyle(color: Colors.red, fontSize: 30),
+                            ),
+                            Text(
+                              "x: ${_gyroscopeValues![0]}",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            Text(
+                              "y: ${_gyroscopeValues![1]}",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            Text(
+                              "z: ${_gyroscopeValues![2]}",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              "x: ${_accelerometerValues![0]}",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            Text(
+                              "y: ${_accelerometerValues![1]}",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            Text(
+                              "z: ${_accelerometerValues![2]}",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 15),
+                            ),
+                            FutureBuilder<bool>(
+                                future: checkAwake(),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<bool> snapshot) {
+                                  if (snapshot.hasData) {
+                                    if (snapshot.data == true) {
+                                      return Text(
+                                          "Screen is on stay awake mode.");
+                                    } else {
+                                      return Text(
+                                          "Screen is not on stay awake mode.");
+                                    }
+                                  } else {
+                                    return Text(
+                                        "Error while reading awake state.");
+                                  }
+                                }),
+                          ],
+                        ),
+                      ),
+                    ),
+            ),
+          );
+        });
   }
 
   Future<bool> checkAwake() async {
@@ -82,15 +205,16 @@ class _MenuScreenState extends State<MenuScreen> {
   Future<void> _getCurrentPosition() async {
     final hasPermission = await _handleLocationPermission();
     if (!hasPermission) return;
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high)
+    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation)
         .then((Position position) {
       setState(() => _currentPosition = position);
       _getAddressFromLatLng(_currentPosition!);
     }).catchError((e) {
+      Geolocator.getLastKnownPosition();
       debugPrint(e);
     });
   }
-
+ 
   Future<bool> _handleLocationPermission() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -98,7 +222,9 @@ class _MenuScreenState extends State<MenuScreen> {
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       setState(() {
-        err = "Vklopi lokacijo!";
+        Geolocator.openLocationSettings();
+        isRunning = false;
+        err = "ERROR!";
       });
       return false;
     }
@@ -114,127 +240,6 @@ class _MenuScreenState extends State<MenuScreen> {
     }
     setState(() {});
     return true;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<String>(
-        future: showUser(),
-        builder: (context, snapshot) {
-          return MaterialApp(
-            title: "Meni",
-            home: Scaffold(
-              appBar: AppBar(
-                backgroundColor: Color.fromARGB(255, 126, 42, 228),
-                title: Text("Menu"),
-                actions: [
-                  IconButton(
-                      icon: Icon(Icons.settings), onPressed: showSettingsPage),
-                  IconButton(
-                    icon: Icon(Icons.logout),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-              body: _user == null
-                  ? Center(child: CircularProgressIndicator())
-                  : Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Colors.purple,
-                            Color.fromARGB(255, 121, 33, 243)
-                          ],
-                        ),
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Id: " + _user!.id.toString()),
-                            Text("Username: " + _user!.username),
-                            SizedBox(height: 40),
-                            Text('LAT: ${_currentPosition?.latitude ?? ""}'),
-                            Text('LNG: ${_currentPosition?.longitude ?? ""}'),
-                            Text('ADDRESS: ${_currentAddress ?? ""}'),
-                            const SizedBox(height: 32),
-                            ElevatedButton(
-                              onPressed: () {
-                                LocationModel.Location.getRouteNumByUserId(1)
-                                    .then((var route_num) {
-                                  start((route_num! + 1));
-                                });
-                              },
-                              child: const Text("START"),
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                stop();
-                              },
-                              child: const Text("STOP"),
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              err,
-                              style: TextStyle(color: Colors.red, fontSize: 30),
-                            ),
-                            Text(
-                              "x: " + _gyroscopeValues![0].toString(),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            Text(
-                              "y: " + _gyroscopeValues![1].toString(),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            Text(
-                              "z: " + _gyroscopeValues![2].toString(),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              "x: " + _accelerometerValues![0].toString(),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            Text(
-                              "y: " + _accelerometerValues![1].toString(),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            Text(
-                              "z: " + _accelerometerValues![2].toString(),
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            FutureBuilder<bool>(
-                                future: checkAwake(),
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<bool> snapshot) {
-                                  if (snapshot.hasData) {
-                                    if (snapshot.data == true) {
-                                      return Text(
-                                          "Screen is on stay awake mode.");
-                                    } else {
-                                      return Text(
-                                          "Screen is not on stay awake mode.");
-                                    }
-                                  } else {
-                                    return Text(
-                                        "Error while reading awake state.");
-                                  }
-                                }),
-                          ],
-                        ),
-                      ),
-                    ),
-            ),
-          );
-        });
   }
 
   void addLocation(int route_num) async {
@@ -270,7 +275,7 @@ class _MenuScreenState extends State<MenuScreen> {
     isRunning = true;
     while (isRunning) {
       await _getCurrentPosition();
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(Duration(milliseconds: 500));
       addLocation(route_num);
     }
   }

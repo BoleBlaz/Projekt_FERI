@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       } else {
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => LoginScreen()),
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
           (route) => false, // Always return false to remove all routes
         );
       }
@@ -61,18 +61,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   showLoginPage() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return LoginScreen();
+      return const LoginScreen();
     }));
   }
 
   showFacePage() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return Face();
+      return const Face();
     }));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }

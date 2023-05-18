@@ -44,7 +44,7 @@ class _FaceState extends State<Face> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Test Screen"),
+        title: const Text("Test Screen"),
       ),
       body: Center(
         child: Column(
@@ -52,9 +52,9 @@ class _FaceState extends State<Face> {
           children: <Widget>[
             ElevatedButton(
               onPressed: _runScript,
-              child: Text("Run Script"),
+              child: const Text("Run Script"),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(_output),
           ],
         ),

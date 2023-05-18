@@ -14,11 +14,11 @@ class User {
   });
 
   int getId() {
-    return this.id;
+    return id;
   }
 
   String getUsername() {
-    return this.username;
+    return username;
   }
 
   void setUsername(String username) {
@@ -26,7 +26,7 @@ class User {
   }
 
   String getPassword() {
-    return this.password;
+    return password;
   }
 
   void setPassword(String password) {
@@ -55,7 +55,6 @@ class User {
     });
     var encodedData = Uri.encodeComponent(dataStr);
     var url = Uri.parse("http://beoflere.com/confprojekt.php?data=$encodedData");
-    print(url.toString());
 
     try {
       var result = await http.get(url);
@@ -66,7 +65,6 @@ class User {
         return true;
       }
     } catch (e) {
-      print('Error: $e');
     }
     return false;
   }
@@ -89,7 +87,6 @@ class User {
         return true;
       }
     } catch (e) {
-      print('Error: $e');
     }
     return false;
   }
@@ -108,7 +105,6 @@ class User {
       } else {
         var data =
             jsonDecode(result.body)[0]; // assuming only one user is returned
-        print("Retrieved user data: $data");
         return User(
           id: int.parse(data['id']),
           username: data['username'],
@@ -116,7 +112,6 @@ class User {
         );
       }
     } catch (e) {
-      print('Error: $e');
       return User(); // return empty user object on error
     }
   }
