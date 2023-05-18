@@ -11,6 +11,7 @@ Welcome to the Website Location Tracker project! This project aims to provide a 
 6. [Usage](#usage)
 7. [Contributing](#contributing)
 8. [License](#license)
+9. [Contact](#contact)
 
 ## Introduction
 The Website Location Tracker is a web application that allows users to track their location and provides access to relevant information. It includes a registration and login system for user authentication. The application utilizes a database hosted on cPanel using phpMyAdmin. Additionally, it features a scraper that retrieves data from the website [http://portal.drsc.si/traffic/loclist_si.htm](http://portal.drsc.si/traffic/loclist_si.htm).
@@ -56,3 +57,10 @@ Contributions to the Website Location Tracker project are welcome! If you find a
 ## License
 The Website Location Tracker project is licensed under the [MIT License](https://opensource.org/licenses/MIT). You are free to modify and distribute the codebase. However, please ensure to include the original license file in your distributions.
 
+## Contact
+
+For any inquiries or feedback regarding this project, please contact the authors:
+
+- Aljaž Eferl: [aljaz.eferl1@student.um.si](mailto:aljaz.eferl1@student.um.si)
+- Blaž Bole: [blaz.bole@student.um.si](mailto:blaz.bole@student.um.si)
+- Nino Franci: [nino.franci@student.um.si](mailto:nino.franci@student.um.si)
