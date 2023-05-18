@@ -87,20 +87,27 @@ class _MenuScreenState extends State<MenuScreen> {
                             Text('ADDRESS: ${_currentAddress ?? ""}'),
                             const SizedBox(height: 32),
                             ElevatedButton(
-                              onPressed: () {
-                                LocationModel.Location.getRouteNumByUserId(
-                                        _user!.id)
-                                    .then((var routeNum) {
-                                  start((routeNum! + 1));
-                                });
-                              },
+                              onPressed: isRunning
+                                  ? null
+                                  : () {
+                                      LocationModel.Location
+                                              .getRouteNumByUserId(_user!.id)
+                                          .then((var routeNum) {
+                                        start((routeNum! + 1));
+                                      });
+                                    },
                               child: const Text("START"),
                             ),
                             ElevatedButton(
-                              onPressed: () {
-                                stop();
-                              },
-                              child: const Text("STOP"),
+                              onPressed: !isRunning
+                                  ? null
+                                  : () {
+                                      stop();
+                                      setState(() {
+                                        isRunning = false;
+                                      });
+                                    },
+                              child: Text("STOP"),
                             ),
                             SizedBox(height: 20),
                             Text(
@@ -190,56 +197,41 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 
   Future<void> _getAddressFromLatLng(Position position) async {
-    await placemarkFromCoordinates(
-            _currentPosition!.latitude, _currentPosition!.longitude)
+    await placemarkFromCoordinates(position.latitude, position.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
       setState(() {
         _currentAddress = '${place.street}, ${place.postalCode}';
+        _currentPosition = position;
       });
     }).catchError((e) {
       debugPrint(e);
     });
   }
 
-  Future<void> _getCurrentPosition() async {
-    final hasPermission = await _handleLocationPermission();
-    if (!hasPermission) return;
-    await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.bestForNavigation)
-        .then((Position position) {
-      setState(() => _currentPosition = position);
-      _getAddressFromLatLng(_currentPosition!);
-    }).catchError((e) {
-      Geolocator.getLastKnownPosition();
-      debugPrint(e);
-    });
-  }
- 
-  Future<bool> _handleLocationPermission() async {
+  Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      setState(() {
-        Geolocator.openLocationSettings();
-        isRunning = false;
-        err = "ERROR!";
-      });
-      return false;
+      return Future.error('Location services are disabled.');
     }
+
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return false;
+        return Future.error('Location permissions are denied');
       }
     }
+
     if (permission == LocationPermission.deniedForever) {
-      return false;
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
     }
-    setState(() {});
-    return true;
+
+    return await Geolocator.getCurrentPosition();
   }
 
   void addLocation(int route_num) async {
@@ -254,35 +246,36 @@ class _MenuScreenState extends State<MenuScreen> {
         user_id: user_id);
 
     if (location.latitude == -1 || location.longitude == -1) {
-      setState(() {
-        err = "Vklopi lokacijo!";
-      });
+      print("Vklopi lokacijo!");
       return;
     }
     var success = await location.saveLocation();
     if (success) {
-      setState(() {
-        err = "ok";
-      });
+      print("ok");
     } else {
       setState(() {
-        err = "error. Ni mogoče dodati lokacije";
+        isRunning = false;
+        err = "ne gre v bazo!";
       });
     }
   }
 
   void start(int route_num) async {
     isRunning = true;
+    setState(() {
+      err = "Running";
+    });
     while (isRunning) {
-      await _getCurrentPosition();
-      await Future.delayed(Duration(milliseconds: 500));
+      Position position = await _determinePosition();
+      print(position);
+      _getAddressFromLatLng(position);
+      await Future.delayed(Duration(seconds: 1));
       addLocation(route_num);
     }
   }
 
   void stop() async {
     isRunning = false;
-    await Future.delayed(Duration(seconds: 2));
     setState(() {
       err = "Stopped";
     });

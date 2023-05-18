@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (username != null) {
         // User preference is set, navigate to MenuScreen
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => MenuScreen()),
+          MaterialPageRoute(builder: (context) => const MenuScreen()),
           (route) => false, // Always return false to remove all routes
         );
       } else {
@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   showRegisterPage() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return RegisterScreen();
+      return const RegisterScreen();
     }));
   }
 
