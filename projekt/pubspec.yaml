@@ -42,6 +42,7 @@ dependencies:
   sensors_plus: ^3.0.0
   process: ^4.1.0
   wakelock: ^0.5.6
+  camera: ^0.9.4
 
 dev_dependencies:
   flutter_test:

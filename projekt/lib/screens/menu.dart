@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:projekt/settings/profile.dart';
 import '../models/user.dart';
@@ -8,6 +9,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:wakelock/wakelock.dart';
+import 'package:camera/camera.dart';
+import 'package:projekt/screens/addFace.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -24,6 +27,33 @@ class _MenuScreenState extends State<MenuScreen> {
   bool isRunning = false;
   List<double>? _gyroscopeValues;
   List<double>? _accelerometerValues;
+  StreamSubscription<Position>? _positionStream;
+  int? _routeNum;
+
+  Future<bool> checkAwake() async {
+    bool ison = await Wakelock.enabled;
+    return ison;
+  }
+
+  Future<void> _getUserData() async {
+    String? username = await User.getUsernameFromPreferences();
+    User user = await User.getByUsername(username!);
+    setState(() {
+      _user = user;
+    });
+  }
+
+  showSettingsPage() async {
+    String? username = await User.getUsernameFromPreferences();
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      return Profile(username: username ?? "");
+    }));
+  }
+
+  Future<String> showUser() async {
+    String? username = await User.getUsernameFromPreferences();
+    return username ?? "";
+  }
 
   @override
   void initState() {
@@ -79,6 +109,17 @@ class _MenuScreenState extends State<MenuScreen> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            ElevatedButton(
+                              onPressed: () async {
+                                await availableCameras().then((value) =>
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) =>
+                                                AddFace(cameras: value))));
+                              },
+                              child: Text("FACE"),
+                            ),
                             Text("Id: ${_user!.id}"),
                             Text("Username: ${_user!.username}"),
                             SizedBox(height: 40),
@@ -93,7 +134,9 @@ class _MenuScreenState extends State<MenuScreen> {
                                       LocationModel.Location
                                               .getRouteNumByUserId(_user!.id)
                                           .then((var routeNum) {
-                                        start((routeNum! + 1));
+                                        _routeNum = routeNum! + 1;
+                                        //start();
+                                        _startListening();
                                       });
                                     },
                               child: const Text("START"),
@@ -171,70 +214,20 @@ class _MenuScreenState extends State<MenuScreen> {
         });
   }
 
-  Future<bool> checkAwake() async {
-    bool ison = await Wakelock.enabled;
-    return ison;
-  }
-
-  Future<void> _getUserData() async {
-    String? username = await User.getUsernameFromPreferences();
-    User user = await User.getByUsername(username!);
-    setState(() {
-      _user = user;
-    });
-  }
-
-  showSettingsPage() async {
-    String? username = await User.getUsernameFromPreferences();
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return Profile(username: username ?? "");
-    }));
-  }
-
-  Future<String> showUser() async {
-    String? username = await User.getUsernameFromPreferences();
-    return username ?? "";
-  }
-
   Future<void> _getAddressFromLatLng(Position position) async {
     await placemarkFromCoordinates(position.latitude, position.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
       setState(() {
-        _currentAddress = '${place.street}, ${place.postalCode}';
         _currentPosition = position;
+        _currentAddress = '${place.street}, ${place.postalCode}';
       });
     }).catchError((e) {
       debugPrint(e);
     });
   }
 
-  Future<Position> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
-
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return Future.error('Location services are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
-
-    return await Geolocator.getCurrentPosition();
-  }
-
-  void addLocation(int route_num) async {
+  void addLocation() async {
     var user_id = _user!.id;
     var date = DateTime.now();
     var location = LocationModel.Location(
@@ -242,13 +235,31 @@ class _MenuScreenState extends State<MenuScreen> {
         longitude: _currentPosition?.longitude ?? -1,
         address: _currentAddress ?? "",
         date: date,
-        route_num: route_num,
+        route_num: _routeNum ?? -1,
         user_id: user_id);
 
     if (location.latitude == -1 || location.longitude == -1) {
       print("Vklopi lokacijo!");
       return;
     }
+
+    if (location.route_num == -1) {
+      print("routeNum error!");
+      return;
+    }
+
+    String lat = location.latitude.toString();
+    String lon = location.latitude.toString();
+    int indLat = lat.indexOf('.');
+    int indLon = lon.indexOf('.');
+    int decimalPlacesLat = lat.length - indLat - 1;
+    int decimalPlacesLon = lon.length - indLon - 1;
+
+    if (decimalPlacesLat != 7 || decimalPlacesLon != 7) {
+      print("Premalo decimalk!");
+      return;
+    }
+
     var success = await location.saveLocation();
     if (success) {
       print("ok");
@@ -260,7 +271,53 @@ class _MenuScreenState extends State<MenuScreen> {
     }
   }
 
-  void start(int route_num) async {
+  void _startListening() async {
+    isRunning = true;
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      isRunning = false;
+      setState(() {
+        err = "Location services are disabled.";
+      });
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        isRunning = false;
+        setState(() {
+          err = "Location permissions are denied";
+        });
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      isRunning = false;
+      setState(() {
+        err =
+            "Location permissions are permanently denied, we cannot request permissions.";
+      });
+    }
+
+    _positionStream =
+        Geolocator.getPositionStream().listen((Position? position) {
+      if (position == null) {
+        print("error. position==null");
+      } else if(_currentPosition == null || _currentAddress == null){
+        print("error. _currentPosition==null || _currentAddress==null");
+        _getAddressFromLatLng(position);
+      }else{
+        _getAddressFromLatLng(position);
+        print(_currentPosition);
+        print(_currentAddress);
+        addLocation();
+      }
+    });
+  }
+
+  /*void start() async {
     isRunning = true;
     setState(() {
       err = "Running";
@@ -269,13 +326,14 @@ class _MenuScreenState extends State<MenuScreen> {
       Position position = await _determinePosition();
       print(position);
       _getAddressFromLatLng(position);
-      await Future.delayed(Duration(seconds: 1));
-      addLocation(route_num);
+      await Future.delayed(Duration(milliseconds: 500));
+      addLocation();
     }
-  }
+  }*/
 
   void stop() async {
     isRunning = false;
+    _positionStream?.cancel();
     setState(() {
       err = "Stopped";
     });

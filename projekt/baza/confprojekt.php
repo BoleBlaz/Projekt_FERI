@@ -168,3 +168,26 @@ function get_routeNum_fromUser($in_data, $connection)
     echo "ERROR";
   }
 }
+
+// -------------------------END OF LOCATION SCOPE--------------------------
+
+// -------------------------START OF IMAGE SCOPE--------------------------
+
+function add_image($data, $connection)
+{
+  $name =  mysqli_real_escape_string($connection, $data['name']);
+  $path =  mysqli_real_escape_string($connection, $data['path']);
+  $user_id =  mysqli_real_escape_string($connection, $data['user_id']);
+
+  // Insert new image
+  $result = mysqli_query($connection, "INSERT INTO faces (name, path, user_id) VALUES ('$name', '$path', '$user_id');");
+  if ($result) {
+    http_response_code(201);
+    echo "OK";
+  } else {
+    echo "ERROR";
+  }
+}
+
+// -------------------------END OF IMAGE SCOPE--------------------------
+
