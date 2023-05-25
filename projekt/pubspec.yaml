@@ -44,6 +44,7 @@ dependencies:
   wakelock: ^0.6.2
   camera: ^0.10.5
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -67,6 +68,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/road-leading-mountain-range-with-blue-sky-clouds.jpg
+    - assets/futuristic-finance-digital-market-graph-user-interface-with-diagram-technology-hud-graphic-concept.jpg
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

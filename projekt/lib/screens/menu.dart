@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, depend_on_referenced_packages
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -75,143 +75,174 @@ class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<String>(
-        future: showUser(),
-        builder: (context, snapshot) {
-          return MaterialApp(
-            title: "Meni",
-            home: Scaffold(
-              appBar: AppBar(
-                backgroundColor: Color.fromARGB(255, 126, 42, 228),
-                title: Text("Menu"),
-                actions: [
-                  IconButton(
-                      icon: Icon(Icons.settings), onPressed: showSettingsPage),
-                  IconButton(
-                    icon: Icon(Icons.logout),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
-              body: _user == null
-                  ? Center(child: CircularProgressIndicator())
-                  : Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: const [
-                            Colors.purple,
-                            Color.fromARGB(255, 121, 33, 243)
-                          ],
-                        ),
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButton(
-                              onPressed: () async {
-                                await availableCameras().then((value) =>
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) =>
-                                                AddFace(cameras: value))));
-                              },
-                              child: Text("FACE"),
-                            ),
-                            Text("Id: ${_user!.id}"),
-                            Text("Username: ${_user!.username}"),
-                            SizedBox(height: 40),
-                            Text('LAT: ${_currentPosition?.latitude ?? ""}'),
-                            Text('LNG: ${_currentPosition?.longitude ?? ""}'),
-                            Text('ADDRESS: ${_currentAddress ?? ""}'),
-                            const SizedBox(height: 32),
-                            ElevatedButton(
-                              onPressed: isRunning
-                                  ? null
-                                  : () {
-                                      LocationModel.Location
-                                              .getRouteNumByUserId(_user!.id)
-                                          .then((var routeNum) {
-                                        _routeNum = routeNum! + 1;
-                                        //start();
-                                        _startListening();
-                                      });
-                                    },
-                              child: const Text("START"),
-                            ),
-                            ElevatedButton(
-                              onPressed: !isRunning
-                                  ? null
-                                  : () {
-                                      stop();
-                                      setState(() {
-                                        isRunning = false;
-                                      });
-                                    },
-                              child: Text("STOP"),
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              err,
-                              style: TextStyle(color: Colors.red, fontSize: 30),
-                            ),
-                            Text(
-                              "x: ${_gyroscopeValues![0]}",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            Text(
-                              "y: ${_gyroscopeValues![1]}",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            Text(
-                              "z: ${_gyroscopeValues![2]}",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            SizedBox(height: 20),
-                            Text(
-                              "x: ${_accelerometerValues![0]}",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            Text(
-                              "y: ${_accelerometerValues![1]}",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            Text(
-                              "z: ${_accelerometerValues![2]}",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                            FutureBuilder<bool>(
-                                future: checkAwake(),
-                                builder: (BuildContext context,
-                                    AsyncSnapshot<bool> snapshot) {
-                                  if (snapshot.hasData) {
-                                    if (snapshot.data == true) {
-                                      return Text(
-                                          "Screen is on stay awake mode.");
-                                    } else {
-                                      return Text(
-                                          "Screen is not on stay awake mode.");
-                                    }
-                                  } else {
-                                    return Text(
-                                        "Error while reading awake state.");
-                                  }
-                                }),
-                          ],
-                        ),
+      future: showUser(),
+      builder: (context, snapshot) {
+        return MaterialApp(
+          title: "Menu",
+          home: Scaffold(
+            appBar: AppBar(
+              backgroundColor: Color.fromARGB(255, 57, 100, 180),
+              title: Text("Menu"),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.settings),
+                  onPressed: showSettingsPage,
+                ),
+                IconButton(
+                  icon: Icon(Icons.logout),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            body: _user == null
+                ? Center(child: CircularProgressIndicator())
+                : Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                            "assets/futuristic-finance-digital-market-graph-user-interface-with-diagram-technology-hud-graphic-concept.jpg"),
+                        fit: BoxFit.cover,
                       ),
                     ),
-            ),
-          );
-        });
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () async {
+                              await availableCameras().then(
+                                (value) => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => AddFace(cameras: value),
+                                  ),
+                                ),
+                              );
+                            },
+                            child: Text("FACE"),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 32,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 16),
+                          Text("Id: ${_user!.id}",
+                              style: TextStyle(color: Colors.white)),
+                          Text("Username: ${_user!.username}",
+                              style: TextStyle(color: Colors.white)),
+                          SizedBox(height: 40),
+                          Text('LAT: ${_currentPosition?.latitude ?? ""}',
+                              style: TextStyle(color: Colors.white)),
+                          Text('LNG: ${_currentPosition?.longitude ?? ""}',
+                              style: TextStyle(color: Colors.white)),
+                          Text('ADDRESS: ${_currentAddress ?? ""}',
+                              style: TextStyle(color: Colors.white)),
+                          const SizedBox(height: 32),
+                          ElevatedButton(
+                            onPressed: isRunning
+                                ? null
+                                : () {
+                                    LocationModel.Location.getRouteNumByUserId(
+                                            _user!.id)
+                                        .then((var routeNum) {
+                                      _routeNum = routeNum! + 1;
+                                      //start();
+                                      _startListening();
+                                    });
+                                  },
+                            child: const Text("START"),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 32,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                            ),
+                          ),
+                          ElevatedButton(
+                            onPressed: !isRunning
+                                ? null
+                                : () {
+                                    stop();
+                                    setState(() {
+                                      isRunning = false;
+                                    });
+                                  },
+                            child: Text("STOP"),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 32,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            err,
+                            style: TextStyle(color: Colors.red, fontSize: 30),
+                          ),
+                          Text(
+                            "x: ${_gyroscopeValues![0]}",
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                          Text(
+                            "y: ${_gyroscopeValues![1]}",
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                          Text(
+                            "z: ${_gyroscopeValues![2]}",
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                          SizedBox(height: 20),
+                          Text(
+                            "x: ${_accelerometerValues![0]}",
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                          Text(
+                            "y: ${_accelerometerValues![1]}",
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                          Text(
+                            "z: ${_accelerometerValues![2]}",
+                            style: TextStyle(color: Colors.white, fontSize: 15),
+                          ),
+                          FutureBuilder<bool>(
+                            future: checkAwake(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<bool> snapshot) {
+                              if (snapshot.hasData) {
+                                if (snapshot.data == true) {
+                                  return Text("Screen is on stay awake mode.",
+                                      style: TextStyle(color: Colors.white));
+                                } else {
+                                  return Text(
+                                      "Screen is not on stay awake mode.",
+                                      style: TextStyle(color: Colors.white));
+                                }
+                              } else {
+                                return Text("Error while reading awake state.",
+                                    style: TextStyle(color: Colors.white));
+                              }
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+          ),
+        );
+      },
+    );
   }
 
   Future<void> _getAddressFromLatLng(Position position) async {
@@ -239,8 +270,7 @@ class _MenuScreenState extends State<MenuScreen> {
         user_id: userId,
         accelerometer_x: _accelerometerValues?[0] ?? -999,
         accelerometer_y: _accelerometerValues?[1] ?? -999,
-        accelerometer_z: _accelerometerValues?[2] ?? -999
-        );
+        accelerometer_z: _accelerometerValues?[2] ?? -999);
 
     if (location.latitude == -1 || location.longitude == -1) {
       print("Vklopi lokacijo!");
