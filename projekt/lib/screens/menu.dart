@@ -228,7 +228,7 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 
   void addLocation() async {
-    var user_id = _user!.id;
+    var userId = _user!.id;
     var date = DateTime.now();
     var location = LocationModel.Location(
         latitude: _currentPosition?.latitude ?? -1,
@@ -236,7 +236,11 @@ class _MenuScreenState extends State<MenuScreen> {
         address: _currentAddress ?? "",
         date: date,
         route_num: _routeNum ?? -1,
-        user_id: user_id);
+        user_id: userId,
+        accelerometer_x: _accelerometerValues?[0] ?? -999,
+        accelerometer_y: _accelerometerValues?[1] ?? -999,
+        accelerometer_z: _accelerometerValues?[2] ?? -999
+        );
 
     if (location.latitude == -1 || location.longitude == -1) {
       print("Vklopi lokacijo!");
@@ -255,7 +259,7 @@ class _MenuScreenState extends State<MenuScreen> {
     int decimalPlacesLat = lat.length - indLat - 1;
     int decimalPlacesLon = lon.length - indLon - 1;
 
-    if (decimalPlacesLat != 7 || decimalPlacesLon != 7) {
+    if (decimalPlacesLat < 7 || decimalPlacesLon < 7) {
       print("Premalo decimalk!");
       return;
     }
@@ -301,14 +305,19 @@ class _MenuScreenState extends State<MenuScreen> {
       });
     }
 
+    const LocationSettings locationSettings = LocationSettings(
+      accuracy: LocationAccuracy.high,
+    );
+
     _positionStream =
-        Geolocator.getPositionStream().listen((Position? position) {
+        Geolocator.getPositionStream(locationSettings: locationSettings)
+            .listen((Position? position) {
       if (position == null) {
         print("error. position==null");
-      } else if(_currentPosition == null || _currentAddress == null){
+      } else if (_currentPosition == null || _currentAddress == null) {
         print("error. _currentPosition==null || _currentAddress==null");
         _getAddressFromLatLng(position);
-      }else{
+      } else {
         _getAddressFromLatLng(position);
         print(_currentPosition);
         print(_currentAddress);

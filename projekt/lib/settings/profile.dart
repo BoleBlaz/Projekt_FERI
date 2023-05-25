@@ -5,7 +5,7 @@ import 'package:projekt/models/user.dart';
 class Profile extends StatefulWidget {
   final String username;
 
-  const Profile({required this.username});
+  const Profile({super.key, required this.username});
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -56,7 +56,6 @@ class _ProfileState extends State<Profile> {
                   const SizedBox(height: 30.0),
                   ElevatedButton(
                     onPressed: logoutAndShowMain,
-                    child: const Text('Odjava'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       padding: const EdgeInsets.symmetric(horizontal: 80),
@@ -64,6 +63,7 @@ class _ProfileState extends State<Profile> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    child: const Text('Odjava'),
                   ),
                 ],
               ),

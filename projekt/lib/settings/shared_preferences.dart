@@ -25,7 +25,7 @@ class UserPreferences {
     final DateTime now = DateTime.now();
     final int expirationTime =
         //now.add(Duration(minutes: 1)).millisecondsSinceEpoch;
-        now.add(Duration(days: 7)).millisecondsSinceEpoch;
+        now.add(const Duration(days: 7)).millisecondsSinceEpoch;
     await prefs.setString(_USERNAME_KEY, '$username#$expirationTime');
   }
 

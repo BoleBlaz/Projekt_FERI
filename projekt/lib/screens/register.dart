@@ -114,13 +114,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: addUser,
-                      child: Text('Registriraj'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
+                      child: Text('Registriraj'),
                     ),
                   ),
                   SizedBox(height: 32),

@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [Colors.purple, Color.fromARGB(255, 121, 33, 243)],
+                    colors: const [Colors.purple, Color.fromARGB(255, 121, 33, 243)],
                   ),
                 ),
                 child: Center(
@@ -107,24 +107,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(color: Colors.red),
                       ),
                       SizedBox(height: 20),
-                      Container(
+                      SizedBox(
                         width: 300,
                         height: 50,
                         child: ElevatedButton(
                           onPressed: getLogin,
-                          child: Text('Prijava'),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
+                          child: Text('Prijava'),
                         ),
                       ),
                       Container(
                           child: ElevatedButton(
                         onPressed: showFacePage,
-                        child: Text('Obraz'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
                           fixedSize: Size(250, 45),
@@ -132,6 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        child: Text('Obraz'),
                       )),
                       SizedBox(height: 32),
                       Row(

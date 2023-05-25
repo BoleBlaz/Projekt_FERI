@@ -33,9 +33,9 @@ class _PreviewPageState extends State<PreviewPage> {
   void addImage() async {
     String name = widget.picture.name;
     String path = widget.picture.path;
-    int user_id = _user!.id;
+    int userId = _user!.id;
 
-    var image = ImageModel.Image(name: name, path: path, userId: user_id);
+    var image = ImageModel.Image(name: name, path: path, userId: userId);
     var success = await image.saveImage();
     if (success) {
       print("Image saved!");
@@ -58,13 +58,13 @@ class _PreviewPageState extends State<PreviewPage> {
             height: 50,
             child: ElevatedButton(
               onPressed: addImage,
-              child: Text('Add to Database'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
+              child: const Text('Add to Database'),
             ),
           ),
         ]),

@@ -38,6 +38,9 @@ switch ($in_data['command']) {
   case "get_routeNum_fromUser":
     get_routeNum_fromUser($in_data, $connection);
     break;
+  case "add_image":
+    add_image($in_data, $connection);
+    break;
   default:
     http_response_code(400);
     exit;
@@ -141,9 +144,12 @@ function add_location($data, $connection)
   $date =  mysqli_real_escape_string($connection, $data['date']);
   $route_num =  mysqli_real_escape_string($connection, $data['route_num']);
   $user_id =  mysqli_real_escape_string($connection, $data['user_id']);
+  $accelerometer_x =  mysqli_real_escape_string($connection, $data['accelerometer_x']);
+  $accelerometer_y =  mysqli_real_escape_string($connection, $data['accelerometer_y']);
+  $accelerometer_z =  mysqli_real_escape_string($connection, $data['accelerometer_z']);
 
   // Insert new location
-  $result = mysqli_query($connection, "INSERT INTO locations (latitude, longitude, address, date, route_num, user_id) VALUES ('$latitude', '$longitude','$address', '$date', '$route_num', '$user_id');");
+  $result = mysqli_query($connection, "INSERT INTO locations (latitude, longitude, address, date, route_num, user_id, accelerometer_x, accelerometer_y, accelerometer_z) VALUES ('$latitude', '$longitude','$address', '$date', '$route_num', '$user_id', '$accelerometer_x', '$accelerometer_y', '$accelerometer_z');");
   if ($result) {
     http_response_code(201);
     echo "OK";

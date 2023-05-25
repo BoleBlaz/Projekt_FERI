@@ -9,6 +9,9 @@ class Location {
   DateTime date;
   int route_num;
   int user_id;
+  double accelerometer_x;
+  double accelerometer_y;
+  double accelerometer_z;
 
   Location({
     this.id = 0,
@@ -18,6 +21,9 @@ class Location {
     required this.date,
     required this.route_num,
     required this.user_id,
+    this.accelerometer_x = 0.0,
+    this.accelerometer_y = 0.0,
+    this.accelerometer_z = 0.0,
   });
 
   int getId() {
@@ -60,16 +66,40 @@ class Location {
     return route_num;
   }
 
-  void setRouteNum(int route_num) {
-    this.route_num = route_num;
+  void setRouteNum(int routeNum) {
+    route_num = routeNum;
   }
 
   int getUserId() {
     return user_id;
   }
 
-  void setUserId(int user_id) {
-    this.user_id = user_id;
+  void setUserId(int userId) {
+    user_id = userId;
+  }
+
+  double getAccelerometerX() {
+    return accelerometer_x;
+  }
+
+  void setAccelerometerX(double value) {
+    accelerometer_x = value;
+  }
+
+  double getAccelerometerY() {
+    return accelerometer_y;
+  }
+
+  void setAccelerometerY(double value) {
+    accelerometer_y = value;
+  }
+
+  double getAccelerometerZ() {
+    return accelerometer_z;
+  }
+
+  void setAccelerometerZ(double value) {
+    accelerometer_z = value;
   }
 
   factory Location.fromJson(Map<String, dynamic> json) {
@@ -81,6 +111,9 @@ class Location {
       date: DateTime.parse(json['date']),
       route_num: json['route_num'],
       user_id: json['user_id'],
+      accelerometer_x: json['accelerometer_x'],
+      accelerometer_y: json['accelerometer_y'],
+      accelerometer_z: json['accelerometer_z'],
     );
   }
 
@@ -92,6 +125,9 @@ class Location {
         'date': date.toIso8601String(),
         'route_num': route_num,
         'user_id': user_id,
+        'accelerometer_x': accelerometer_x,
+        'accelerometer_y': accelerometer_y,
+        'accelerometer_z': accelerometer_z,
       };
 
   Future<bool> saveLocation() async {
@@ -103,6 +139,9 @@ class Location {
       "date": date.toIso8601String(),
       "route_num": route_num,
       "user_id": user_id,
+      "accelerometer_x": accelerometer_x,
+      "accelerometer_y": accelerometer_y,
+      "accelerometer_z": accelerometer_z,
     });
     var encodedData = Uri.encodeComponent(dataStr);
     var url =
@@ -123,10 +162,10 @@ class Location {
     return false;
   }
 
-  static Future<int?> getRouteNumByUserId(int user_id) async {
+  static Future<int?> getRouteNumByUserId(int userId) async {
     var dataStr = jsonEncode({
       "command": "get_routeNum_fromUser",
-      "user_id": user_id,
+      "user_id": userId,
     });
     var url = Uri.parse("http://beoflere.com/confprojekt.php?data=$dataStr");
 
@@ -136,10 +175,10 @@ class Location {
       if (result.statusCode != 200) {
         throw Exception('No rows found');
       }
-      
+
       var data = jsonResponse[0];
       var maxRouteNumber = data['max_route_number'];
-      if(maxRouteNumber == null){
+      if (maxRouteNumber == null) {
         return 0;
       }
       return int.parse(maxRouteNumber);
