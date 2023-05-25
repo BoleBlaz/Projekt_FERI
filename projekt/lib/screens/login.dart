@@ -38,131 +38,139 @@ class _LoginScreenState extends State<LoginScreen> {
     }));
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: "Prijava",
-        home: Scaffold(
-          body: Container(
-            child: Scaffold(
-              body: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: const [Colors.purple, Color.fromARGB(255, 121, 33, 243)],
-                  ),
+@override
+Widget build(BuildContext context) {
+  return MaterialApp(
+    title: "Prijava",
+    home: Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/road-leading-mountain-range-with-blue-sky-clouds.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Prijava",
+                style: TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontFamily: 'Pacifico',
                 ),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Prijava",
-                        style: TextStyle(
-                          fontSize: 48,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontFamily: 'Pacifico',
-                        ),
-                      ),
-                      SizedBox(height: 32),
-                      Container(
-                        width: 300,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.7),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextField(
-                          controller: usernameController,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            prefixIcon: Icon(Icons.person),
-                            hintText: 'Uporabniško ime',
-                            hintStyle: TextStyle(color: Colors.black),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 16),
-                      Container(
-                        width: 300,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.7),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: TextField(
-                          controller: passwordController,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            prefixIcon: Icon(Icons.lock),
-                            hintText: 'Geslo',
-                            hintStyle: TextStyle(color: Colors.black),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Text(
-                        response,
-                        style: TextStyle(color: Colors.red),
-                      ),
-                      SizedBox(height: 20),
-                      SizedBox(
-                        width: 300,
-                        height: 50,
-                        child: ElevatedButton(
-                          onPressed: getLogin,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          child: Text('Prijava'),
-                        ),
-                      ),
-                      Container(
-                          child: ElevatedButton(
-                        onPressed: showFacePage,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          fixedSize: Size(250, 45),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        child: Text('Obraz'),
-                      )),
-                      SizedBox(height: 32),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Še niste registrirani? ",
-                            style: TextStyle(color: Colors.white, fontSize: 17),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              showRegisterPage();
-                            },
-                            child: Text(
-                              "Ustvarite nov račun",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 17,
-                                  decoration: TextDecoration.underline),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+              ),
+              SizedBox(height: 32),
+              Container(
+                width: 300,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.7),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: TextField(
+                  controller: usernameController,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.person),
+                    hintText: 'Uporabniško ime',
+                    hintStyle: TextStyle(color: Colors.black),
                   ),
                 ),
               ),
-            ),
+              SizedBox(height: 16),
+              Container(
+                width: 300,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.7),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: TextField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.lock),
+                    hintText: 'Geslo',
+                    hintStyle: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                response,
+                style: TextStyle(color: Colors.red),
+              ),
+              SizedBox(height: 20),
+              SizedBox(
+                width: 300,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: getLogin,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Text(
+                    'Prijava',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              Container(
+                width: 250,
+                height: 45,
+                child: ElevatedButton(
+                  onPressed: showFacePage,
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: Text(
+                    'Obraz',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+              SizedBox(height: 32),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Še niste registrirani? ",
+                    style: TextStyle(color: Colors.white, fontSize: 17),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      showRegisterPage();
+                    },
+                    child: Text(
+                      "Ustvarite nov račun",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-        ));
-  }
+        ),
+      ),
+    ),
+  );
+}
+
+
 
   void getLogin() async {
     String username = usernameController.text;

@@ -28,125 +28,123 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return MaterialApp(
       title: "Registracija",
       home: Scaffold(
-        body: Scaffold(
-          body: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: const [Colors.purple, Color.fromARGB(255, 121, 33, 243)],
-              ),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                  "assets/road-leading-mountain-range-with-blue-sky-clouds.jpg"),
+              fit: BoxFit.cover,
             ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Registracija",
-                    style: TextStyle(
-                      fontSize: 48,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontFamily: 'Pacifico',
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Registracija",
+                  style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontFamily: 'Pacifico',
+                  ),
+                ),
+                SizedBox(height: 32),
+                Container(
+                  width: 300,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextField(
+                    controller: usernameController,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      prefixIcon: Icon(Icons.person),
+                      hintText: 'Uporabniško ime',
+                      hintStyle: TextStyle(color: Colors.black),
                     ),
                   ),
-                  SizedBox(height: 32),
-                  Container(
-                    width: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.7),
-                      borderRadius: BorderRadius.circular(10),
+                ),
+                SizedBox(height: 16),
+                Container(
+                  width: 300,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      prefixIcon: Icon(Icons.lock),
+                      hintText: 'Geslo',
+                      hintStyle: TextStyle(color: Colors.black),
                     ),
-                    child: TextField(
-                      controller: usernameController,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        prefixIcon: Icon(Icons.person),
-                        hintText: 'Uporabniško ime',
-                        hintStyle: TextStyle(color: Colors.black),
+                  ),
+                ),
+                SizedBox(height: 16),
+                Container(
+                  width: 300,
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.7),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextField(
+                    controller: confirmPasswordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      prefixIcon: Icon(Icons.lock),
+                      hintText: 'Potrdi geslo',
+                      hintStyle: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  response,
+                  style: TextStyle(color: Colors.red),
+                ),
+                SizedBox(height: 20),
+                SizedBox(
+                  width: 300,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: addUser,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                    child: Text('Registriraj'),
                   ),
-                  SizedBox(height: 16),
-                  Container(
-                    width: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.7),
-                      borderRadius: BorderRadius.circular(10),
+                ),
+                SizedBox(height: 32),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Že imate račun? ",
+                      style: TextStyle(color: Colors.white, fontSize: 17),
                     ),
-                    child: TextField(
-                      controller: passwordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        prefixIcon: Icon(Icons.lock),
-                        hintText: 'Geslo',
-                        hintStyle: TextStyle(color: Colors.black),
+                    GestureDetector(
+                      onTap: () {
+                        showLoginPage();
+                      },
+                      child: Text(
+                        "Prijavite se",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            decoration: TextDecoration.underline),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 16),
-                  Container(
-                    width: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.7),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: TextField(
-                      controller: confirmPasswordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        prefixIcon: Icon(Icons.lock),
-                        hintText: 'Potrdi geslo',
-                        hintStyle: TextStyle(color: Colors.black),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    response,
-                    style: TextStyle(color: Colors.red),
-                  ),
-                  SizedBox(height: 20),
-                  SizedBox(
-                    width: 300,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: addUser,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Text('Registriraj'),
-                    ),
-                  ),
-                  SizedBox(height: 32),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Že imate račun? ",
-                        style: TextStyle(color: Colors.white, fontSize: 17),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          showLoginPage();
-                        },
-                        child: Text(
-                          "Prijavite se",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              decoration: TextDecoration.underline),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
