@@ -45,7 +45,6 @@
   </head>
 
   <body>
-    <!-- Povezava z bazo -->
     
     <!-- ########## START: LEFT PANEL ########## -->
     <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> Vozi varno</a></div>
@@ -147,7 +146,7 @@
           <div class="col-sm-6 col-xl-3">
             <div class="card pd-20 bg-primary">
               <div class="d-flex justify-content-between align-items-center mg-b-10">
-                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Today's Sales</h6>
+                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Tedenske vožnje</h6>
                 <a href="" class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>
               </div><!-- card-header -->
               <div class="d-flex align-items-center justify-content-between">
@@ -169,7 +168,7 @@
           <div class="col-sm-6 col-xl-3 mg-t-20 mg-sm-t-0">
             <div class="card pd-20 bg-info">
               <div class="d-flex justify-content-between align-items-center mg-b-10">
-                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">This Week's Sales</h6>
+                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Mesečne vožnje</h6>
                 <a href="" class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>
               </div><!-- card-header -->
               <div class="d-flex align-items-center justify-content-between">

@@ -52,6 +52,12 @@
             left: 0;
             right: 0;
         }
+        
+        @keyframes flash {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
     </style>
   </head>
 
@@ -78,11 +84,131 @@
             <span class="menu-item-label">Statistična plošča</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
+                <a href="get_road_data.php" class="sl-menu-link">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-navigate-outline tx-24"></i>
+            <span class="menu-item-label">Stanje cest (SLO)</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <br></br>
+        <?php
+            $username = $_SESSION['username'];
+            $query = "SELECT id FROM users WHERE username='$username'";
+            $result = $conn->query($query);
+            $row = $result->fetch_assoc();
+            $user_id = $row['id'];
+        ?>
+        
+        <div class="select-container">
+  <label class="select-label" for="routeSelect">Izberite vožnjo:</label>
+  <select id="routeSelect" class="route-select" onchange="updateMapView()">
+    <option value="">Izberite vožnjo</option>
+    <?php
+      $query = "SELECT DISTINCT route_num FROM locations WHERE user_id='$user_id'";
+      $result = $conn->query($query);
+      while ($row = $result->fetch_assoc()) {
+        $routeNum = $row['route_num'];
+        echo "<option value='$routeNum'>Vožnja $routeNum</option>";
+      }
+    ?>
+  </select>
+  <button onclick="deleteSelectedRoute()" >Izbriši</button>
+</div>
+
+<div id="routeDuration" class="route-duration"></div>
+        
+        <script>
+        function updateMapView() {
+  var selectedRouteNum = document.getElementById('routeSelect').value;
+  var selectedRoute = routes[selectedRouteNum];
+
+  if (selectedRoute && selectedRoute.locations.length > 0) {
+    var startLocation = selectedRoute.locations[0];
+    map.setView(startLocation, 15);
+    displayRouteDuration(selectedRoute);
+
+    // Reset color for all routes
+    for (var routeNum in routes) {
+      if (routes.hasOwnProperty(routeNum)) {
+        var route = routes[routeNum];
+        route.polyline.setStyle({ color: 'orange' });
+      }
+    }
+
+    // Set selected route color to red
+    selectedRoute.polyline.setStyle({ color: 'red' });
+  }
+}
+        
+        function displayRouteDuration(route) {
+            var startDate = new Date(route.startDate);
+            var endDate = new Date(route.endDate);
+            var durationInSeconds = Math.floor((endDate - startDate) / 1000); // Duration in seconds
+
+            var hours = Math.floor(durationInSeconds / 3600);
+            var minutes = Math.floor((durationInSeconds % 3600) / 60);
+            var seconds = durationInSeconds % 60;
+
+            var formattedDuration = hours + 'h ' + minutes + 'm ' + seconds + 's';
+            
+            var startAddress = route.locations[0][2];
+            var finishAddress = route.locations[route.locations.length - 1][2];
+
+            var routeDurationElement = document.getElementById('routeDuration');
+            routeDurationElement.innerHTML = '<br>' + 'Začetek: <span style="color: black;">' + startAddress + '</span>' + '<br>' + '<br>' +
+                                    'Cilj: <span style="color: black;">' + finishAddress + '</span>' + '<br>' + '<br>' +
+                                    'Trajanje: <span style="color: orange;">' + formattedDuration + '</span>';
+        }
+        
+        function deleteSelectedRoute() {
+    var selectedRouteNum = document.getElementById('routeSelect').value;
+    var selectedRoute = routes[selectedRouteNum];
+
+    if (selectedRoute) {
+        // Delete the route from the database
+        // Adjust the following code based on your database structure and delete query
+        var routeToDelete = selectedRouteNum;
+        var confirmation = confirm("Ali ste prepričani, da želite izbrisati izbrano vožnjo?");
+
+        if (confirmation) {
+            // Perform an AJAX request to delete the route from the database
+            // Adjust the URL and parameters based on your backend implementation
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "delete_route.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Route successfully deleted from the database
+                    // Remove the route from the map and update the dropdown
+                    if (selectedRoute.polyline) {
+                        selectedRoute.polyline.remove();
+                    }
+                    var firstMarker = selectedRoute.markers[0];
+                    var lastMarker = selectedRoute.markers[selectedRoute.markers.length - 1];
+                    if (firstMarker) {
+                        firstMarker.remove();
+                        selectedRoute.markers.splice(0, 1); // Remove the first marker from the array
+                    }
+                    if (lastMarker) {
+                        lastMarker.remove();
+                        selectedRoute.markers.splice(selectedRoute.markers.length - 1, 1); // Remove the last marker from the array
+                    }
+                    delete routes[selectedRouteNum];
+                    document.getElementById('routeSelect').remove(selectedRouteNum);
+                    document.getElementById('routeDuration').innerHTML = "";
+                }
+            };
+            xhr.send("routeToDelete=" + routeToDelete);
+        }
+    }
+}
+
+        </script>
+
         <a href="widgets.html" class="sl-menu-link">
         </a><!-- sl-menu-link -->
-        <a href="#" class="sl-menu-link">
           <!-- menu-item -->
-        </a><!-- sl-menu-link -->
+          <br></br>
         <ul class="sl-menu-sub nav flex-column">
           <li class="nav-item"><a href="map-google.php" class="nav-link">Statistika poti</a></li>
         </ul>
@@ -95,19 +221,23 @@
 
     <!-- ########## START: HEAD PANEL ########## -->
     <div class="sl-header">
-      <div class="sl-header-left">
-        <div class="navicon-left hidden-md-down"><a id="btnLeftMenu" href="index.php"><i class="icon ion-navicon-round"></i></a></div>
-        <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href="index.php"><i class="icon ion-navicon-round"></i></a></div>
-      </div><!-- sl-header-left -->
-      <div class="sl-header-right">
-        <nav class="nav">
-          <div class="dropdown">
-            <a href="index.php" class="nav-link nav-link-profile" data-toggle="dropdown">
-              <span style="color: orange;" class="logged-name">
-                  
-                          Nadzorna plošča
-            </a>
-          </div><!-- dropdown -->
+  <div class="sl-header-left">
+    <div  class="navicon-left hidden-md-down"><a id="btnLeftMenu" href="index.php"><i style="color: orange;" class="icon ion-ios-home-outline tx-22"></i></a></div>
+    <div class="navicon-left hidden-lg-up"><a id="btnLeftMenuMobile" href="index.php"><i style="color: orange;" class="icon ion-ios-home-outline tx-22"></i></a></div>
+  </div><!-- sl-header-left -->
+  <div class="sl-header-right">
+    <nav class="nav">
+      <div class="dropdown">
+        <a href="get_road_data.php" class="nav-link nav-link-profile" data-toggle="dropdown">
+          <span style="color: #2E2EFF; font-size:15px;" class="logged-name">
+            Stanje cest (SLO)
+            <span style="color: red; animation: flash 1s infinite;">V ŽIVO</span>
+          </span>
+        </a>
+      </div>
+    </nav>
+  </div><!-- sl-header-right -->
+</div>
         </nav>
       </div><!-- sl-header-right -->
     </div><!-- sl-header -->
@@ -118,9 +248,9 @@
 <div id="map"></div>
 <script>
     var map = L.map('map');
-    L.tileLayer('https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=of4FHIwAhyH3oUuBaBUs', {
-        attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-    }).addTo(map);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
 
     // Marker
     var myIcon = L.icon({

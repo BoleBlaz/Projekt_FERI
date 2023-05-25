@@ -45,7 +45,9 @@
     
       <style>
     body {
-      background-color: #0e0f1a;
+       background-image: url('road-leading-mountain-range-with-blue-sky-clouds.jpg');
+    background-size: cover; /* Adjust the background size as needed */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
       color: #fff;
       font-family: 'Montserrat', sans-serif;
     }
