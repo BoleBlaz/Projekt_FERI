@@ -37,36 +37,47 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: _user == null
-            ? const Center(child: CircularProgressIndicator())
-            : Container( 
-              child: Center(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    _user!.username,
-                    style:
-                        const TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "ID: ${_user!.id}",
-                    style: const TextStyle(fontSize: 24.0),
-                  ),
-                  const SizedBox(height: 30.0),
-                  ElevatedButton(
-                    onPressed: logoutAndShowMain,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      padding: const EdgeInsets.symmetric(horizontal: 80),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    child: const Text('Odjava'),
-                  ),
-                ],
+      body: _user == null
+          ? const Center(child: CircularProgressIndicator())
+          : Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      'assets/futuristic-finance-digital-market-graph-user-interface-with-diagram-technology-hud-graphic-concept.jpg'),
+                  fit: BoxFit.cover,
+                ),
               ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      _user!.username,
+                      style: const TextStyle(
+                          fontSize: 40.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    Text(
+                      "ID: ${_user!.id}",
+                      style:
+                          const TextStyle(fontSize: 24.0, color: Colors.white),
+                    ),
+                    const SizedBox(height: 30.0),
+                    ElevatedButton(
+                      onPressed: logoutAndShowMain,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(horizontal: 80),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Odjava',
+                          style: const TextStyle(color: Colors.black)),
+                    ),
+                  ],
+                ),
               ),
             ),
     );
