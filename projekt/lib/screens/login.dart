@@ -110,7 +110,7 @@ Widget build(BuildContext context) {
                 child: ElevatedButton(
                   onPressed: getLogin,
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
+                    backgroundColor: Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -128,7 +128,7 @@ Widget build(BuildContext context) {
                 child: ElevatedButton(
                   onPressed: showFacePage,
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black,
+                    backgroundColor: Colors.black,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

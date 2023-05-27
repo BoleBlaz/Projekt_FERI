@@ -54,7 +54,8 @@ class User {
       "password": password,
     });
     var encodedData = Uri.encodeComponent(dataStr);
-    var url = Uri.parse("http://beoflere.com/confprojekt.php?data=$encodedData");
+    var url =
+        Uri.parse("http://beoflere.com/confprojekt.php?data=$encodedData");
 
     try {
       var result = await http.get(url);
@@ -64,8 +65,7 @@ class User {
       if (result.body == "OK") {
         return true;
       }
-    } catch (e) {
-    }
+    } catch (e) {}
     return false;
   }
 
@@ -75,8 +75,7 @@ class User {
       "username": username,
       "password": password,
     });
-    var url =
-        Uri.parse("http://beoflere.com/confprojekt.php?data=$dataStr");
+    var url = Uri.parse("http://beoflere.com/confprojekt.php?data=$dataStr");
     try {
       var result = await http.get(url);
       if (result.body == "ERROR") {
@@ -87,6 +86,7 @@ class User {
         return true;
       }
     } catch (e) {
+      return false;
     }
     return false;
   }
@@ -96,8 +96,7 @@ class User {
       "command": "find_user_by_username",
       "username": username,
     });
-    var url =
-        Uri.parse("http://beoflere.com/confprojekt.php?data=$dataStr");
+    var url = Uri.parse("http://beoflere.com/confprojekt.php?data=$dataStr");
     try {
       var result = await http.get(url);
       if (result.body == "ERROR") {
