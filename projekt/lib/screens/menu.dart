@@ -131,6 +131,9 @@ class _MenuScreenState extends State<MenuScreen> {
                               onPressed: isRunning
                                   ? null
                                   : () {
+                                      setState(() {
+                                        err = "Running";
+                                      });
                                       LocationModel.Location
                                               .getRouteNumByUserId(_user!.id)
                                           .then((var routeNum) {
@@ -239,8 +242,7 @@ class _MenuScreenState extends State<MenuScreen> {
         user_id: userId,
         accelerometer_x: _accelerometerValues?[0] ?? -999,
         accelerometer_y: _accelerometerValues?[1] ?? -999,
-        accelerometer_z: _accelerometerValues?[2] ?? -999
-        );
+        accelerometer_z: _accelerometerValues?[2] ?? -999);
 
     if (location.latitude == -1 || location.longitude == -1) {
       print("Vklopi lokacijo!");
@@ -312,7 +314,7 @@ class _MenuScreenState extends State<MenuScreen> {
     _positionStream =
         Geolocator.getPositionStream(locationSettings: locationSettings)
             .listen((Position? position) {
-      if (position == null) {
+      if (position == null) { 
         print("error. position==null");
       } else if (_currentPosition == null || _currentAddress == null) {
         print("error. _currentPosition==null || _currentAddress==null");
