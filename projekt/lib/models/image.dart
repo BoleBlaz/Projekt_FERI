@@ -40,6 +40,7 @@ class Image {
 
   Map<String, dynamic> toJson() {
     return {
+      'command': 'add_image', // Add this line
       'id': _id,
       'name': _name,
       'path': _path,
@@ -48,26 +49,34 @@ class Image {
   }
 
   Future<bool> saveImage() async {
-    var dataStr = jsonEncode({
+    var data = {
       'command': 'add_image',
       'name': name,
       'path': path,
-      'user_id': userId,
-    });
-    var encodedData = Uri.encodeComponent(dataStr);
+      'user_id': userId.toString(),
+    };
+    var encodedData = Uri.encodeComponent(jsonEncode(data));
     var url =
         Uri.parse('http://beoflere.com/confprojekt.php?data=$encodedData');
+
     try {
-      var result = await http.get(url);
-      if (result.body == 'ERROR') {
-        return false;
-      }
-      if (result.body == 'OK') {
-        return true;
+      var response = await http.post(url);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        var responseBody = response.body;
+        if (responseBody == 'ERROR') {
+          return false;
+        }
+        if (responseBody == 'OK') {
+          return true;
+        }
+      } else {
+        print('Error: ${response.statusCode}');
       }
     } catch (e) {
       print('Error: $e');
     }
+
     return false;
   }
 }

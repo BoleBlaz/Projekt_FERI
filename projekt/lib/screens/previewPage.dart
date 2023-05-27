@@ -6,7 +6,7 @@ import 'package:projekt/models/image.dart' as ImageModel;
 
 class PreviewPage extends StatefulWidget {
   const PreviewPage({Key? key, required this.picture}) : super(key: key);
-  
+
   final XFile picture;
 
   @override
@@ -30,17 +30,28 @@ class _PreviewPageState extends State<PreviewPage> {
     });
   }
 
-  void addImage() async {
+  void addImages() async {
+    if (_user == null) {
+      // Handle the case where user data is not available
+      print('User data is not available');
+      return;
+    }
+
     String name = widget.picture.name;
     String path = widget.picture.path;
     int userId = _user!.id;
 
     var image = ImageModel.Image(name: name, path: path, userId: userId);
     var success = await image.saveImage();
-    if (success) {
-      print("Image saved!");
-    } else {
-      print("Error!");
+
+    try {
+      if (success) {
+        print("Image saved!");
+      } else {
+        throw Exception("Error occurred while saving the image.");
+      }
+    } catch (e) {
+      print("Error! $e");
     }
   }
 
@@ -57,7 +68,7 @@ class _PreviewPageState extends State<PreviewPage> {
             width: 300,
             height: 50,
             child: ElevatedButton(
-              onPressed: addImage,
+              onPressed: addImages,
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
                 shape: RoundedRectangleBorder(
