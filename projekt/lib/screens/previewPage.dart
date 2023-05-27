@@ -39,6 +39,7 @@ class _PreviewPageState extends State<PreviewPage> {
 
     String name = widget.picture.name;
     String path = widget.picture.path;
+    print(path);
     int userId = _user!.id;
 
     var image = ImageModel.Image(name: name, path: path, userId: userId);
