@@ -12,6 +12,9 @@ class Location {
   double accelerometer_x;
   double accelerometer_y;
   double accelerometer_z;
+  double gyroscope_x;
+  double gyroscope_y;
+  double gyroscope_z;
 
   Location({
     this.id = 0,
@@ -24,6 +27,9 @@ class Location {
     this.accelerometer_x = 0.0,
     this.accelerometer_y = 0.0,
     this.accelerometer_z = 0.0,
+    this.gyroscope_x = 0.0,
+    this.gyroscope_y = 0.0,
+    this.gyroscope_z = 0.0,
   });
 
   int getId() {
@@ -102,6 +108,30 @@ class Location {
     accelerometer_z = value;
   }
 
+  double getGyroscopeX() {
+    return gyroscope_x;
+  }
+
+  void SetGyroscopeX(double value) {
+    gyroscope_x = value;
+  }
+
+   double getGyroscopeY() {
+    return gyroscope_y;
+  }
+
+  void SetGyroscopeY(double value) {
+    gyroscope_y = value;
+  }
+
+   double getGyroscopeZ() {
+    return gyroscope_z;
+  }
+
+  void SetGyroscopeZ(double value) {
+    gyroscope_z = value;
+  }
+
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
       id: json['id'],
@@ -114,6 +144,10 @@ class Location {
       accelerometer_x: json['accelerometer_x'],
       accelerometer_y: json['accelerometer_y'],
       accelerometer_z: json['accelerometer_z'],
+      gyroscope_x: json['gyroscope_x'],
+      gyroscope_y: json['gyroscope_y'],
+      gyroscope_z: json['gyroscope_z'],
+
     );
   }
 
@@ -128,6 +162,10 @@ class Location {
         'accelerometer_x': accelerometer_x,
         'accelerometer_y': accelerometer_y,
         'accelerometer_z': accelerometer_z,
+        'gyroscope_x': gyroscope_x,
+        'gyroscope_y': gyroscope_y,
+        'gyroscope_z': gyroscope_z,
+        
       };
 
   Future<bool> saveLocation() async {
@@ -142,6 +180,9 @@ class Location {
       "accelerometer_x": accelerometer_x,
       "accelerometer_y": accelerometer_y,
       "accelerometer_z": accelerometer_z,
+      "gyroscope_x": gyroscope_x,
+      "gyroscope_y": gyroscope_y,
+      "gyroscope_z": gyroscope_z,
     });
     var encodedData = Uri.encodeComponent(dataStr);
     var url =
