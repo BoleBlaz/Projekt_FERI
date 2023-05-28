@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+//import 'dart:io';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 
@@ -59,27 +59,56 @@ class Image {
   }
 
   Future<bool> saveImage() async {
-    var dataStr = jsonEncode({
+    var data = {
       'command': 'add_image',
-      'name': _name,
-      'path': _path,
-      'user_id': _userId,
-      //'image': base64Encode(_image),
-    });
-    var encodedData = Uri.encodeComponent(dataStr);
+      'name': name,
+      'path': path,
+      'user_id': userId.toString(),
+      'image': 'base64-encoded-image-data', // Add the image data here
+    };
+
+    var encodedData = Uri.encodeComponent(jsonEncode(data));
     var url =
         Uri.parse('http://beoflere.com/confprojekt.php?data=$encodedData');
     try {
-      var result = await http.get(url);
-      if (result.body == 'ERROR') {
-        return false;
-      }
-      if (result.body == 'OK') {
-        return true;
+      var response = await http.post(url, body: data);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        var responseBody = response.body;
+        if (responseBody == 'ERROR') {
+          return false;
+        }
+        if (responseBody == 'OK') {
+          return true;
+        }
+      } else {
+        print('Error: ${response.statusCode}');
       }
     } catch (e) {
       print('Error: $e');
     }
     return false;
+  }
+}
+
+Future<void> getImage() async {
+  String imageId =
+      '123'; // Replace '123' with the actual image ID you want to retrieve
+
+  var url = Uri.parse('http://beoflere.com/get_image.php?id=$imageId');
+
+  try {
+    var response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      // Display the image
+      Uint8List imageData = response.bodyBytes;
+      // Use the imageData as needed, such as displaying it in an Image widget
+      // Example: Image.memory(imageData);
+    } else {
+      print('Error: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Error: $e');
   }
 }

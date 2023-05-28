@@ -41,6 +41,7 @@ class _PreviewPageState extends State<PreviewPage> {
 
     String name = widget.picture.name;
     String path = widget.picture.path;
+    print(path);
     int userId = _user!.id;
     Uint8List imageBytes = await widget.picture.readAsBytes();
 
