@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+//import 'dart:io';
 import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 
@@ -59,7 +59,7 @@ class Image {
   }
 
   Future<bool> saveImage() async {
-    var dataStr = jsonEncode({
+    var data = {
       'command': 'add_image',
       'name': name,
       'path': path,
@@ -90,8 +90,10 @@ class Image {
     return false;
   }
 }
+
 Future<void> getImage() async {
-  String imageId = '123'; // Replace '123' with the actual image ID you want to retrieve
+  String imageId =
+      '123'; // Replace '123' with the actual image ID you want to retrieve
 
   var url = Uri.parse('http://beoflere.com/get_image.php?id=$imageId');
 
@@ -110,4 +112,3 @@ Future<void> getImage() async {
     print('Error: $e');
   }
 }
-
