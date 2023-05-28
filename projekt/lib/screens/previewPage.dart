@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -41,8 +43,9 @@ class _PreviewPageState extends State<PreviewPage> {
     String path = widget.picture.path;
     print(path);
     int userId = _user!.id;
+    Uint8List imageBytes = await widget.picture.readAsBytes();
 
-    var image = ImageModel.Image(name: name, path: path, userId: userId);
+    var image = ImageModel.Image(name: name, path: path, userId: userId, image: imageBytes);
     var success = await image.saveImage();
 
     try {
