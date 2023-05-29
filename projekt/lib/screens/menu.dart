@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:projekt/settings/profile.dart';
-import 'package:projekt/speede_meter_home.dart';
 import '../models/user.dart';
 import 'package:projekt/models/location.dart' as LocationModel;
 import 'package:geolocator/geolocator.dart';
@@ -12,6 +11,7 @@ import 'package:sensors_plus/sensors_plus.dart';
 import 'package:wakelock/wakelock.dart';
 import 'package:camera/camera.dart';
 import 'package:projekt/screens/addFace.dart';
+import 'package:projekt/speede_meter_home.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -291,7 +291,10 @@ class _MenuScreenState extends State<MenuScreen> {
         user_id: userId,
         accelerometer_x: _accelerometerValues?[0] ?? -999,
         accelerometer_y: _accelerometerValues?[1] ?? -999,
-        accelerometer_z: _accelerometerValues?[2] ?? -999);
+        accelerometer_z: _accelerometerValues?[2] ?? -999,
+        gyroscope_x: _gyroscopeValues?[0] ?? -999,
+        gyroscope_y: _gyroscopeValues?[1] ?? -999,
+        gyroscope_z: _gyroscopeValues?[2] ?? -999);
 
     if (location.latitude == -1 || location.longitude == -1) {
       print("Vklopi lokacijo!");

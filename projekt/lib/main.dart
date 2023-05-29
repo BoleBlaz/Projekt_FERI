@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:projekt/screens/login.dart';
+import 'screens/login.dart';
 import 'package:projekt/screens/menu.dart';
 import 'package:projekt/screens/face.dart';
 import 'package:projekt/screens/register.dart';
