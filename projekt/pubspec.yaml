@@ -43,11 +43,12 @@ dependencies:
   process: ^4.1.0
   wakelock: ^0.6.2
   camera: ^0.10.5
-
+  image_picker: ^0.8.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+    
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

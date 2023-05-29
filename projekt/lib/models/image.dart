@@ -59,12 +59,13 @@ class Image {
   }
 
   Future<bool> saveImage() async {
+    String base64Image = base64Encode(image);
     var data = {
       'command': 'add_image',
       'name': name,
       'path': path,
       'user_id': userId.toString(),
-      'image': 'base64-encoded-image-data', // Add the image data here
+      'image': base64Image, // Add the image data here
     };
 
     var encodedData = Uri.encodeComponent(jsonEncode(data));
