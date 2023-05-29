@@ -116,7 +116,8 @@
 </div>
 
 <div id="routeDuration" class="route-duration"></div>
-        
+<div id="roadCondition"></div>
+
         <script>
         function updateMapView() {
   var selectedRouteNum = document.getElementById('routeSelect').value;
@@ -126,6 +127,7 @@
     var startLocation = selectedRoute.locations[0];
     map.setView(startLocation, 15);
     displayRouteDuration(selectedRoute);
+    calculateAndDisplayRoadCondition(selectedRouteNum);
 
     // Reset color for all routes
     for (var routeNum in routes) {
@@ -203,7 +205,145 @@
     }
 }
 
-        </script>
+function calculateAndDisplayRoadCondition(routeNum) {
+  // Make an AJAX request to fetch the sensor data for the selected route from your backend
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var sensorData = JSON.parse(xhr.responseText);
+        var roadCondition = calculateRoadCondition(sensorData);
+        var mean = calculateMean(sensorData);
+        var stddev = calculateStandardDeviation(sensorData);
+        displayRoadCondition(roadCondition);
+      } else {
+        // Handle error
+      }
+    }
+  };
+
+  xhr.open('GET', 'fetch_sensor_data.php?routeNum=' + routeNum); // Replace with the URL and parameters to fetch the sensor data
+  xhr.send();
+}
+
+
+function displayRoadCondition(roadCondition) {
+  var roadConditionElement = document.getElementById('roadCondition');
+
+  // Set color based on road condition
+  if (roadCondition === 'Slabo') {
+    roadConditionElement.style.color = 'red';
+  } else if (roadCondition === 'Normalno') {
+    roadConditionElement.style.color = 'orange';
+  } else if (roadCondition === 'Dobro') {
+    roadConditionElement.style.color = 'green';
+  }
+
+  roadConditionElement.innerHTML = 'Stanje ceste: ' + roadCondition;
+}
+
+
+
+
+function calculateRoadCondition(sensorData) {
+  // Extract sensor data from the fetched response
+  var accelerometer_x_values = sensorData.map(function(data) {
+    return parseFloat(data.accelerometer_x) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  var accelerometer_y_values = sensorData.map(function(data) {
+    return parseFloat(data.accelerometer_y) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  var accelerometer_z_values = sensorData.map(function(data) {
+    return parseFloat(data.accelerometer_z) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  var gyroscope_x_values = sensorData.map(function(data) {
+    return parseFloat(data.gyroscope_x) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  var gyroscope_y_values = sensorData.map(function(data) {
+    return parseFloat(data.gyroscope_y) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  var gyroscope_z_values = sensorData.map(function(data) {
+    return parseFloat(data.gyroscope_z) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  // Calculate mean values
+  var accelerometer_x_mean = calculateMean(accelerometer_x_values);
+  var accelerometer_y_mean = calculateMean(accelerometer_y_values);
+  var accelerometer_z_mean = calculateMean(accelerometer_z_values);
+  var gyroscope_x_mean = calculateMean(gyroscope_x_values);
+  var gyroscope_y_mean = calculateMean(gyroscope_y_values);
+  var gyroscope_z_mean = calculateMean(gyroscope_z_values);
+
+  // Calculate standard deviation values
+  var accelerometer_x_stddev = calculateStandardDeviation(accelerometer_x_values);
+  var accelerometer_y_stddev = calculateStandardDeviation(accelerometer_y_values);
+  var accelerometer_z_stddev = calculateStandardDeviation(accelerometer_z_values);
+  var gyroscope_x_stddev = calculateStandardDeviation(gyroscope_x_values);
+  var gyroscope_y_stddev = calculateStandardDeviation(gyroscope_y_values);
+  var gyroscope_z_stddev = calculateStandardDeviation(gyroscope_z_values);
+
+  // Define the threshold values for determining the road condition
+  var accelerometer_x_threshold = 0.8; // Adjust as per your requirement
+  var accelerometer_y_threshold = 0.8; // Adjust as per your requirement
+  var accelerometer_z_threshold = 0.8; // Adjust as per your requirement
+  var gyroscope_x_threshold = 0.8; // Adjust as per your requirement
+  var gyroscope_y_threshold = 0.8; // Adjust as per your requirement
+  var gyroscope_z_threshold = 0.8; // Adjust as per your requirement
+
+  // Determine the road condition based on the standard deviation values
+  var roadCondition = 'Dobro';
+
+  if (
+    accelerometer_x_stddev > accelerometer_x_threshold ||
+    accelerometer_y_stddev > accelerometer_y_threshold ||
+    accelerometer_z_stddev > accelerometer_z_threshold ||
+    gyroscope_x_stddev > gyroscope_x_threshold ||
+    gyroscope_y_stddev > gyroscope_y_threshold ||
+    gyroscope_z_stddev > gyroscope_z_threshold
+  ) {
+    roadCondition = 'Slabo';
+  } else if (
+    accelerometer_x_stddev > accelerometer_x_threshold / 2 ||
+    accelerometer_y_stddev > accelerometer_y_threshold / 2 ||
+    accelerometer_z_stddev > accelerometer_z_threshold / 2 ||
+    gyroscope_x_stddev > gyroscope_x_threshold / 2 ||
+    gyroscope_y_stddev > gyroscope_y_threshold / 2 ||
+    gyroscope_z_stddev > gyroscope_z_threshold / 2
+  ) {
+    roadCondition = 'Normalno';
+  }
+
+  return roadCondition;
+}
+
+function calculateMean(values) {
+  var sum = values.reduce(function(total, value) {
+    return total + value;
+  }, 0);
+
+  return sum / values.length;
+}
+
+function calculateStandardDeviation(values) {
+  var mean = calculateMean(values);
+
+  var squaredDifferences = values.map(function(value) {
+    var difference = value - mean;
+    return difference * difference;
+  });
+
+  var variance = calculateMean(squaredDifferences);
+
+  return Math.sqrt(variance);
+}
+
+
+</script>
 
         <a href="widgets.html" class="sl-menu-link">
         </a><!-- sl-menu-link -->
