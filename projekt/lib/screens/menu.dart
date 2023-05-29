@@ -270,7 +270,11 @@ class _MenuScreenState extends State<MenuScreen> {
         user_id: userId,
         accelerometer_x: _accelerometerValues?[0] ?? -999,
         accelerometer_y: _accelerometerValues?[1] ?? -999,
-        accelerometer_z: _accelerometerValues?[2] ?? -999);
+        accelerometer_z: _accelerometerValues?[2] ?? -999,
+        gyroscope_x: _gyroscopeValues?[0] ?? -999,
+        gyroscope_y: _gyroscopeValues?[1] ?? -999,
+        gyroscope_z: _gyroscopeValues?[2] ?? -999
+        );
 
     if (location.latitude == -1 || location.longitude == -1) {
       print("Vklopi lokacijo!");
