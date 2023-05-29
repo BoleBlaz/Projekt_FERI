@@ -1,31 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:projekt/screens/login.dart';
 import 'package:projekt/screens/menu.dart';
 import 'package:projekt/screens/face.dart';
 import 'package:projekt/screens/register.dart';
 import 'models/user.dart';
+import 'providers/geo_location_provider.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Projekt',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<GeoLocationProvider>(
+          create: (_) => GeoLocationProvider(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Projekt',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const MyHomePage(),
       ),
-      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -53,19 +63,19 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  showRegisterPage() {
+  void showRegisterPage() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return const RegisterScreen();
     }));
   }
 
-  showLoginPage() {
+  void showLoginPage() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return const LoginScreen();
     }));
   }
 
-  showFacePage() {
+  void showFacePage() {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return const Face();
     }));
@@ -73,6 +83,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold();
   }
 }

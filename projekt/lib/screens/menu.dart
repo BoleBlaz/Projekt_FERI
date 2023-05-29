@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:projekt/settings/profile.dart';
+import 'package:projekt/speede_meter_home.dart';
 import '../models/user.dart';
 import 'package:projekt/models/location.dart' as LocationModel;
 import 'package:geolocator/geolocator.dart';
@@ -142,6 +143,26 @@ class _MenuScreenState extends State<MenuScreen> {
                               style: TextStyle(color: Colors.white)),
                           Text('ADDRESS: ${_currentAddress ?? ""}',
                               style: TextStyle(color: Colors.white)),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const SpeedometerHome(),
+                                ),
+                              );
+                            },
+                            child: const Text("Open Speedometer"),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 32,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                            ),
+                          ),
                           const SizedBox(height: 32),
                           ElevatedButton(
                             onPressed: isRunning
@@ -270,11 +291,7 @@ class _MenuScreenState extends State<MenuScreen> {
         user_id: userId,
         accelerometer_x: _accelerometerValues?[0] ?? -999,
         accelerometer_y: _accelerometerValues?[1] ?? -999,
-        accelerometer_z: _accelerometerValues?[2] ?? -999,
-        gyroscope_x: _gyroscopeValues?[0] ?? -999,
-        gyroscope_y: _gyroscopeValues?[1] ?? -999,
-        gyroscope_z: _gyroscopeValues?[2] ?? -999
-        );
+        accelerometer_z: _accelerometerValues?[2] ?? -999);
 
     if (location.latitude == -1 || location.longitude == -1) {
       print("Vklopi lokacijo!");
@@ -346,7 +363,7 @@ class _MenuScreenState extends State<MenuScreen> {
     _positionStream =
         Geolocator.getPositionStream(locationSettings: locationSettings)
             .listen((Position? position) {
-      if (position == null) { 
+      if (position == null) {
         print("error. position==null");
       } else if (_currentPosition == null || _currentAddress == null) {
         print("error. _currentPosition==null || _currentAddress==null");
