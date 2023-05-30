@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, no_leading_underscores_for_local_identifiers
+
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -44,6 +46,9 @@ class Speedometer extends StatelessWidget {
           final speed = value.toStringAsFixed(2);
           return CustomPaint(
               isComplex: true,
+              painter: SpeedometerPainter(
+                  speed: value, batteryLevel: batteryLevel),
+              size: Size(size, size),
               child: SizedBox.square(
                 dimension: size,
                 child: DefaultTextStyle(
@@ -73,10 +78,9 @@ class Speedometer extends StatelessWidget {
                                           .split('.')[0],
                                       style: TextStyle(fontSize: size * 0.2)),
                                   TextSpan(
-                                      text: '.' +
-                                          value
+                                      text: '.${value
                                               .toStringAsFixed(2)
-                                              .split('.')[1],
+                                              .split('.')[1]}',
                                       style: TextStyle(fontSize: size * 0.05)),
                                 ])),
                             Text("km/h",
@@ -126,10 +130,7 @@ class Speedometer extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-              painter: SpeedometerPainter(
-                  speed: value, batteryLevel: batteryLevel),
-              size: Size(size, size));
+              ));
         },
       ),
     );

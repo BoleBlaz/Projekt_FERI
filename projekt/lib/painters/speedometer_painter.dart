@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:projekt/painters/speedometer_gradients.dart';
 import 'package:projekt/widgets/speedo_meter.dart';
 
 class SpeedometerPainter extends CustomPainter {
-  
   SpeedometerPainter({
     this.speed = 20.0,
     required this.batteryLevel,
@@ -43,9 +41,10 @@ class SpeedometerPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) {
-    if(oldDelegate != this) {
+    if (oldDelegate != this) {
       return true;
-    }return false;
+    }
+    return false;
   }
 
   void _init(Canvas canvas, Size size) {
@@ -76,20 +75,24 @@ class SpeedometerPainter extends CustomPainter {
   int printedMarkersCount = 0;
 
   void _drawMarkers() {
-    // marks count = (indicatorEndPosition - indicatorStartPosition)/x
+    //marks count = (indicatorEndPosition - indicatorStartPosition)/x
     // if marks count == top speed. then x = (indicatorEndPosition - indicatorStartPosition)/ top speed
 
-    //gap between two Markers , 
-    //double splitGap = (indicatorEndPosition - indicatorStartPosition) / topSpeed; 
+    //gap between two Markers ,
+    //double splitGap = (indicatorEndPosition - indicatorStartPosition) / topSpeed;
     // gaps == topSpeed, so there will be {topSpeed value} Markers wich is 0,1,2 ...... to speed
-    
-    double splitGap = (indicatorEndPosition - indicatorStartPosition) / topSpeed; 
-    
+
+    double splitGap =
+        (indicatorEndPosition - indicatorStartPosition) / topSpeed;
+
     Paint paintObject = Paint();
     paintObject.style = PaintingStyle.fill;
-    
-    for (double relativeRotation = indicatorStartPosition;  relativeRotation <= indicatorEndPosition; relativeRotation += splitGap) {
-      relativeRotation = double.parse((relativeRotation).toStringAsFixed(4)); // avoid => 0.7500000000000003
+
+    for (double relativeRotation = indicatorStartPosition;
+        relativeRotation <= indicatorEndPosition;
+        relativeRotation += splitGap) {
+      relativeRotation = double.parse(
+          (relativeRotation).toStringAsFixed(4)); // avoid => 0.7500000000000003
       bool isBigMarker = printedMarkersCount % bigMarkerFinder == 0;
       printedMarkersCount = printedMarkersCount + 1;
       _drawRotated(relativeRotation, () => _drawMarker(isBigMarker));

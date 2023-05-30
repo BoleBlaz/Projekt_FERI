@@ -3,7 +3,6 @@ import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:projekt/screens/previewPage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
 class AddFace extends StatefulWidget {
   final List<CameraDescription>? cameras;
@@ -39,6 +38,7 @@ class _AddFaceState extends State<AddFace> {
     try {
       await _cameraController.setFlashMode(FlashMode.off);
       XFile picture = await _cameraController.takePicture();
+      // ignore: use_build_context_synchronously
       Navigator.push(
           context,
           MaterialPageRoute(
