@@ -15,6 +15,7 @@ class Location {
   double gyroscope_x;
   double gyroscope_y;
   double gyroscope_z;
+  double speed;
 
   Location({
     this.id = 0,
@@ -30,6 +31,7 @@ class Location {
     this.gyroscope_x = 0.0,
     this.gyroscope_y = 0.0,
     this.gyroscope_z = 0.0,
+    this.speed = 0.0,
   });
 
   int getId() {
@@ -116,7 +118,7 @@ class Location {
     gyroscope_x = value;
   }
 
-   double getGyroscopeY() {
+  double getGyroscopeY() {
     return gyroscope_y;
   }
 
@@ -124,12 +126,20 @@ class Location {
     gyroscope_y = value;
   }
 
-   double getGyroscopeZ() {
+  double getGyroscopeZ() {
     return gyroscope_z;
   }
 
   void SetGyroscopeZ(double value) {
     gyroscope_z = value;
+  }
+
+  double getSpeed() {
+    return speed;
+  }
+
+  void SetSpeed(double value) {
+    speed = value;
   }
 
   factory Location.fromJson(Map<String, dynamic> json) {
@@ -147,7 +157,7 @@ class Location {
       gyroscope_x: json['gyroscope_x'],
       gyroscope_y: json['gyroscope_y'],
       gyroscope_z: json['gyroscope_z'],
-
+      speed: json['speed'],
     );
   }
 
@@ -165,7 +175,7 @@ class Location {
         'gyroscope_x': gyroscope_x,
         'gyroscope_y': gyroscope_y,
         'gyroscope_z': gyroscope_z,
-        
+        'speed': speed,
       };
 
   Future<bool> saveLocation() async {
@@ -183,6 +193,7 @@ class Location {
       "gyroscope_x": gyroscope_x,
       "gyroscope_y": gyroscope_y,
       "gyroscope_z": gyroscope_z,
+      'speed': speed,
     });
     var encodedData = Uri.encodeComponent(dataStr);
     var url =
