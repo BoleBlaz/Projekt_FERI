@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import '../models/user.dart';
 import 'package:projekt/models/image.dart' as ImageModel;
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 
 class PreviewPage extends StatefulWidget {
   const PreviewPage({Key? key, required this.picture}) : super(key: key);
@@ -33,6 +34,17 @@ class _PreviewPageState extends State<PreviewPage> {
     });
   }
 
+  Future<Uint8List> testComporessList(Uint8List list) async {
+    var result = await FlutterImageCompress.compressWithList(
+      list,
+      minHeight: 200,
+      minWidth: 100,
+      quality: 50,
+    );
+    return result;
+  }
+
+  late Uint8List? imageBytes2;
   void addImages() async {
     if (_user == null) {
       // Handle the case where user data is not available
@@ -42,13 +54,14 @@ class _PreviewPageState extends State<PreviewPage> {
 
     String name = widget.picture.name;
     String path = widget.picture.path;
-    print(path);
     int userId = _user!.id;
+
     Uint8List imageBytes = await File(widget.picture.path).readAsBytes();
-    String kramp = base64Encode(imageBytes);
-    print(kramp);
-    var image = ImageModel.Image(
-        name: name, path: path, userId: userId, image: imageBytes);
+    imageBytes2 = await testComporessList(imageBytes);
+    String kramp = base64Encode(imageBytes2!);
+
+    var image = ImageModel.Image(name: name, path: path, userId: userId, image: kramp);
+
     var success = await image.saveImage();
 
     try {

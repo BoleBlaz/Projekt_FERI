@@ -8,14 +8,14 @@ class Image {
   String _name;
   String _path;
   int _userId;
-  Uint8List _image;
+  String _image;
 
   Image({
     int id = 0,
     required String name,
     required String path,
     required int userId,
-    required Uint8List image,
+    required String image,
   })  : _id = id,
         _name = name,
         _path = path,
@@ -34,8 +34,8 @@ class Image {
   int get userId => _userId;
   set userId(int value) => _userId = value;
 
-  Uint8List get image => _image;
-  set image(Uint8List value) => _image = value;
+  String get image => _image;
+  set image(String value) => _image = value;
 
   factory Image.fromJson(Map<String, dynamic> json) {
     return Image(
@@ -43,7 +43,7 @@ class Image {
       name: json['name'],
       path: json['path'],
       userId: json['user_id'],
-      image: base64Decode(json['image']), // Decode the base64 image string
+      image: json['image'], // Decode the base64 image string
     );
   }
 
@@ -54,18 +54,17 @@ class Image {
       'name': _name,
       'path': _path,
       'user_id': _userId,
-      'image': base64Encode(_image), // Encode the image bytes to base64
+      'image': _image, // Encode the image bytes to base64
     };
   }
 
   Future<bool> saveImage() async {
-    String base64Image = base64Encode(image);
     var data = {
       'command': 'add_image',
       'name': name,
       'path': path,
       'user_id': userId.toString(),
-      'image': base64Image, // Add the image data here
+      'image': image,
     };
 
     var encodedData = Uri.encodeComponent(jsonEncode(data));
@@ -76,6 +75,7 @@ class Image {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var responseBody = response.body;
+        print(responseBody);
         if (responseBody == 'ERROR') {
           return false;
         }
@@ -103,7 +103,7 @@ Future<void> getImage() async {
 
     if (response.statusCode == 200) {
       // Display the image
-      Uint8List imageData = response.bodyBytes;
+      //Uint8List imageData = response.bodyBytes;
       // Use the imageData as needed, such as displaying it in an Image widget
       // Example: Image.memory(imageData);
     } else {

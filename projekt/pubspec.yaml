@@ -49,6 +49,7 @@ dependencies:
   flutter_svg: ^2.0.6
   sensors_plus_web: ^1.1.2
   battery_info: ^1.1.1
+  flutter_image_compress: ^2.0.3
  
 
 dev_dependencies:

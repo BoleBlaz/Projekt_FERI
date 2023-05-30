@@ -145,6 +145,7 @@ class _MenuScreenState extends State<MenuScreen> {
                               style: TextStyle(color: Colors.white)),
                           Text('ADDRESS: ${_currentAddress ?? ""}',
                               style: TextStyle(color: Colors.white)),
+                          const SizedBox(height: 20),
                           ElevatedButton(
                             onPressed: () {
                               Navigator.push(
@@ -368,26 +369,11 @@ class _MenuScreenState extends State<MenuScreen> {
         _getAddressFromLatLng(position);
         addLocation();
         setState(() {
-          velocity = position.speed;
-          print(velocity);
+          velocity = (position.speed*3.6);
         });
       }
     });
   }
-
-  /*void start() async {
-    isRunning = true;
-    setState(() {
-      err = "Running";
-    });
-    while (isRunning) {
-      Position position = await _determinePosition();
-      print(position);
-      _getAddressFromLatLng(position);
-      await Future.delayed(Duration(milliseconds: 500));
-      addLocation();
-    }
-  }*/
 
   void stop() async {
     isRunning = false;
