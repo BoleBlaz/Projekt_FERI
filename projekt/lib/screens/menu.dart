@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, depend_on_referenced_packages
 
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:projekt/settings/profile.dart';
 import '../models/user.dart';
@@ -30,6 +31,7 @@ class _MenuScreenState extends State<MenuScreen> {
   List<double>? _accelerometerValues;
   StreamSubscription<Position>? _positionStream;
   int? _routeNum;
+  double velocity = 0.0;
 
   Future<bool> checkAwake() async {
     bool ison = await Wakelock.enabled;
@@ -173,6 +175,9 @@ class _MenuScreenState extends State<MenuScreen> {
                                         .then((var routeNum) {
                                       _routeNum = routeNum! + 1;
                                       //start();
+                                      setState(() {
+                                        err = "Running";
+                                      });
                                       _startListening();
                                     });
                                   },
@@ -212,6 +217,7 @@ class _MenuScreenState extends State<MenuScreen> {
                             err,
                             style: TextStyle(color: Colors.red, fontSize: 30),
                           ),
+                          /*
                           Text(
                             "x: ${_gyroscopeValues![0]}",
                             style: TextStyle(color: Colors.white, fontSize: 15),
@@ -237,24 +243,10 @@ class _MenuScreenState extends State<MenuScreen> {
                             "z: ${_accelerometerValues![2]}",
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
-                          FutureBuilder<bool>(
-                            future: checkAwake(),
-                            builder: (BuildContext context,
-                                AsyncSnapshot<bool> snapshot) {
-                              if (snapshot.hasData) {
-                                if (snapshot.data == true) {
-                                  return Text("Screen is on stay awake mode.",
-                                      style: TextStyle(color: Colors.white));
-                                } else {
-                                  return Text(
-                                      "Screen is not on stay awake mode.",
-                                      style: TextStyle(color: Colors.white));
-                                }
-                              } else {
-                                return Text("Error while reading awake state.",
-                                    style: TextStyle(color: Colors.white));
-                              }
-                            },
+                          */
+                          Text(
+                            "hitrost: ${velocity.toStringAsFixed(2)}",
+                            style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
                         ],
                       ),
@@ -294,7 +286,8 @@ class _MenuScreenState extends State<MenuScreen> {
         accelerometer_z: _accelerometerValues?[2] ?? -999,
         gyroscope_x: _gyroscopeValues?[0] ?? -999,
         gyroscope_y: _gyroscopeValues?[1] ?? -999,
-        gyroscope_z: _gyroscopeValues?[2] ?? -999);
+        gyroscope_z: _gyroscopeValues?[2] ?? -999,
+        speed: velocity);
 
     if (location.latitude == -1 || location.longitude == -1) {
       print("Vklopi lokacijo!");
@@ -373,9 +366,11 @@ class _MenuScreenState extends State<MenuScreen> {
         _getAddressFromLatLng(position);
       } else {
         _getAddressFromLatLng(position);
-        print(_currentPosition);
-        print(_currentAddress);
         addLocation();
+        setState(() {
+          velocity = position.speed;
+          print(velocity);
+        });
       }
     });
   }
