@@ -75,7 +75,6 @@ class Image {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         var responseBody = response.body;
-        print(responseBody);
         if (responseBody == 'ERROR') {
           return false;
         }
@@ -90,26 +89,34 @@ class Image {
     }
     return false;
   }
-}
 
-Future<void> getImage() async {
-  String imageId =
-      '123'; // Replace '123' with the actual image ID you want to retrieve
+  static Future<bool> runScriptWithUserId(int userId) async {
+    var data = {
+      'command': 'runScriptWithUserId',
+      'user_id': userId.toString(),
+    };
 
-  var url = Uri.parse('http://beoflere.com/get_image.php?id=$imageId');
+    var encodedData = Uri.encodeComponent(jsonEncode(data));
+    var url =
+        Uri.parse('http://beoflere.com/confprojekt.php?data=$encodedData');
+    try {
+      var response = await http.post(url, body: data);
+      print("res: "+response.body);
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        var responseBody = response.body;
 
-  try {
-    var response = await http.get(url);
-
-    if (response.statusCode == 200) {
-      // Display the image
-      //Uint8List imageData = response.bodyBytes;
-      // Use the imageData as needed, such as displaying it in an Image widget
-      // Example: Image.memory(imageData);
-    } else {
-      print('Error: ${response.statusCode}');
+        if (responseBody == 'ERROR') {
+          return false;
+        }
+        if (responseBody == 'OK') {
+          return true;
+        }
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
     }
-  } catch (e) {
-    print('Error: $e');
+    return false;
   }
 }
