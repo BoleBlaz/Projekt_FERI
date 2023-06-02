@@ -14,6 +14,8 @@ from sklearn.tree import DecisionTreeClassifier
 import math
 import time
 import os
+from sklearn.model_selection import train_test_split
+from skimage.feature import hog
 
 
 def izracunaj_hog(sivinska_slika, velikost_celice, velikost_bloka, segmenti):
@@ -145,19 +147,22 @@ connection = mysql.connector.connect(
     database=dbname
 )
 
-user_id = 1 # Replace with the actual image ID
+user_id = 1  # Replace with the actual user ID
 query = f"SELECT image FROM images WHERE user_id = {user_id}"
 cursor = connection.cursor()
 cursor.execute(query)
 rows = cursor.fetchall()
 
 decoded_images = []
+user_labels = []
 
 for row in rows:
     image_data = row[0] 
     decoded_image = base64.b64decode(image_data)
     decoded_images.append(decoded_image)
-
+    user_labels.append(user_id) 
+# Check if faces are detected in each image and create a new list of images
+images_with_faces = []
 
 for i, image_data in enumerate(decoded_images):
     image = Image.open(io.BytesIO(image_data))
@@ -166,23 +171,59 @@ for i, image_data in enumerate(decoded_images):
 
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
     faces = face_cascade.detectMultiScale(cv_image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
-    #print(len(decoded_images))
+    
     print(f"Image {i+1}:")
+    
     if len(faces) == 1:
         print("Face detected")
         face_detected = True
+        images_with_faces.append(cv_image)
     else:
         print("No face detected")
         face_detected = False
-        del decoded_images[i]  
 
-    # Display the image
-    print(len(decoded_images))
-    #plt.imshow(image)
-    #plt.axis('off')
-    #plt.show()
+# Display the number of images with faces
+print(f"Number of images with faces: {len(images_with_faces)}")
+
+# Convert images to the desired size and extract features
+hog_histograms = []
+lbp_histograms = []
+labels = []
+cell_size = 3
+
+for image, label in zip(images_with_faces, user_labels):
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    cell_hog_histogram = izracunaj_hog(gray_image, cell_size, 4, 9)
+    hog_histograms.append(cell_hog_histogram)
+    cell_lbp_histogram = lbp(gray_image)
+    lbp_histograms.append(cell_lbp_histogram)
+    labels.append(label)
+    print(label)
+
+X = np.concatenate((np.array(lbp_histograms), np.array(hog_histograms)), axis=1)
+y = np.array(labels)
+# Split the data into training and testing sets
+train_X, test_X, train_y, test_y = train_test_split(X, y, test_size=0.05, random_state=42)
+
+# Fit the classifiers
 '''
-decoded_images = np.array(decoded_images)
+svm = SVC()
+svm.fit(train_X, train_y)
+
+knn = KNeighborsClassifier()
+knn.fit(train_X, train_y)
+
+dt = DecisionTreeClassifier()
+dt.fit(train_X, train_y)
+
+# Make predictions
+svm_predictions = svm.predict(test_X)
+knn_predictions = knn.predict(test_X)
+dt_predictions = dt.predict(test_X)
+
+# Calculate accuracy
+dt_accuracy = accuracy_score(test_y, dt_predictions)
+print("Accuracy:", dt_accuracy)
 
 hog_histograms = []
 lbp_histograms = []
