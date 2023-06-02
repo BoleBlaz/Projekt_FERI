@@ -79,6 +79,16 @@ class _AddFaceState extends State<AddFace> {
                 )));
   }
 
+  Future takePictureLogin() async {
+    await takePicture();
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => PreviewPage(
+                  pictureList: pictureList,
+                )));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -133,7 +143,15 @@ class _AddFaceState extends State<AddFace> {
                         icon: const Icon(Icons.circle, color: Colors.white),
                       ),
                     ),
-                    
+                    Expanded(
+                      child: IconButton(
+                        onPressed: takePictureLogin,
+                        iconSize: 50,
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                        icon: const Icon(Icons.circle, color: Colors.red),
+                      ),
+                    ),
                   ],
                 ),
               ),

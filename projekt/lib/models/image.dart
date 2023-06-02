@@ -1,6 +1,5 @@
 import 'dart:convert';
 //import 'dart:io';
-import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 
 class Image {
@@ -58,9 +57,41 @@ class Image {
     };
   }
 
-  Future<bool> saveImage() async {
+  Future<bool> saveImagesRegister() async {
     var data = {
-      'command': 'add_image',
+      'command': 'add_images_register',
+      'name': name,
+      'path': path,
+      'user_id': userId.toString(),
+      'image': image,
+    };
+
+    var encodedData = Uri.encodeComponent(jsonEncode(data));
+    var url =
+        Uri.parse('http://beoflere.com/confprojekt.php?data=$encodedData');
+    try {
+      var response = await http.post(url, body: data);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        var responseBody = response.body;
+        if (responseBody == 'ERROR') {
+          return false;
+        }
+        if (responseBody == 'OK') {
+          return true;
+        }
+      } else {
+        print('Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+    return false;
+  }
+
+  Future<bool> saveImageLogin() async {
+    var data = {
+      'command': 'add_images_login',
       'name': name,
       'path': path,
       'user_id': userId.toString(),
@@ -101,7 +132,7 @@ class Image {
         Uri.parse('http://beoflere.com/confprojekt.php?data=$encodedData');
     try {
       var response = await http.post(url, body: data);
-      print("res: "+response.body);
+      
       if (response.statusCode == 200 || response.statusCode == 201) {
         var responseBody = response.body;
 

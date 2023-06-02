@@ -52,45 +52,6 @@ class _PreviewPageState extends State<PreviewPage> {
     return result;
   }
 
-  Future<void> addImages() async {
-    if (_user == null) {
-      // Handle the case where user data is not available
-      print('User data is not available');
-      return;
-    }
-    for (XFile picture in widget.pictureList) {
-      String name = picture.name;
-      String path = picture.path;
-      int userId = _user!.id;
-
-      Uint8List imageBytes = await File(picture.path).readAsBytes();
-      Uint8List compressedBytes = await testComporessList(imageBytes);
-      String encodedImage = base64Encode(compressedBytes);
-
-      var image = ImageModel.Image(
-          name: name, path: path, userId: userId, image: encodedImage);
-
-      var success = await image.saveImage();
-
-      try {
-        if (success) {
-          print("Image saved!");
-          setState(() {
-            insertCounter++;
-            text = insertCounter.toString();
-          });
-        } else {
-          throw Exception("Error occurred while saving the image.");
-        }
-      } catch (e) {
-        print("Error! $e");
-      }
-    }
-    setState(() {
-      text = "DONE";
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,24 +78,94 @@ class _PreviewPageState extends State<PreviewPage> {
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           ElevatedButton(
-            onPressed: runScript,
-            child: const Text('Preveri ujemanje'),
+            onPressed: addImageLogin,
+            child: const Text('Dodaj login'),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => addImages(),
+        onPressed: () => addImagesRegister(),
         child: const Icon(Icons.add),
       ),
+      
     );
   }
 
-  void runScript() async {
-    bool check = await ImageModel.Image.runScriptWithUserId(_user!.id);
-    if(check){
-      print("true");
-    }else{
-      print("false");
+  Future<void> addImagesRegister() async {
+    if (_user == null) {
+      // Handle the case where user data is not available
+      print('User data is not available');
+      return;
     }
+    for (XFile picture in widget.pictureList) {
+      String name = picture.name;
+      String path = picture.path;
+      int userId = _user!.id;
+
+      Uint8List imageBytes = await File(picture.path).readAsBytes();
+      Uint8List compressedBytes = await testComporessList(imageBytes);
+      String encodedImage = base64Encode(compressedBytes);
+
+      var image = ImageModel.Image(
+          name: name, path: path, userId: userId, image: encodedImage);
+
+      var success = await image.saveImagesRegister();
+
+      try {
+        if (success) {
+          print("Image saved!");
+          setState(() {
+            insertCounter++;
+            text = insertCounter.toString();
+          });
+        } else {
+          throw Exception("Error occurred while saving the image.");
+        }
+      } catch (e) {
+        print("Error! $e");
+      }
+    }
+    setState(() {
+      text = "DONE";
+    });
+  }
+
+  Future<void> addImageLogin() async {
+    if (_user == null) {
+      // Handle the case where user data is not available
+      print('User data is not available');
+      return;
+    }
+    for (XFile picture in widget.pictureList) {
+      String name = picture.name;
+      String path = picture.path;
+      int userId = _user!.id;
+
+      Uint8List imageBytes = await File(picture.path).readAsBytes();
+      Uint8List compressedBytes = await testComporessList(imageBytes);
+      String encodedImage = base64Encode(compressedBytes);
+
+      var image = ImageModel.Image(
+          name: name, path: path, userId: userId, image: encodedImage);
+
+      var success = await image.saveImageLogin();
+
+      try {
+        if (success) {
+          print("Image saved!");
+          setState(() {
+            insertCounter++;
+            text = insertCounter.toString();
+          });
+        } else {
+          throw Exception("Error occurred while saving the image.");
+        }
+      } catch (e) {
+        print("Error! $e");
+      }
+    }
+    setState(() {
+      text = "DONE";
+    });
   }
 }
