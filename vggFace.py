@@ -1,15 +1,19 @@
-from matplotlib import pyplot
+import base64
+import io
+from matplotlib import pyplot as plt
 from PIL import Image
+import numpy as np
 from numpy import asarray
 from scipy.spatial.distance import cosine
 from mtcnn.mtcnn import MTCNN
 from keras_vggface.vggface import VGGFace
 from keras_vggface.utils import preprocess_input
- 
+import mysql.connector
+
+
 # extract a single face from a given photograph
-def extract_face(filename, required_size=(224, 224)):
-    # load image from file
-    pixels = pyplot.imread(filename)
+def extract_face(image, required_size=(224, 224)):
+    pixels = np.array(image)
     # create the detector, using default weights
     detector = MTCNN()
     # detect faces in the image
@@ -25,18 +29,17 @@ def extract_face(filename, required_size=(224, 224)):
     x2, y2 = x1 + width, y1 + height
     
     # extract the face
-    face = pixels[y1:y2, x1:x2]
+    face = image.crop((x1, y1, x2, y2))
     # resize pixels to the model size
-    image = Image.fromarray(face)
-    image = image.resize(required_size)
-    face_array = asarray(image)
+    face = face.resize(required_size)
+    face_array = asarray(face)
     return face_array
 
  
 # extract faces and calculate face embeddings for a list of photo files
-def get_embeddings(filenames):
+def get_embeddings(images):
     # extract faces
-    faces = [extract_face(f) for f in filenames]
+    faces = [extract_face(img) for img in images]
     # filter out None elements
     faces = [f for f in faces if f is not None]
     
@@ -48,29 +51,68 @@ def get_embeddings(filenames):
     # create a vggface model
     model = VGGFace(model='resnet50', include_top=False, input_shape=(224, 224, 3), pooling='avg')
     # perform prediction
-    yhat = model.predict(samples)
-    return yhat
+    embeddings = model.predict(samples)
+    return embeddings
 
 # determine if a candidate face is a match for a known face
 def is_match(known_embedding, candidate_embedding, thresh=0.5):
- # calculate distance between embeddings
- score = cosine(known_embedding, candidate_embedding)
- if score <= thresh:
-  print('>face is a Match (%.3f <= %.3f)' % (score, thresh))
- else:
-  print('>face is NOT a Match (%.3f > %.3f)' % (score, thresh))
- 
-# define filenames
-filenames = ['efi.jpg', 'efi1.jpg',
- 'efi2.jpg', 'efi3.jpg']
-# get embeddings file filenames
-embeddings = get_embeddings(filenames)
-# define sharon stone
-sharon_id = embeddings[0]
-# verify known photos of sharon
-print('Positive Tests')
-is_match(embeddings[0], embeddings[1])
-is_match(embeddings[0], embeddings[2])
-# verify known photos of other people
-print('Negative Tests')
-is_match(embeddings[0], embeddings[3])
+    # calculate distance between embeddings
+    score = cosine(known_embedding, candidate_embedding)
+    if score <= thresh:
+        print('>face is a Match (%.3f <= %.3f)' % (score, thresh))
+    else:
+        print('>face is NOT a Match (%.3f > %.3f)' % (score, thresh))
+
+
+host = "212.44.101.98"
+username = "beofle38_blazbole"
+password = "Dropshipping2022"
+dbname = "beofle38_feri_projekt"
+
+# Establish the database connection
+connection = mysql.connector.connect(
+    host=host,
+    user=username,
+    password=password,
+    database=dbname
+)
+
+user_id = 1  # Replace with the actual user ID
+query = f"SELECT image FROM images WHERE user_id = {user_id}"
+cursor = connection.cursor()
+cursor.execute(query)
+rows = cursor.fetchall()
+
+
+decoded_images = []
+
+for row in rows:
+    image_data = row[0]
+    decoded_image = Image.open(io.BytesIO(base64.b64decode(image_data)))
+    decoded_images.append(decoded_image)
+
+query = f"SELECT image FROM imagesLogin WHERE user_id = {user_id}"
+cursor = connection.cursor()
+cursor.execute(query)
+rows1 = cursor.fetchall()
+
+test_images = []
+
+for row in rows1:
+    image_data = row[0]
+    test_img = Image.open(io.BytesIO(base64.b64decode(image_data)))
+    test_images.append(test_img)
+
+filenames = decoded_images
+
+test = test_images[0]
+plt.imshow(test)
+plt.axis('off')
+plt.show()
+
+# get embeddings for filenames
+embeddings_train = get_embeddings(filenames)
+embeddings_test = get_embeddings([test])
+
+for embedding in embeddings_train:
+    is_match(embedding, embeddings_test[0])
