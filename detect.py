@@ -16,6 +16,7 @@ import time
 import os
 from sklearn.model_selection import train_test_split
 from skimage.feature import hog
+import pickle
 
 
 def izracunaj_hog(sivinska_slika, velikost_celice, velikost_bloka, segmenti):
@@ -127,14 +128,6 @@ def lbp(slika):
     return histogram
 
 
-def razdeli_podatke(podatki, razmerje):
-    random.shuffle(podatki)
-    velikost_train = int(len(podatki) * razmerje)
-    train_mnozica = podatki[:velikost_train]
-    test_mnozica = podatki[velikost_train:]
-    return train_mnozica, test_mnozica
-
-
 host = "212.44.101.98"
 username = "beofle38_blazbole"
 password = "Dropshipping2022"
@@ -189,75 +182,38 @@ print(f"Number of images with faces: {len(images_with_faces)}")
 hog_histograms = []
 lbp_histograms = []
 labels = []
-cell_size = 3
 
 for image, label in zip(images_with_faces, user_labels):
-    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    cell_hog_histogram = izracunaj_hog(gray_image, cell_size, 4, 9)
-    hog_histograms.append(cell_hog_histogram)
-    cell_lbp_histogram = lbp(gray_image)
-    lbp_histograms.append(cell_lbp_histogram)
-    labels.append(label)
-    print(label)
-
-X = np.concatenate((np.array(lbp_histograms), np.array(hog_histograms)), axis=1)
-y = np.array(labels)
-# Split the data into training and testing sets
-train_X, test_X, train_y, test_y = train_test_split(X, y, test_size=0.05, random_state=42)
-
-# Fit the classifiers
-'''
-svm = SVC()
-svm.fit(train_X, train_y)
-
-knn = KNeighborsClassifier()
-knn.fit(train_X, train_y)
-
-dt = DecisionTreeClassifier()
-dt.fit(train_X, train_y)
-
-# Make predictions
-svm_predictions = svm.predict(test_X)
-knn_predictions = knn.predict(test_X)
-dt_predictions = dt.predict(test_X)
-
-# Calculate accuracy
-dt_accuracy = accuracy_score(test_y, dt_predictions)
-print("Accuracy:", dt_accuracy)
-
-hog_histograms = []
-lbp_histograms = []
-
-rows1, columns = 10, 10
-
-for image in decoded_images:
-    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    resized_image = cv2.resize(image, (32, 32))
+    gray_image = cv2.cvtColor(resized_image, cv2.COLOR_BGR2GRAY)
     cell_hog_histogram = izracunaj_hog(gray_image, 3, 4, 9)
     hog_histograms.append(cell_hog_histogram)
     cell_lbp_histogram = lbp(gray_image)
     lbp_histograms.append(cell_lbp_histogram)
+    labels.append(label)
 
 X = np.concatenate((np.array(lbp_histograms), np.array(hog_histograms)), axis=1)
-y = np.array([0] * (rows1 * columns))  # Assuming all images have the same label
+y = np.array(labels)
 
-train_X, test_X = razdeli_podatke(X, 0.95)
-train_y, test_y = razdeli_podatke(y, 0.95)
-
-
-svm = SVC()
-svm.fit(train_X, train_y)
+# Fit the classifiers
 knn = KNeighborsClassifier()
-knn.fit(train_X, train_y)
-dt = DecisionTreeClassifier()
-dt.fit(train_X, train_y)
+knn.fit(X, y)
 
-svm_predictions = svm.predict(test_X)
-knn_predictions = knn.predict(test_X)
-dt_predictions = dt.predict(test_X)
+print("Shape of X:", X.shape)
+print("Shape of y:", y.shape)
 
-print("Number of elements:", len(hog_histograms))
-dt_accuracy = accuracy_score(test_y, dt_predictions)
-print("Accuracy:", dt_accuracy)
+knn_model_bytes = pickle.dumps(knn)
 
-'''
+# Prepare the SQL statement with parameter placeholders
+query = "INSERT INTO faces (knn_model, user_id) VALUES (%s, %s)"
+
+# Execute the SQL statement with the serialized model and user_id as the parameters
+cursor.execute(query, (knn_model_bytes, user_id))
+
+# Commit the changes to the database
+connection.commit()
+
+# Close the cursor and connection
+cursor.close()
+
 connection.close()
