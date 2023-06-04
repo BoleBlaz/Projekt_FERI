@@ -1,5 +1,6 @@
 import base64
 import io
+import json
 from matplotlib import pyplot as plt
 from PIL import Image
 import numpy as np
@@ -9,9 +10,8 @@ from mtcnn.mtcnn import MTCNN
 from keras_vggface.vggface import VGGFace
 from keras_vggface.utils import preprocess_input
 import mysql.connector
-import sys
 
-# extract a single face from a given photograph
+
 def extract_face(image, required_size=(224, 224)):
     pixels = np.array(image)
     # create the detector, using default weights
@@ -36,7 +36,7 @@ def extract_face(image, required_size=(224, 224)):
     return face_array
 
 
-# extract faces and calculate face embeddings for a list of photo files
+
 def get_embeddings(images):
     # extract faces
     faces = [extract_face(img) for img in images]
@@ -60,7 +60,7 @@ def get_embeddings(images):
 
 def is_match(known_embedding, candidate_embedding, thresh=0.5):
     # calculate distance between embeddings
-    score = cosine(known_embedding, candidate_embedding)
+    score = cosine(known_embedding.flatten(), candidate_embedding.flatten())
     if score <= thresh:
         print('>face is a Match (%.3f <= %.3f)' % (score, thresh))
         return True
@@ -73,7 +73,6 @@ username = "beofle38_blazbole"
 password = "Dropshipping2022"
 dbname = "beofle38_feri_projekt"
 
-# Establish the database connection
 connection = mysql.connector.connect(
     host=host,
     user=username,
@@ -81,27 +80,12 @@ connection = mysql.connector.connect(
     database=dbname
 )
 
-user_id = 1  # Replace with the actual user ID
-query = f"SELECT image FROM images WHERE user_id = {user_id}"
-cursor = connection.cursor()
-cursor.execute(query)
-rows = cursor.fetchall()
-
-decoded_images = []
-all_images = len(rows)
-
-for row in rows:
-    image_data = row[0]
-    decoded_image = Image.open(io.BytesIO(base64.b64decode(image_data)))
-    decoded_images.append(decoded_image)
-
-train_images = decoded_images
-'''
+user_id = 1
 query = f"SELECT image FROM imagesLogin WHERE user_id = {2}"
 cursor = connection.cursor()
 cursor.execute(query)
 rows1 = cursor.fetchall()
-
+cursor.close()
 test_images = []
 
 for row in rows1:
@@ -109,54 +93,36 @@ for row in rows1:
     test_img = Image.open(io.BytesIO(base64.b64decode(image_data)))
     test_images.append(test_img)
 
-test_image = test_images[0]
-'''
-#embeddings_test = get_embeddings([test_image])
-embeddings_train = get_embeddings(train_images)
+test_image = test_images[0]    
+plt.imshow(test_image)
+plt.axis('off')
+plt.show()
+
+query = f"SELECT knn_model FROM faces WHERE user_id = {user_id}"
+cursor = connection.cursor()
+cursor.execute(query)
+result = cursor.fetchone()
+blob_data = result[0]
+print(len(blob_data))
+embeddings_train = np.frombuffer(blob_data, dtype=np.float32)
 print(len(embeddings_train))
-print(embeddings_train.shape)
-np.save("embeddings_train.npy", embeddings_train)
-
-array_bytes = embeddings_train.tobytes()
-print(len(array_bytes))
-
-'''
-20
-163840
+embeddings_train = embeddings_train.reshape((20, -1))
 print(len(embeddings_train))
-np.set_printoptions(threshold = sys.maxsize)
-print(embeddings_train)
-print(type(embeddings_train))
-arr_string = np.array2string(embeddings_train)'''
 
-
-query = "INSERT INTO faces (knn_model, user_id) VALUES (%s, %s)"
-
-cursor.execute(query, (array_bytes, user_id))
-
-
-connection.commit()
-
-# Close the cursor and connection
-
-
-# Close the cursor and connection
-cursor.close()
-
-'''
+embeddings_test = get_embeddings([test_image])
 match_images = 0
 for embedding in embeddings_train:
     isMatch = is_match(embedding, embeddings_test[0])
     if(isMatch == True):
        match_images+=1
        
-accuracy = (match_images/all_images)*100
+accuracy = (match_images/len(embeddings_train))*100
 formatted_accuracy = "{:.2f}".format(accuracy)
 print("Accuracy: " + formatted_accuracy + "%")
 if(accuracy >= 70):
    print("Ujemanje")
 else:
     print("Neujemanje")
-'''
 
-connection.close()    
+#cursor.close()
+connection.close()
