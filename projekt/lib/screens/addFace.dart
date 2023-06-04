@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:projekt/screens/previewPage.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:projekt/models/user.dart';
 
 class AddFace extends StatefulWidget {
   final List<CameraDescription>? cameras;
-  const AddFace({Key? key, required this.cameras}) : super(key: key);
+  final int userfa;
+  const AddFace({Key? key, required this.cameras, required this.userfa})
+      : super(key: key);
 
   @override
   _AddFaceState createState() => _AddFaceState();
@@ -135,22 +137,36 @@ class _AddFaceState extends State<AddFace> {
                       style: TextStyle(color: Colors.white, fontSize: 15),
                     ),
                     Expanded(
-                      child: IconButton(
-                        onPressed: takePicturesRepeatedly,
-                        iconSize: 50,
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        icon: const Icon(Icons.circle, color: Colors.white),
-                      ),
+                      child: widget.userfa == 1
+                          ? IconButton(
+                              onPressed: takePictureLogin,
+                              iconSize: 50,
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(),
+                              icon: const Icon(Icons.circle, color: Colors.red),
+                            )
+                          : IconButton(
+                              onPressed: takePicturesRepeatedly,
+                              iconSize: 50,
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(),
+                              icon:
+                                  const Icon(Icons.circle, color: Colors.white),
+                            ),
                     ),
                     Expanded(
-                      child: IconButton(
-                        onPressed: takePictureLogin,
-                        iconSize: 50,
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        icon: const Icon(Icons.circle, color: Colors.red),
-                      ),
+                      child: widget.userfa == 1
+                          ? Text(
+                              "<-- CLICK TO ADD 1 LOGIN IMAGES",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 11),
+                            )
+                          : 
+                          Text(
+                              "<-- CLICK TO ADD 20 REGISTER IMAGES",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 11),
+                            )
                     ),
                   ],
                 ),

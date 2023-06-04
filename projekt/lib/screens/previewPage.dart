@@ -19,7 +19,7 @@ class PreviewPage extends StatefulWidget {
 
 class _PreviewPageState extends State<PreviewPage> {
   User? _user;
-  String text = "";
+  String text = "0";
   int insertCounter = 0;
 
   @override
@@ -74,18 +74,18 @@ class _PreviewPageState extends State<PreviewPage> {
             ),
           ),
           Text(
-            text,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            _user?.fa == 0 ? "PRESS TO ADD REGISTER IMAGES TO DATABSE -->" : "PRESS TO ADD LOGIN IMAGES TO DATABSE -->",
+            style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
           ),
-          ElevatedButton(
-            onPressed: addImageLogin,
-            child: const Text('Dodaj login'),
+          Text(
+            text,
+            style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => addImagesRegister(),
-        child: const Icon(Icons.add),
+        onPressed: _user?.fa == 0 ? addImagesRegister : addImageLogin,
+        child: const Icon(Icons.add_a_photo_outlined),
       ),
       
     );
@@ -125,6 +125,7 @@ class _PreviewPageState extends State<PreviewPage> {
         print("Error! $e");
       }
     }
+    User.update2FA(_user!.id);
     setState(() {
       text = "DONE";
     });

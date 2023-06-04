@@ -14,9 +14,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController usernameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  String response = "";
+  late TextEditingController usernameController;
+  late TextEditingController passwordController;
+  String? response;
 
   showMenuPage() {
     Navigator.of(context).pushAndRemoveUntil(
@@ -36,6 +36,20 @@ class _LoginScreenState extends State<LoginScreen> {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
       return Face();
     }));
+  }
+
+   @override
+  void initState() {
+    super.initState();
+    usernameController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
 @override
@@ -100,7 +114,7 @@ Widget build(BuildContext context) {
               ),
               SizedBox(height: 20),
               Text(
-                response,
+                response??"",
                 style: TextStyle(color: Colors.red),
               ),
               SizedBox(height: 20),
@@ -118,24 +132,6 @@ Widget build(BuildContext context) {
                   child: Text(
                     'Prijava',
                     style: TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
-              SizedBox(height: 16),
-              Container(
-                width: 250,
-                height: 45,
-                child: ElevatedButton(
-                  onPressed: showFacePage,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: Text(
-                    'Obraz',
-                    style: TextStyle(fontSize: 16),
                   ),
                 ),
               ),

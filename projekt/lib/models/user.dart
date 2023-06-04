@@ -6,11 +6,13 @@ class User {
   int id;
   String username;
   String password;
+  int fa;
 
   User({
     this.id = 0,
     this.username = "",
     this.password = "",
+    this.fa = 0,
   });
 
   int getId() {
@@ -33,11 +35,20 @@ class User {
     this.password = password;
   }
 
+   int getTwoFactorAuth() {
+    return fa;
+  }
+
+  void setTwoFactorAuth(int fa) {
+    this.fa = fa;
+  }
+
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['id'],
       username: json['username'],
       password: json['password'],
+      fa: json['fa'],
     );
   }
 
@@ -45,6 +56,7 @@ class User {
         'id': id,
         'username': username,
         'password': password,
+        'fa': fa,
       };
 
   Future<bool> saveUser() async {
@@ -91,6 +103,26 @@ class User {
     return false;
   }
 
+  static Future<bool> update2FA(int userId) async {
+    var dataStr = jsonEncode({
+      "command": "update_fa",
+      "user_id": userId,
+    });
+    var url = Uri.parse("http://beoflere.com/confprojekt.php?data=$dataStr");
+    try {
+      var result = await http.get(url);
+      if (result.body == "ERROR") {
+        return false;
+      }
+      if (result.body == "OK") {
+        return true;
+      }
+    } catch (e) {
+      return false;
+    }
+    return false;
+  }
+
   static Future<User> getByUsername(String username) async {
     var dataStr = jsonEncode({
       "command": "find_user_by_username",
@@ -108,6 +140,7 @@ class User {
           id: int.parse(data['id']),
           username: data['username'],
           password: data['password'],
+          fa: int.parse(data['fa']),
         );
       }
     } catch (e) {

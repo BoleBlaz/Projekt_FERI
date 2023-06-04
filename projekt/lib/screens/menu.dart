@@ -59,6 +59,16 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 
   @override
+  void dispose() {
+    _positionStream?.cancel(); // Cancel the position stream if it exists
+    gyroscopeEvents.drain(); // Stop listening to gyroscope events
+    accelerometerEvents.drain(); // Stop listening to accelerometer events
+    _positionStream?.cancel();
+    Wakelock.disable(); // Disable wakelock to allow the device to sleep
+    super.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     Wakelock.enable();
@@ -111,32 +121,11 @@ class _MenuScreenState extends State<MenuScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ElevatedButton(
-                            onPressed: () async {
-                              await availableCameras().then(
-                                (value) => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => AddFace(cameras: value),
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Text("FACE"),
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 16,
-                                horizontal: 32,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 16),
                           Text("Id: ${_user!.id}",
                               style: TextStyle(color: Colors.white)),
                           Text("Username: ${_user!.username}",
+                              style: TextStyle(color: Colors.white)),
+                          Text("2FA: ${_user!.fa}",
                               style: TextStyle(color: Colors.white)),
                           SizedBox(height: 40),
                           Text('LAT: ${_currentPosition?.latitude ?? ""}',
@@ -369,7 +358,7 @@ class _MenuScreenState extends State<MenuScreen> {
         _getAddressFromLatLng(position);
         addLocation();
         setState(() {
-          velocity = (position.speed*3.6);
+          velocity = (position.speed * 3.6);
         });
       }
     });

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:projekt/main.dart';
 import 'package:projekt/models/user.dart';
+import 'package:camera/camera.dart';
+import 'package:projekt/screens/addFace.dart';
 
 class Profile extends StatefulWidget {
   final String username;
 
-  const Profile({super.key, required this.username});
+  const Profile({Key? key, required this.username}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -20,6 +22,12 @@ class _ProfileState extends State<Profile> {
     _getUserData();
   }
 
+  @override
+  void dispose() {
+    _user = null;
+    super.dispose();
+  }
+
   Future<void> _getUserData() async {
     User user = await User.getByUsername(widget.username);
     setState(() {
@@ -29,9 +37,12 @@ class _ProfileState extends State<Profile> {
 
   logoutAndShowMain() async {
     await User.clearUsernameFromPreferences();
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-      return const MyHomePage();
-    }));
+    if (mounted) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const MyApp()),
+        (route) => false, // Always return false to remove all routes
+      );
+    }
   }
 
   @override
@@ -63,6 +74,36 @@ class _ProfileState extends State<Profile> {
                       style:
                           const TextStyle(fontSize: 24.0, color: Colors.white),
                     ),
+                    Text(
+                      "2FA: ${_user!.fa}",
+                      style:
+                          const TextStyle(fontSize: 24.0, color: Colors.white),
+                    ),
+                    const SizedBox(height: 30.0),
+                    ElevatedButton(
+                      onPressed: _user!.fa == 2
+                          ? null
+                          : () async {
+                              List<CameraDescription> cameras =
+                                  await availableCameras();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => AddFace(cameras: cameras, userfa: _user!.fa,),
+                                ),
+                              );
+                            },
+                      child: const Text("Dodajanje obraza (2FA)"),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 16,
+                          horizontal: 32,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                      ),
+                    ),
                     const SizedBox(height: 30.0),
                     ElevatedButton(
                       onPressed: logoutAndShowMain,
@@ -73,8 +114,10 @@ class _ProfileState extends State<Profile> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text('Odjava',
-                          style: const TextStyle(color: Colors.black)),
+                      child: const Text(
+                        'Odjava',
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   ],
                 ),
