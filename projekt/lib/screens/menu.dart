@@ -1,17 +1,15 @@
 // ignore_for_file: prefer_const_constructors, depend_on_referenced_packages
 
 import 'dart:async';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:projekt/settings/profile.dart';
 import '../models/user.dart';
 import 'package:projekt/models/location.dart' as LocationModel;
+import 'package:projekt/models/image.dart' as ImageModel;
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:wakelock/wakelock.dart';
-import 'package:camera/camera.dart';
-import 'package:projekt/screens/addFace.dart';
 import 'package:projekt/speede_meter_home.dart';
 
 class MenuScreen extends StatefulWidget {
@@ -49,7 +47,7 @@ class _MenuScreenState extends State<MenuScreen> {
   showSettingsPage() async {
     String? username = await User.getUsernameFromPreferences();
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return Profile(username: username ?? "");
+      return Profile(username: username ?? "",);
     }));
   }
 
@@ -121,12 +119,6 @@ class _MenuScreenState extends State<MenuScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Id: ${_user!.id}",
-                              style: TextStyle(color: Colors.white)),
-                          Text("Username: ${_user!.username}",
-                              style: TextStyle(color: Colors.white)),
-                          Text("2FA: ${_user!.fa}",
-                              style: TextStyle(color: Colors.white)),
                           SizedBox(height: 40),
                           Text('LAT: ${_currentPosition?.latitude ?? ""}',
                               style: TextStyle(color: Colors.white)),
@@ -238,6 +230,20 @@ class _MenuScreenState extends State<MenuScreen> {
                             "hitrost: ${velocity.toStringAsFixed(2)}",
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
+                          SizedBox(height: 20),
+                          ElevatedButton(
+                            onPressed: script,
+                            child: Text("script"),
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 32,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(24),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -259,6 +265,10 @@ class _MenuScreenState extends State<MenuScreen> {
     }).catchError((e) {
       debugPrint(e);
     });
+  }
+
+  void script(){
+    ImageModel.Image.runScriptWithUserId(_user!.id);
   }
 
   void addLocation() async {

@@ -5,6 +5,8 @@ import 'package:projekt/screens/menu.dart';
 import 'package:projekt/screens/face.dart';
 import 'package:projekt/screens/register.dart';
 import '../models/user.dart';
+import 'package:projekt/settings/profile.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -181,11 +183,19 @@ Widget build(BuildContext context) {
     var user = User(username: username, password: password);
     var success = await user.getLogin();
     if (success) {
+      //showSettingsPage();
       showMenuPage();
     } else {
       setState(() {
         response = "Napačno uporabniško ime ali geslo!";
       });
     }
+  }
+
+  showSettingsPage() async {
+    String? username = await User.getUsernameFromPreferences();
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      return Profile(username: username ?? "",);
+    }));
   }
 }

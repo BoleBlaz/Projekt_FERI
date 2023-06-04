@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:projekt/screens/previewPage.dart';
-import 'package:projekt/models/user.dart';
 
 class AddFace extends StatefulWidget {
   final List<CameraDescription>? cameras;

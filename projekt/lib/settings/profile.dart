@@ -63,7 +63,7 @@ class _ProfileState extends State<Profile> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      _user!.username,
+                      "Username: ${_user!.username}",
                       style: const TextStyle(
                           fontSize: 40.0,
                           fontWeight: FontWeight.bold,
@@ -81,19 +81,19 @@ class _ProfileState extends State<Profile> {
                     ),
                     const SizedBox(height: 30.0),
                     ElevatedButton(
-                      onPressed: _user!.fa == 2
-                          ? null
-                          : () async {
-                              List<CameraDescription> cameras =
-                                  await availableCameras();
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => AddFace(cameras: cameras, userfa: _user!.fa,),
-                                ),
-                              );
-                            },
-                      child: const Text("Dodajanje obraza (2FA)"),
+                      onPressed: () async {
+                        List<CameraDescription> cameras =
+                            await availableCameras();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => AddFace(
+                              cameras: cameras,
+                              userfa: _user!.fa,
+                            ),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
                           vertical: 16,
@@ -103,6 +103,9 @@ class _ProfileState extends State<Profile> {
                           borderRadius: BorderRadius.circular(24),
                         ),
                       ),
+                      child: _user!.fa == 0
+                          ? const Text("Dodajanje obraza (2FA)")
+                          : const Text("Preverjanje obraza (2FA)"),
                     ),
                     const SizedBox(height: 30.0),
                     ElevatedButton(

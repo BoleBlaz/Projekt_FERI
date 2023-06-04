@@ -135,7 +135,7 @@ class Image {
       
       if (response.statusCode == 200 || response.statusCode == 201) {
         var responseBody = response.body;
-
+        print(responseBody);
         if (responseBody == 'ERROR') {
           return false;
         }
