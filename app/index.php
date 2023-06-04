@@ -6,6 +6,7 @@
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,10 +42,16 @@
 
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="../css/starlight.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    
+    
     
   </head>
 
   <body>
+
     
     <!-- ########## START: LEFT PANEL ########## -->
     <div class="sl-logo"><a href=""><i class="icon ion-android-star-outline"></i> Vozi varno</a></div>
@@ -124,7 +131,7 @@
     </div><!-- sl-header -->
     <!-- ########## END: HEAD PANEL ########## -->
 
-   
+
 
     <!-- ########## START: MAIN PANEL ########## -->
 
@@ -134,33 +141,330 @@
         <span class="breadcrumb-item active">Satistična plošča</span>
       </nav>
 
-      <div class="sl-pagebody">
+      <div style="color: black;" class="sl-pagebody">
         <?php
         if (isset($_SESSION['username'])) {
             $username = $_SESSION['username'];
-            echo "statistika vožnje za uporabnika: $username";
+            echo "Statistika vožnje za uporabnika: $username";
         } 
         ?>
+        <br></br>
+        
+        <?php
+            $username = $_SESSION['username'];
+            $query = "SELECT id FROM users WHERE username='$username'";
+            $result = $conn->query($query);
+            $row = $result->fetch_assoc();
+            $user_id = $row['id'];
+        ?>
+
+<!-- HTML dropdown menu -->
+<select name="route" class="form-control" onchange="showDuration(this.value)">
+    <option value="">Izberi vožnjo</option>
+    <?php
+    // Fetch unique routes for the current user
+    $query = "SELECT DISTINCT route_num FROM locations WHERE user_id = '$user_id'";
+    $result = $conn->query($query);
+
+    // Populate the dropdown with routes
+    while ($row = $result->fetch_assoc()) {
+        $routeNum = $row['route_num'];
+        
+        // Display the route in the dropdown
+        echo "<option value='$routeNum'>$routeNum</option>";
+    }
+    ?>
+</select>
+
+<script>
+function calculateAndDisplayRoadCondition(routeNum) {
+  // Make an AJAX request to fetch the sensor data for the selected route from your backend
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var sensorData = JSON.parse(xhr.responseText);
+        var roadCondition = calculateRoadCondition(sensorData);
+        var mean = calculateMean(sensorData);
+        var stddev = calculateStandardDeviation(sensorData);
+        displayRoadCondition(roadCondition);
+      } else {
+        // Handle error
+      }
+    }
+  };
+
+  xhr.open('GET', 'fetch_sensor_data.php?routeNum=' + routeNum); // Replace with the URL and parameters to fetch the sensor data
+  xhr.send();
+}
+
+
+function displayRoadCondition(roadCondition) {
+  var roadConditionElement = document.getElementById('roadCondition');
+  var roadConditionElement2 = document.getElementById('roadCondition2');
+
+  // Set color based on road condition
+  if (roadCondition === 'Slabo') {
+    roadConditionElement.textContent = 'Stanje ceste: Slabo';
+    roadConditionElement.style.color = 'red';
+    roadConditionElement2.textContent = 'Slabo';
+    roadConditionElement2.style.color = 'red';
+  } else if (roadCondition === 'Normalno') {
+    roadConditionElement.textContent = 'Stanje ceste: Normalno';
+    roadConditionElement.style.color = 'orange';
+    roadConditionElement2.textContent = 'Normalno';
+    roadConditionElement2.style.color = 'orange';
+  } else if (roadCondition === 'Dobro') {
+    roadConditionElement.textContent = 'Stanje ceste: Dobro';
+    roadConditionElement.style.color = 'green';
+    roadConditionElement2.textContent = 'Dobro';
+    roadConditionElement2.style.color = 'green';
+  }
+}
+
+
+
+
+function calculateRoadCondition(sensorData) {
+  // Extract sensor data from the fetched response
+  var accelerometer_x_values = sensorData.map(function(data) {
+    return parseFloat(data.accelerometer_x) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  var accelerometer_y_values = sensorData.map(function(data) {
+    return parseFloat(data.accelerometer_y) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  var accelerometer_z_values = sensorData.map(function(data) {
+    return parseFloat(data.accelerometer_z) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  var gyroscope_x_values = sensorData.map(function(data) {
+    return parseFloat(data.gyroscope_x) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  var gyroscope_y_values = sensorData.map(function(data) {
+    return parseFloat(data.gyroscope_y) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  var gyroscope_z_values = sensorData.map(function(data) {
+    return parseFloat(data.gyroscope_z) || 0; // Validate and convert to number, default to 0 if not a valid number
+  });
+
+  // Calculate mean values
+  var accelerometer_x_mean = calculateMean(accelerometer_x_values);
+  var accelerometer_y_mean = calculateMean(accelerometer_y_values);
+  var accelerometer_z_mean = calculateMean(accelerometer_z_values);
+  var gyroscope_x_mean = calculateMean(gyroscope_x_values);
+  var gyroscope_y_mean = calculateMean(gyroscope_y_values);
+  var gyroscope_z_mean = calculateMean(gyroscope_z_values);
+
+  // Calculate standard deviation values
+  var accelerometer_x_stddev = calculateStandardDeviation(accelerometer_x_values);
+  var accelerometer_y_stddev = calculateStandardDeviation(accelerometer_y_values);
+  var accelerometer_z_stddev = calculateStandardDeviation(accelerometer_z_values);
+  var gyroscope_x_stddev = calculateStandardDeviation(gyroscope_x_values);
+  var gyroscope_y_stddev = calculateStandardDeviation(gyroscope_y_values);
+  var gyroscope_z_stddev = calculateStandardDeviation(gyroscope_z_values);
+
+  // Define the threshold values for determining the road condition
+  var accelerometer_x_threshold = 2.8; // Adjust as per your requirement
+  var accelerometer_y_threshold = 2.8; // Adjust as per your requirement
+  var accelerometer_z_threshold = 2.8; // Adjust as per your requirement
+  var gyroscope_x_threshold = 2.8; // Adjust as per your requirement
+  var gyroscope_y_threshold = 2.8; // Adjust as per your requirement
+  var gyroscope_z_threshold = 2.8; // Adjust as per your requirement
+
+  // Determine the road condition based on the standard deviation values
+  var roadCondition = 'Dobro';
+
+  if (
+    accelerometer_x_stddev > accelerometer_x_threshold ||
+    accelerometer_y_stddev > accelerometer_y_threshold ||
+    accelerometer_z_stddev > accelerometer_z_threshold ||
+    gyroscope_x_stddev > gyroscope_x_threshold ||
+    gyroscope_y_stddev > gyroscope_y_threshold ||
+    gyroscope_z_stddev > gyroscope_z_threshold
+  ) {
+    roadCondition = 'Slabo';
+  } else if (
+    accelerometer_x_stddev > accelerometer_x_threshold / 2 ||
+    accelerometer_y_stddev > accelerometer_y_threshold / 2 ||
+    accelerometer_z_stddev > accelerometer_z_threshold / 2 ||
+    gyroscope_x_stddev > gyroscope_x_threshold / 2 ||
+    gyroscope_y_stddev > gyroscope_y_threshold / 2 ||
+    gyroscope_z_stddev > gyroscope_z_threshold / 2
+  ) {
+    roadCondition = 'Normalno';
+  }
+
+  return roadCondition;
+}
+
+function calculateMean(values) {
+  var sum = values.reduce(function(total, value) {
+    return total + value;
+  }, 0);
+
+  return sum / values.length;
+}
+
+function calculateStandardDeviation(values) {
+  var mean = calculateMean(values);
+
+  var squaredDifferences = values.map(function(value) {
+    var difference = value - mean;
+    return difference * difference;
+  });
+
+  var variance = calculateMean(squaredDifferences);
+
+  return Math.sqrt(variance);
+}
+
+    function showDuration(value) {
+        // Add your code to handle the selected value
+        console.log(value);
+    }
+
+    function showDuration(routeNum) {
+    if (routeNum === '') {
+        // Clear the content of the elements
+        document.getElementById('duration').textContent = '';
+        document.getElementById('duration2').textContent = '';
+        document.getElementById('firstDate').textContent = '';
+        document.getElementById('lastDate').textContent = '';
+        document.getElementById('firstAddress').textContent = '';
+        document.getElementById('lastAddress').textContent = '';
+        document.getElementById('lastAddress2').textContent = '';
+        document.getElementById('maxSpeed').textContent = '';
+        document.getElementById('maxSpeed2').textContent = '';
+        document.getElementById('avgSpeed').textContent = '';
+        document.getElementById('minSpeed').textContent = '';
+        document.getElementById('roadCondition').textContent = '';
+        document.getElementById('senzorji').textContent = '';
+        document.getElementById('numRoutes').textContent = '';
+    } else {
+        fetch('get_duration.php?routeNum=' + routeNum)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('duration').textContent = data.duration;
+                document.getElementById('duration2').textContent = data.duration;
+                document.getElementById('firstDate').textContent = data.firstDate;
+                document.getElementById('lastDate').textContent = data.lastDate;
+                document.getElementById('firstAddress').textContent = data.firstAddress;
+                document.getElementById('lastAddress').textContent = data.lastAddress;
+                document.getElementById('lastAddress2').textContent = data.lastAddress;
+                document.getElementById('maxSpeed').textContent = data.maxSpeed + "km/h";
+                document.getElementById('maxSpeed2').textContent = data.maxSpeed + "km/h";
+                document.getElementById('avgSpeed').textContent = data.avgSpeed + "km/h";
+                document.getElementById('minSpeed').textContent = data.minSpeed + "km/h";
+                document.getElementById('senzorji').textContent = "žiroskop in pospeškometer";
+                document.getElementById('numRoutes').textContent = data.numRoutes;
+                
+                calculateAndDisplayRoadCondition(routeNum);
+                showGraph(data.accelerometerData);
+                document.getElementById('routeCount').textContent = data.routeCount;
+            })
+            .catch(error => console.log(error));
+    }
+}
+
+function showDurationGraph(routeNum) {
+    fetch('get_graph_data.php?routeNum=' + routeNum)
+        .then(response => response.json())
+        .then(data => {
+            showGraph(data.accelerometerData);
+        })
+        .catch(error => console.log(error));
+}
+    
+var chart = null; // Declare a variable to store the chart instance
+
+function showGraph(accelerometerData) {
+    var labels = accelerometerData.map(function(data) {
+        return data.date;
+    });
+
+    var xData = accelerometerData.map(function(data) {
+        return data.accelerometer_x;
+    });
+
+    var yData = accelerometerData.map(function(data) {
+        return data.accelerometer_y;
+    });
+
+    var zData = accelerometerData.map(function(data) {
+        return data.accelerometer_z;
+    });
+
+    var ctx = document.getElementById('accelerometerChart').getContext('2d');
+    
+    // Destroy previous chart instance if it exists
+    if (chart !== null) {
+        chart.destroy();
+    }
+    
+    // Resize the chart container element
+    var container = document.getElementById('accelerometerChart').parentElement;
+    container.style.width = '100%';
+    container.style.height = '300px';
+
+    chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Accelerometer X',
+                data: xData,
+                borderColor: 'red',
+                fill: false
+            }, {
+                label: 'Accelerometer Y',
+                data: yData,
+                borderColor: 'green',
+                fill: false
+            }, {
+                label: 'Accelerometer Z',
+                data: zData,
+                borderColor: 'blue',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+}
+
+
+    
+    
+</script>
+
+
+<!-- Duration display -->
+
         <br></br>
         <div class="row row-sm">
           <div class="col-sm-6 col-xl-3">
             <div class="card pd-20 bg-primary">
               <div class="d-flex justify-content-between align-items-center mg-b-10">
-                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Tedenske vožnje</h6>
+                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Trajanje poti</h6>
                 <a href="" class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>
               </div><!-- card-header -->
               <div class="d-flex align-items-center justify-content-between">
-                <span class="sparkline2">5,3,9,6,5,9,7,3,5,2</span>
-                <h3 class="mg-b-0 tx-white tx-lato tx-bold">$850</h3>
+                <div style="font-size: 22px;" class="mg-b-0 tx-white tx-lato tx-bold" id="duration"></div>
               </div><!-- card-body -->
               <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
                 <div>
-                  <span class="tx-11 tx-white-6">Gross Sales</span>
-                  <h6 class="tx-white mg-b-0">$2,210</h6>
+                  <span style="font-size: 12px;" class="tx-11 tx-white-6">Začetek poti</span>
+                  <div class="tx-white mg-b-0" id="firstDate"></div>
                 </div>
                 <div>
-                  <span class="tx-11 tx-white-6">Tax Return</span>
-                  <h6 class="tx-white mg-b-0">$320</h6>
+                  <span style="font-size: 12px;" class="tx-11 tx-white-6">Konec poti</span>
+                  <div class="tx-white mg-b-0" id="lastDate"></div>
                 </div>
               </div><!-- -->
             </div><!-- card -->
@@ -168,21 +472,20 @@
           <div class="col-sm-6 col-xl-3 mg-t-20 mg-sm-t-0">
             <div class="card pd-20 bg-info">
               <div class="d-flex justify-content-between align-items-center mg-b-10">
-                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Mesečne vožnje</h6>
+                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Ciljne informacije poti</h6>
                 <a href="" class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>
               </div><!-- card-header -->
               <div class="d-flex align-items-center justify-content-between">
-                <span class="sparkline2">5,3,9,6,5,9,7,3,5,2</span>
-                <h3 class="mg-b-0 tx-white tx-lato tx-bold">$4,625</h3>
+                <div style="font-size: 22px;" class="mg-b-0 tx-white tx-lato tx-bold" id="lastAddress2"></div>
               </div><!-- card-body -->
               <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
                 <div>
-                  <span class="tx-11 tx-white-6">Gross Sales</span>
-                  <h6 class="tx-white mg-b-0">$2,210</h6>
+                  <span style="font-size: 12px;" class="tx-11 tx-white-6">Začetni naslov</span>
+                  <div class="tx-white mg-b-0" id="firstAddress"></div>
                 </div>
                 <div>
-                  <span class="tx-11 tx-white-6">Tax Return</span>
-                  <h6 class="tx-white mg-b-0">$320</h6>
+                  <span style="font-size: 12px;" class="tx-11 tx-white-6">Končni naslov</span>
+                  <div class="tx-white mg-b-0" id="lastAddress"></div>
                 </div>
               </div><!-- -->
             </div><!-- card -->
@@ -190,21 +493,20 @@
           <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
             <div class="card pd-20 bg-purple">
               <div class="d-flex justify-content-between align-items-center mg-b-10">
-                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">This Month's Sales</h6>
+                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Povprečna hitrost na poti:</h6>
                 <a href="" class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>
               </div><!-- card-header -->
               <div class="d-flex align-items-center justify-content-between">
-                <span class="sparkline2">5,3,9,6,5,9,7,3,5,2</span>
-                <h3 class="mg-b-0 tx-white tx-lato tx-bold">$11,908</h3>
+                <div style="font-size: 22px;" class="mg-b-0 tx-white tx-lato tx-bold" id="avgSpeed"></div>
               </div><!-- card-body -->
               <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
                 <div>
-                  <span class="tx-11 tx-white-6">Gross Sales</span>
-                  <h6 class="tx-white mg-b-0">$2,210</h6>
+                  <span class="tx-11 tx-white-6">Najmanjša hitrost:</span>
+                  <div class="tx-white mg-b-0" id="minSpeed"></div>
                 </div>
                 <div>
-                  <span class="tx-11 tx-white-6">Tax Return</span>
-                  <h6 class="tx-white mg-b-0">$320</h6>
+                  <span class="tx-11 tx-white-6">Največja hitrost:</span></span>
+                  <div class="tx-white mg-b-0" id="maxSpeed"></div>
                 </div>
               </div><!-- -->
             </div><!-- card -->
@@ -212,21 +514,20 @@
           <div class="col-sm-6 col-xl-3 mg-t-20 mg-xl-t-0">
             <div class="card pd-20 bg-sl-primary">
               <div class="d-flex justify-content-between align-items-center mg-b-10">
-                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">This Year's Sales</h6>
+                <h6 class="tx-11 tx-uppercase mg-b-0 tx-spacing-1 tx-white">Stanje ceste poti</h6>
                 <a href="" class="tx-white-8 hover-white"><i class="icon ion-android-more-horizontal"></i></a>
               </div><!-- card-header -->
               <div class="d-flex align-items-center justify-content-between">
-                <span class="sparkline2">5,3,9,6,5,9,7,3,5,2</span>
-                <h3 class="mg-b-0 tx-white tx-lato tx-bold">$91,239</h3>
+                <div style="font-size: 22px;" class="mg-b-0 tx-white tx-lato tx-bold" id="roadCondition"></div>
               </div><!-- card-body -->
               <div class="d-flex align-items-center justify-content-between mg-t-15 bd-t bd-white-2 pd-t-10">
                 <div>
-                  <span class="tx-11 tx-white-6">Gross Sales</span>
-                  <h6 class="tx-white mg-b-0">$2,210</h6>
+                  <span class="tx-11 tx-white-6">Na poti ste bili</span>
+                  <div class="tx-white mg-b-0" id="duration2"></div>
                 </div>
                 <div>
-                  <span class="tx-11 tx-white-6">Tax Return</span>
-                  <h6 class="tx-white mg-b-0">$320</h6>
+                  <span class="tx-11 tx-white-6">Pridobljeno na podlagi senzorjev</span>
+                  <div class="tx-white mg-b-0" id="senzorji"></div>
                 </div>
               </div><!-- -->
             </div><!-- card -->
@@ -238,35 +539,37 @@
             <div class="card overflow-hidden">
               <div class="card-header bg-transparent pd-y-20 d-sm-flex align-items-center justify-content-between">
                 <div class="mg-b-20 mg-sm-b-0">
-                  <h6 class="card-title mg-b-5 tx-13 tx-uppercase tx-bold tx-spacing-1">Profile Statistics</h6>
-                  <span class="d-block tx-12">October 23, 2017</span>
+                  <h6 class="card-title mg-b-5 tx-16 tx-uppercase tx-bold tx-spacing-1">Informacije</h6>
+                  <p id="dateDisplay" class="d-block tx-12"></p>
                 </div>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <a href="#" class="btn btn-secondary tx-12 active">Today</a>
-                  <a href="#" class="btn btn-secondary tx-12">This Week</a>
-                  <a href="#" class="btn btn-secondary tx-12">This Month</a>
+                  <div class="btn btn-secondary tx-12 active">Pregled Voženj</div>
                 </div>
               </div><!-- card-header -->
               <div class="card-body pd-0 bd-color-gray-lighter">
                 <div class="row no-gutters tx-center">
                   <div class="col-12 col-sm-4 pd-y-20 tx-left">
-                    <p class="pd-l-20 tx-12 lh-8 mg-b-0">Note: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula...</p>
+                    <p class="pd-l-20 tx-12 lh-8 mg-b-0">Prikaz satistike vseh voženj na podlagi pridobljenih senzorskih podatkov.</p>
                   </div><!-- col-4 -->
                   <div class="col-6 col-sm-2 pd-y-20">
-                    <h4 class="tx-inverse tx-lato tx-bold mg-b-5">6,112</h4>
-                    <p class="tx-11 mg-b-0 tx-uppercase">Views</p>
+                    <h4 class="tx-inverse tx-lato tx-bold mg-b-5" id="numRoutes"></h4>
+                    <p class="tx-11 mg-b-0 tx-uppercase">Vse poti</p>
                   </div><!-- col-2 -->
                   <div class="col-6 col-sm-2 pd-y-20 bd-l">
-                    <h4 class="tx-inverse tx-lato tx-bold mg-b-5">102</h4>
-                    <p class="tx-11 mg-b-0 tx-uppercase">Likes</p>
+                    <h4 class="tx-inverse tx-lato tx-bold mg-b-5" id="maxSpeed2"></h4>
+                    <p class="tx-11 mg-b-0 tx-uppercase">Največja hitrost</p>
                   </div><!-- col-2 -->
                   <div class="col-6 col-sm-2 pd-y-20 bd-l">
-                    <h4 class="tx-inverse tx-lato tx-bold mg-b-5">343</h4>
-                    <p class="tx-11 mg-b-0 tx-uppercase">Comments</p>
+                    <h4 class="tx-inverse tx-lato tx-bold mg-b-5"><?php
+                             if (isset($_SESSION['username'])) {
+                                echo "$username";
+                            } 
+                           ?></h4>
+                    <p class="tx-11 mg-b-0 tx-uppercase">Uporabnik</p>
                   </div><!-- col-2 -->
                   <div class="col-6 col-sm-2 pd-y-20 bd-l">
-                    <h4 class="tx-inverse tx-lato tx-bold mg-b-5">960</h4>
-                    <p class="tx-11 mg-b-0 tx-uppercase">Shares</p>
+                    <h4 class="tx-inverse tx-lato tx-bold mg-b-5" id="roadCondition2"></h4>
+                    <p class="tx-11 mg-b-0 tx-uppercase">Kondicija ceste</p>
                   </div><!-- col-2 -->
                 </div><!-- row -->
               </div><!-- card-body -->
@@ -275,26 +578,46 @@
               </div><!-- card-body -->
             </div><!-- card -->
 
-            <div class="card pd-20 pd-sm-25 mg-t-20">
-              <h6 class="card-body-title tx-13">Horizontal Bar Chart</h6>
-              <p class="mg-b-20 mg-sm-b-30">A bar chart or bar graph is a chart with rectangular bars with lengths proportional to the values that they represent.</p>
-              <canvas id="chartBar4" height="300"></canvas>
-            </div><!-- card -->
+            
 
           </div><!-- col-8 -->
-          <div class="col-xl-4 mg-t-20 mg-xl-t-0">
+            <div class="col-xl-4 mg-t-20 mg-xl-t-0">
+  <div class="card pd-20 pd-sm-25">
+    <h6 class="card-body-title">Pridobivanje senzorskih podatkov</h6>
+    <p class="mg-b-20 mg-sm-b-30">Senzosrke podatke, katere prikažemo tukaj pridobimo na mobini aplikaciji.</p>
+    
+    <div class="ht-200 ht-sm-250 d-flex justify-content-center align-items-center">
+      <img src="image.png" alt="Image" style="max-width: 100%; max-height: 100%;">
+    </div>
+  </div><!-- card -->
+  <div class="card widget-messages mg-t-20">
+  </div><!-- card -->
+</div><!-- col-3 -->
+</div><!-- row -->
+<br></br>
 
-            <div class="card pd-20 pd-sm-25">
-              <h6 class="card-body-title">Pie Chart</h6>
-              <p class="mg-b-20 mg-sm-b-30">Labels can be hidden if the slice is less than a given percentage of the pie.</p>
-              <div id="flotPie2" class="ht-200 ht-sm-250"></div>
-            </div><!-- card -->
-
-            <div class="card widget-messages mg-t-20">
-            </div><!-- card -->
-          </div><!-- col-3 -->
-        </div><!-- row -->
         
+        <select name="route" class="form-control" onchange="showDurationGraph(this.value)">
+        <option value="">Prikaži graf pospeškometra izbrane poti</option>
+        <?php
+        // Fetch unique routes for the current user
+        $query = "SELECT DISTINCT route_num FROM locations WHERE user_id = '$user_id'";
+        $result = $conn->query($query);
+
+        // Populate the dropdown with routes
+        while ($row = $result->fetch_assoc()) {
+            $routeNum = $row['route_num'];
+        
+            // Display the route in the dropdown
+            echo "<option value='$routeNum'>$routeNum</option>";
+        }
+        ?>
+        </select>
+  
+        <div style = "margin-top: 5px; height: 0px;" class="card pd-20 pd-sm-25">
+              <canvas id="accelerometerChart"></canvas>
+
+        </div><!-- card -->
 
       </div><!-- sl-pagebody -->
       
@@ -310,6 +633,19 @@
       </footer>
       <div id ="map"></div>
     </div><!-- sl-mainpanel -->
+    
+      <script>
+    // Get the current date
+    var today = new Date();
+
+    // Format the date as desired (e.g., "MM/DD/YYYY")
+    var formattedDate = today.getDate() + '. ' + (today.getMonth() + 1) + '. ' + today.getFullYear();
+
+    // Set the formatted date as the content of the element with id "dateDisplay"
+    document.getElementById("dateDisplay").textContent = formattedDate;
+  </script>
+    
+    
     
     <!-- ########## END: MAIN PANEL ########## -->
 
