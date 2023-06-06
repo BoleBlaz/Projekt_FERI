@@ -50,10 +50,10 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
-        title: Text("Settings"),
+        title: const Text("Settings"),
         actions: [
           IconButton(
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
             onPressed: logoutAndShowMain,
           ),
         ],
