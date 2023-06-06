@@ -158,5 +158,4 @@ if(accuracy >= 70):
 else:
     print("Neujemanje")
 '''
-
 connection.close()    

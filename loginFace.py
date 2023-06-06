@@ -11,7 +11,6 @@ from keras_vggface.vggface import VGGFace
 from keras_vggface.utils import preprocess_input
 import mysql.connector
 
-
 def extract_face(image, required_size=(224, 224)):
     pixels = np.array(image)
     # create the detector, using default weights
