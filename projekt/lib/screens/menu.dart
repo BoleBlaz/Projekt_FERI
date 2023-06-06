@@ -11,6 +11,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 import 'package:wakelock/wakelock.dart';
 import 'package:projekt/speede_meter_home.dart';
+import 'package:projekt/screens/login.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({super.key});
@@ -20,7 +21,8 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  String err = "NULL";
+  String err = "";
+  String text = "";
   String? _currentAddress;
   Position? _currentPosition;
   User? _user;
@@ -39,15 +41,19 @@ class _MenuScreenState extends State<MenuScreen> {
   Future<void> _getUserData() async {
     String? username = await User.getUsernameFromPreferences();
     User user = await User.getByUsername(username!);
-    setState(() {
-      _user = user;
-    });
+    if (mounted) {
+      setState(() {
+        _user = user;
+      });
+    }
   }
 
   showSettingsPage() async {
     String? username = await User.getUsernameFromPreferences();
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return Profile(username: username ?? "",);
+      return Profile(
+        username: username ?? "",
+      );
     }));
   }
 
@@ -56,12 +62,18 @@ class _MenuScreenState extends State<MenuScreen> {
     return username ?? "";
   }
 
+  logoutAndShowMain() async {
+    await User.clearUsernameFromPreferences();
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+      return LoginScreen();
+    }));
+  }
+
   @override
   void dispose() {
     _positionStream?.cancel(); // Cancel the position stream if it exists
     gyroscopeEvents.drain(); // Stop listening to gyroscope events
     accelerometerEvents.drain(); // Stop listening to accelerometer events
-    _positionStream?.cancel();
     Wakelock.disable(); // Disable wakelock to allow the device to sleep
     super.dispose();
   }
@@ -71,16 +83,6 @@ class _MenuScreenState extends State<MenuScreen> {
     super.initState();
     Wakelock.enable();
     _getUserData();
-    gyroscopeEvents.listen((GyroscopeEvent event) {
-      setState(() {
-        _gyroscopeValues = <double>[event.x, event.y, event.z];
-      });
-    });
-    accelerometerEvents.listen((AccelerometerEvent event) {
-      setState(() {
-        _accelerometerValues = <double>[event.x, event.y, event.z];
-      });
-    });
   }
 
   @override
@@ -92,7 +94,7 @@ class _MenuScreenState extends State<MenuScreen> {
           title: "Menu",
           home: Scaffold(
             appBar: AppBar(
-              backgroundColor: Color.fromARGB(255, 57, 100, 180),
+              backgroundColor: Color.fromARGB(255, 0, 0, 0),
               title: Text("Menu"),
               actions: [
                 IconButton(
@@ -101,7 +103,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 ),
                 IconButton(
                   icon: Icon(Icons.logout),
-                  onPressed: () {},
+                  onPressed: logoutAndShowMain,
                 ),
               ],
             ),
@@ -116,18 +118,19 @@ class _MenuScreenState extends State<MenuScreen> {
                       ),
                     ),
                     child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 40),
-                          Text('LAT: ${_currentPosition?.latitude ?? ""}',
-                              style: TextStyle(color: Colors.white)),
-                          Text('LNG: ${_currentPosition?.longitude ?? ""}',
-                              style: TextStyle(color: Colors.white)),
-                          Text('ADDRESS: ${_currentAddress ?? ""}',
-                              style: TextStyle(color: Colors.white)),
-                          const SizedBox(height: 20),
-                          ElevatedButton(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        padding: EdgeInsets.only(
+                            left: 40, right: 40, top: 10, bottom: 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            /*ElevatedButton(
                             onPressed: () {
                               Navigator.push(
                                 context,
@@ -146,60 +149,91 @@ class _MenuScreenState extends State<MenuScreen> {
                                 borderRadius: BorderRadius.circular(24),
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 32),
-                          ElevatedButton(
-                            onPressed: isRunning
-                                ? null
-                                : () {
-                                    LocationModel.Location.getRouteNumByUserId(
-                                            _user!.id)
-                                        .then((var routeNum) {
-                                      _routeNum = routeNum! + 1;
-                                      //start();
-                                      setState(() {
-                                        err = "Running";
+                          ),*/
+                            const SizedBox(height: 32),
+                            ElevatedButton(
+                              onPressed: isRunning
+                                  ? null
+                                  : () {
+                                      LocationModel.Location
+                                              .getRouteNumByUserId(_user!.id)
+                                          .then((var routeNum) {
+                                        _routeNum = routeNum! + 1;
+                                        //start();
+                                        _startListening();
                                       });
-                                      _startListening();
-                                    });
-                                  },
-                            child: const Text("START"),
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 16,
-                                horizontal: 32,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24),
-                              ),
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: !isRunning
-                                ? null
-                                : () {
-                                    stop();
-                                    setState(() {
-                                      isRunning = false;
-                                    });
-                                  },
-                            child: Text("STOP"),
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 16,
-                                horizontal: 32,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24),
+                                    },
+                              child: const Text("START"),
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 16,
+                                  horizontal: 32,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(height: 20),
-                          Text(
-                            err,
-                            style: TextStyle(color: Colors.red, fontSize: 30),
-                          ),
-                          /*
+                            ElevatedButton(
+                              onPressed: !isRunning
+                                  ? null
+                                  : () {
+                                      stop();
+                                      if (mounted) {
+                                        setState(() {
+                                          isRunning = false;
+                                          text = "Stopped";
+                                        });
+                                      }
+                                    },
+                              child: Text("STOP"),
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: 16,
+                                  horizontal: 32,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 20),
+                            Text('LAT: ${_currentPosition?.latitude ?? ""}',
+                                style: TextStyle(color: Colors.white)),
+                            Text('LNG: ${_currentPosition?.longitude ?? ""}',
+                                style: TextStyle(color: Colors.white)),
+                            Text('ADDRESS: ${_currentAddress ?? ""}',
+                                style: TextStyle(color: Colors.white)),
+                            const SizedBox(height: 20),
+                            Text("hitrost: ${velocity.toStringAsFixed(2)}",
+                                style: TextStyle(color: Colors.white)),
+                            const SizedBox(height: 20),
+                            SizedBox(height: 20),
+                            Text(
+                              "Stanje:",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 10),
+                            ),
+                            Text(
+                              text,
+                              style:
+                                  TextStyle(color: Colors.green, fontSize: 20),
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              "Error:",
+                              style: err.isEmpty
+                                  ? null
+                                  : TextStyle(
+                                      color: Colors.white, fontSize: 10),
+                            ),
+                            Text(
+                              err,
+                              style: err.isEmpty
+                                  ? null
+                                  : TextStyle(color: Colors.red, fontSize: 20),
+                            ),
+                            /*
                           Text(
                             "x: ${_gyroscopeValues![0]}",
                             style: TextStyle(color: Colors.white, fontSize: 15),
@@ -225,11 +259,6 @@ class _MenuScreenState extends State<MenuScreen> {
                             "z: ${_accelerometerValues![2]}",
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
-                          */
-                          Text(
-                            "hitrost: ${velocity.toStringAsFixed(2)}",
-                            style: TextStyle(color: Colors.white, fontSize: 15),
-                          ),
                           SizedBox(height: 20),
                           ElevatedButton(
                             onPressed: script,
@@ -243,8 +272,9 @@ class _MenuScreenState extends State<MenuScreen> {
                                 borderRadius: BorderRadius.circular(24),
                               ),
                             ),
-                          ),
-                        ],
+                          ),*/
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -258,16 +288,18 @@ class _MenuScreenState extends State<MenuScreen> {
     await placemarkFromCoordinates(position.latitude, position.longitude)
         .then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
-      setState(() {
-        _currentPosition = position;
-        _currentAddress = '${place.street}, ${place.postalCode}';
-      });
+      if (mounted) {
+        setState(() {
+          _currentPosition = position;
+          _currentAddress = '${place.street}, ${place.postalCode}';
+        });
+      }
     }).catchError((e) {
       debugPrint(e);
     });
   }
 
-  void script(){
+  void script() {
     ImageModel.Image.runScriptWithUserId(_user!.id);
   }
 
@@ -315,10 +347,12 @@ class _MenuScreenState extends State<MenuScreen> {
     if (success) {
       print("ok");
     } else {
-      setState(() {
-        isRunning = false;
-        err = "ne gre v bazo!";
-      });
+      if (mounted) {
+        setState(() {
+          isRunning = false;
+          err = "ne gre v bazo!";
+        });
+      }
     }
   }
 
@@ -326,59 +360,90 @@ class _MenuScreenState extends State<MenuScreen> {
     isRunning = true;
     bool serviceEnabled;
     LocationPermission permission;
-
+    if (mounted) {
+      setState(() {
+        err = "";
+      });
+    }
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
       isRunning = false;
-      setState(() {
-        err = "Location services are disabled.";
-      });
-    }
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
+      if (mounted) {
+        setState(() {
+          err = "Location services are disabled";
+        });
+      }
+    } else {
+      permission = await Geolocator.checkPermission();
       if (permission == LocationPermission.denied) {
-        isRunning = false;
-        setState(() {
-          err = "Location permissions are denied";
-        });
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      isRunning = false;
-      setState(() {
-        err =
-            "Location permissions are permanently denied, we cannot request permissions.";
-      });
-    }
-
-    const LocationSettings locationSettings = LocationSettings(
-      accuracy: LocationAccuracy.high,
-    );
-
-    _positionStream =
-        Geolocator.getPositionStream(locationSettings: locationSettings)
-            .listen((Position? position) {
-      if (position == null) {
-        print("error. position==null");
-      } else if (_currentPosition == null || _currentAddress == null) {
-        print("error. _currentPosition==null || _currentAddress==null");
-        _getAddressFromLatLng(position);
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          isRunning = false;
+          if (mounted) {
+            setState(() {
+              err = "Location permissions are denied";
+            });
+          }
+        }
       } else {
-        _getAddressFromLatLng(position);
-        addLocation();
-        setState(() {
-          velocity = (position.speed * 3.6);
-        });
+        if (permission == LocationPermission.deniedForever) {
+          isRunning = false;
+          if (mounted) {
+            setState(() {
+              err =
+                  "Location permissions are permanently denied, we cannot request permissions";
+            });
+          }
+        } else {
+          if (mounted) {
+            setState(() {
+              text = "Running";
+            });
+          }
+          const LocationSettings locationSettings = LocationSettings(
+            accuracy: LocationAccuracy.high,
+          );
+          gyroscopeEvents.listen((GyroscopeEvent event) {
+            if (mounted) {
+              setState(() {
+                _gyroscopeValues = <double>[event.x, event.y, event.z];
+              });
+            }
+          });
+          accelerometerEvents.listen((AccelerometerEvent event) {
+            if (mounted) {
+              setState(() {
+                _accelerometerValues = <double>[event.x, event.y, event.z];
+              });
+            }
+          });
+          _positionStream =
+              Geolocator.getPositionStream(locationSettings: locationSettings)
+                  .listen((Position? position) {
+            if (position == null) {
+              print("error. position==null");
+            } else if (_currentPosition == null || _currentAddress == null) {
+              print("error. _currentPosition==null || _currentAddress==null");
+              _getAddressFromLatLng(position);
+            } else {
+              _getAddressFromLatLng(position);
+              addLocation();
+              if (mounted) {
+                setState(() {
+                  velocity = (position.speed * 3.6);
+                });
+              }
+            }
+          });
+        }
       }
-    });
+    }
   }
 
   void stop() async {
     isRunning = false;
-    _positionStream?.cancel();
-    setState(() {
-      err = "Stopped";
-    });
+    _positionStream?.cancel(); // Cancel the position stream if it exists
+    gyroscopeEvents.drain(); // Stop listening to gyroscope events
+    accelerometerEvents.drain(); // Stop listening to accelerometer events
   }
 }

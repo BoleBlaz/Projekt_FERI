@@ -55,8 +55,10 @@ class _PreviewPageState extends State<PreviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Preview Page')),
-      body: Column(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        title: Text("Preview Page"),
+      ),body: Column(
         children: [
           Expanded(
             child: GridView.count(

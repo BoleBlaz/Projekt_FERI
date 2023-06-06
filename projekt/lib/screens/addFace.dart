@@ -93,6 +93,10 @@ class _AddFaceState extends State<AddFace> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        title: Text("Camera"),
+      ),
       body: SafeArea(
         child: Stack(
           children: [
